@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#f4f0e9;color:#1c1a17}
+  ::selection{background:#c8482f;color:#f4f0e9}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</helmet>
+<div style="background:#f4f0e9;color:#1c1a17;font-family:'Newsreader',Georgia,serif;min-height:100vh;overflow-x:hidden">
+
+  <!-- NAV -->
+  <nav style="position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:22px 48px;backdrop-filter:blur(8px);background:rgba(244,240,233,0.72);border-bottom:1px solid rgba(28,26,23,0.08)">
+    <a href="#top" style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.04em;text-decoration:none;color:#1c1a17;font-weight:500">M.RIVERA</a>
+    <div style="display:flex;gap:34px;align-items:center">
+      <a href="#work" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;color:#6b6155">Work</a>
+      <a href="#about" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;color:#6b6155">About</a>
+      <a href="#contact" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;color:#c8482f">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="top" style="padding:120px 48px 96px;max-width:1180px;margin:0 auto">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#c8482f;margin-bottom:38px;animation:rise .7s ease both">Product Designer · San Francisco</div>
+    <h1 style="font-family:'Fraunces',serif;font-weight:400;font-size:clamp(48px,8.5vw,118px);line-height:0.96;letter-spacing:-0.02em;max-width:14ch;animation:rise .8s ease both .06s">Designing calm software for complicated work.</h1>
+    <p style="margin-top:40px;max-width:46ch;font-size:21px;line-height:1.55;color:#4a443c;animation:rise .8s ease both .14s">I'm Mara Rivera — I help teams turn dense, technical products into interfaces people actually want to use. Currently leading design at <span style="color:#1c1a17">Ledger Systems</span>.</p>
+  </header>
+
+  <!-- MARQUEE STRIP -->
+  <div style="border-top:1px solid rgba(28,26,23,0.12);border-bottom:1px solid rgba(28,26,23,0.12);padding:18px 48px;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#6b6155;flex-wrap:wrap;gap:12px">
+    <span>Selected Work — 2019/2026</span>
+    <span>Product · Systems · Prototyping</span>
+    <span>Available Q3 2026</span>
+  </div>
+
+  <!-- WORK -->
+  <section id="work" style="max-width:1180px;margin:0 auto;padding:40px 48px 40px">
+    <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
+      <a href="#" style="display:grid;grid-template-columns:48px 1.2fr 1fr 88px;gap:28px;align-items:start;padding:42px 0;border-bottom:1px solid rgba(28,26,23,0.12);text-decoration:none;color:#1c1a17" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#9a8f80;padding-top:8px">{{ p.num }}</div>
+        <div>
+          <h2 style="font-family:'Fraunces',serif;font-weight:400;font-size:clamp(30px,4vw,52px);line-height:1.02;letter-spacing:-0.01em">{{ p.title }}</h2>
+          <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+            <sc-for list="{{ p.tags }}" as="t" hint-placeholder-count="3">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:#6b6155;border:1px solid rgba(28,26,23,0.18);padding:4px 10px;border-radius:100px">{{ t }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <p style="font-size:17px;line-height:1.5;color:#4a443c;padding-top:8px;max-width:38ch">{{ p.desc }}</p>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#9a8f80;padding-top:8px;text-align:right">{{ p.year }}</div>
+      </a>
+    </sc-for>
+  </section>
+
+  <!-- PLACEHOLDER FEATURE IMAGE -->
+  <section style="max-width:1180px;margin:60px auto 0;padding:0 48px">
+    <div style="position:relative;width:100%;aspect-ratio:16/9;border-radius:4px;overflow:hidden;background-image:repeating-linear-gradient(135deg,#e8e1d5 0 14px,#ece6db 14px 28px);border:1px solid rgba(28,26,23,0.12);display:flex;align-items:center;justify-content:center">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#9a8f80">drop case-study hero — 1600×900</span>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" style="max-width:1180px;margin:0 auto;padding:120px 48px 90px;display:grid;grid-template-columns:1fr 1.4fr;gap:60px">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#c8482f">About</div>
+    <div>
+      <p style="font-family:'Fraunces',serif;font-weight:400;font-size:clamp(24px,3vw,34px);line-height:1.32;letter-spacing:-0.01em">For ten years I've worked at the seam between design and engineering — the place where a thoughtful interface either earns trust or quietly loses it.</p>
+      <p style="margin-top:28px;font-size:18px;line-height:1.62;color:#4a443c;max-width:54ch">I care about clarity over decoration, systems that scale, and prototypes that feel real before a single line of production code is written. Previously at Northwind, Atlas Pay, and a couple of startups that taught me what not to do.</p>
+      <div style="margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;border-top:1px solid rgba(28,26,23,0.12);padding-top:28px">
+        <div><div style="font-family:'Fraunces',serif;font-size:38px">10+</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:#6b6155;margin-top:6px">Years</div></div>
+        <div><div style="font-family:'Fraunces',serif;font-size:38px">40</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:#6b6155;margin-top:6px">Shipped</div></div>
+        <div><div style="font-family:'Fraunces',serif;font-size:38px">3</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:#6b6155;margin-top:6px">Patents</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="background:#1c1a17;color:#f4f0e9;padding:110px 48px">
+    <div style="max-width:1180px;margin:0 auto">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#e0795f;margin-bottom:34px">Contact</div>
+      <h2 style="font-family:'Fraunces',serif;font-weight:400;font-size:clamp(40px,7vw,92px);line-height:0.98;letter-spacing:-0.02em;max-width:16ch">Let's make something worth using.</h2>
+      <div style="margin-top:56px;display:flex;gap:48px;flex-wrap:wrap;align-items:center">
+        <a href="mailto:mara@example.com" style="font-family:'Fraunces',serif;font-size:clamp(22px,3vw,32px);color:#f4f0e9;text-decoration:none;border-bottom:1px solid #e0795f;padding-bottom:4px">mara@example.com</a>
+        <div style="display:flex;gap:28px">
+          <a href="#" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#a59e92;text-decoration:none">LinkedIn</a>
+          <a href="#" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#a59e92;text-decoration:none">Read.cv</a>
+          <a href="#" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#a59e92;text-decoration:none">Are.na</a>
+        </div>
+      </div>
+      <div style="margin-top:90px;display:flex;justify-content:space-between;border-top:1px solid rgba(244,240,233,0.16);padding-top:24px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:#857e72;flex-wrap:wrap;gap:12px">
+        <span>© 2026 Mara Rivera</span>
+        <span>Designed & built in San Francisco</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { hovered: -1 };
+  renderVals() {
+    const data = [
+      { title: "Helm — Observability, rethought", desc: "A monitoring console that surfaces the one metric that matters instead of forty that don't.", tags: ["Product", "Design System", "0→1"], year: "2025" },
+      { title: "Ledger Mobile", desc: "Reconciliation and approvals reimagined for finance teams working from their phones.", tags: ["iOS", "Prototyping"], year: "2024" },
+      { title: "Atlas Pay Checkout", desc: "Rebuilt a flow that processed $2B/yr — lifting completion by 11 points.", tags: ["Conversion", "Research"], year: "2022" },
+      { title: "Northwind Design Language", desc: "A token-driven system unifying nine products and three platforms.", tags: ["Systems", "Tokens"], year: "2021" },
+    ];
+    const projects = data.map((p, i) => ({
+      ...p,
+      num: String(i + 1).padStart(2, "0"),
+      enter: () => this.setState({ hovered: i }),
+      leave: () => this.setState({ hovered: -1 }),
+    }));
+    return { projects };
+  }
+}
+</script>
+</body>
+</html>

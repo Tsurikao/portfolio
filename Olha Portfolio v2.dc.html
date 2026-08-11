@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600&family=Hanken+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#000;color:#f2f4ec}
+  ::selection{background:#c2ff00;color:#000}
+  a{color:inherit}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0.25}}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+  @keyframes rise{from{opacity:0;transform:translateY(24px) scale(.99)}to{opacity:1;transform:none}}
+  .om-rev{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.16,.84,.34,1),transform 1s cubic-bezier(.16,.84,.34,1)}
+  .om-in{opacity:1!important;transform:none!important}
+  .om-card:hover .om-thumb{transform:scale(1.05)}
+  .om-card:hover .om-arrow{transform:translate(5px,-5px)}
+  .om-card:hover .om-title{color:#fff}
+  .om-card:hover .om-line{width:100%}
+  .om-modal-scroll::-webkit-scrollbar{width:8px}
+  .om-modal-scroll::-webkit-scrollbar-thumb{background:#1c1f12;border-radius:8px}
+  .om-up{display:inline-block}
+</style>
+</helmet>
+<div id="top" style="background:#000;color:#f2f4ec;font-family:'Hanken Grotesk',sans-serif;min-height:100vh;overflow-x:hidden;position:relative">
+
+  <!-- cursor glow -->
+  <div data-glow style="position:fixed;top:0;left:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;background:radial-gradient(circle,rgba(194,255,0,0.10),transparent 65%);pointer-events:none;z-index:2;transition:transform .25s cubic-bezier(.16,.84,.34,1);will-change:transform"></div>
+
+  <!-- ambient blobs -->
+  <div style="position:absolute;top:-200px;left:-120px;width:760px;height:620px;background:radial-gradient(ellipse,rgba(194,255,0,0.10),transparent 70%);pointer-events:none;z-index:0"></div>
+  <div style="position:absolute;top:1100px;right:-160px;width:680px;height:680px;background:radial-gradient(ellipse,rgba(110,240,208,0.07),transparent 70%);pointer-events:none;z-index:0"></div>
+
+  <!-- NAV -->
+  <nav style="position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:20px 40px;background:rgba(0,0,0,0.5);backdrop-filter:blur(16px);border-bottom:1px solid rgba(242,244,236,0.06)">
+    <a href="#top" style="display:flex;align-items:center;gap:11px;text-decoration:none">
+      <span style="width:30px;height:30px;border-radius:50%;background:#c2ff00;color:#000;font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center">O</span>
+      <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:14px;letter-spacing:0.02em">Olha Tsurika</span>
+    </a>
+    <div style="display:flex;gap:30px;align-items:center">
+      <a href="#work" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:#928f86">Work</a>
+      <a href="#contact" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:#928f86">Contact</a>
+      <div style="display:flex;align-items:center;gap:8px;border:1px solid rgba(242,244,236,0.14);border-radius:100px;padding:7px 13px">
+        <span style="width:7px;height:7px;border-radius:50%;background:#c2ff00;animation:blink 2s ease-in-out infinite"></span>
+        <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#d9d6cc">Available Q3 ’26</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header style="position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:70px 40px 60px;display:grid;grid-template-columns:1.25fr 0.9fr;gap:50px;align-items:center;min-height:78vh">
+    <div>
+      <div class="om-rev" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#c2ff00;margin-bottom:30px">Senior UI / UX / Interaction Designer</div>
+      <h1 class="om-rev" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;font-size:clamp(46px,6.6vw,96px);line-height:0.98;letter-spacing:-0.03em">Designing AI&nbsp;products<br>that feel <span style="font-weight:500;color:#c2ff00">alive</span><br>and effortless.</h1>
+      <p class="om-rev" style="margin-top:34px;max-width:48ch;font-size:18px;line-height:1.65;color:#aeaa9f;font-weight:300">I turn complex ideas into intuitive, beautiful products — working at the intersection of design, AI, and rapid prototyping. Currently building intelligent interfaces and design systems for startups.</p>
+      <div class="om-rev" style="margin-top:40px;display:flex;gap:18px;flex-wrap:wrap;align-items:center">
+        <a href="#work" style="display:inline-flex;align-items:center;gap:12px;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:15px;text-decoration:none;background:#c2ff00;color:#000;padding:15px 26px;border-radius:100px">Selected work <span class="om-up" style="font-size:17px">↗</span></a>
+        <a href="#contact" style="display:inline-flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:15px;text-decoration:none;color:#f2f4ec;border:1px solid rgba(242,244,236,0.22);padding:15px 26px;border-radius:100px">Get in touch <span class="om-up" style="font-size:15px">↗</span></a>
+      </div>
+    </div>
+
+    <!-- B/W photo -->
+    <div class="om-rev" style="position:relative;justify-self:center">
+      <div style="position:absolute;inset:4%;border-radius:50%;background:radial-gradient(circle,rgba(194,255,0,0.30),transparent 65%);filter:blur(34px);pointer-events:none"></div>
+      <img data-float src="assets/portrait.png" alt="Olha Tsurika" style="position:relative;display:block;width:min(440px,80vw);height:auto;animation:floaty 7s ease-in-out infinite">
+    </div>
+  </header>
+
+  <!-- MARQUEE -->
+  <div style="position:relative;z-index:1;border-top:1px solid rgba(242,244,236,0.08);border-bottom:1px solid rgba(242,244,236,0.08);overflow:hidden;padding:18px 0">
+    <div style="display:flex;width:max-content;animation:marquee 36s linear infinite">
+      <sc-for list="{{ marquee }}" as="m" hint-placeholder-count="14">
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;font-size:clamp(18px,2.4vw,30px);color:#cbc8be;padding:0 28px;display:inline-flex;align-items:center;gap:28px;letter-spacing:-0.01em">{{ m }}<span style="color:#c2ff00;font-size:0.6em">✦</span></span>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- SELECTED WORK -->
+  <section id="work" style="position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:100px 40px 40px">
+    <div class="om-rev" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:56px;flex-wrap:wrap;gap:16px">
+      <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;font-size:clamp(30px,5vw,58px);letter-spacing:-0.03em">Selected Work <span style="color:#c2ff00">↗</span></h2>
+      <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#928f86">03 case studies · Gym App</span>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="3">
+        <button class="om-card om-rev" onClick="{{ p.open }}" style="all:unset;cursor:pointer;position:relative;display:block;border-radius:22px;overflow:hidden;border:1px solid rgba(242,244,236,0.08);background:#070707">
+          <!-- large preview -->
+          <div style="position:relative;height:clamp(360px,46vw,560px);overflow:hidden">
+            <div class="om-thumb" style="position:absolute;inset:0;transition:transform .8s cubic-bezier(.16,.84,.34,1);background-image:repeating-linear-gradient(135deg,{{ p.stripeA }} 0 22px,{{ p.stripeB }} 22px 44px)"></div>
+            <sc-if value="{{ p.cover }}" hint-placeholder-val="{{ false }}">
+              <img class="om-thumb" src="{{ p.cover }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,.84,.34,1)">
+            </sc-if>
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.1) 0%,transparent 30%,rgba(0,0,0,0.78) 100%)"></div>
+            <!-- top row -->
+            <div style="position:absolute;top:24px;left:26px;right:26px;display:flex;justify-content:space-between;align-items:flex-start">
+              <span style="display:flex;align-items:center;gap:9px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#cbc8be"><span style="width:8px;height:8px;border-radius:50%;background:{{ p.tone }}"></span>{{ p.kind }}</span>
+              <span style="font-family:'Space Mono',monospace;font-size:13px;color:rgba(242,244,236,0.7)">{{ p.num }}</span>
+            </div>
+            <!-- shot label -->
+            <span style="position:absolute;top:64px;left:26px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:rgba(242,244,236,0.55);background:rgba(0,0,0,0.5);padding:6px 11px;border-radius:7px;backdrop-filter:blur(3px)">{{ p.shot }}</span>
+            <!-- bottom content -->
+            <div style="position:absolute;left:26px;right:26px;bottom:26px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px">
+              <div style="max-width:62%">
+                <h3 class="om-title" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-size:clamp(26px,3.4vw,46px);line-height:1.02;letter-spacing:-0.025em;color:#eceadf;transition:color .3s">{{ p.title }}</h3>
+                <div class="om-line" style="height:2px;width:48px;background:{{ p.tone }};margin-top:16px;transition:width .6s cubic-bezier(.16,.84,.34,1)"></div>
+                <p style="margin-top:16px;font-size:15px;line-height:1.5;color:#b2afa5;font-weight:300;max-width:46ch">{{ p.summary }}</p>
+              </div>
+              <span class="om-arrow" style="flex-shrink:0;width:56px;height:56px;border-radius:50%;background:{{ p.tone }};color:#000;display:flex;align-items:center;justify-content:center;font-size:24px;transition:transform .4s cubic-bezier(.16,.84,.34,1)">↗</span>
+            </div>
+          </div>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="position:relative;z-index:1;margin:120px auto 0;max-width:1320px;padding:0 40px 70px">
+    <div class="om-rev" style="background:linear-gradient(160deg,#0c0e06,#050505);border:1px solid rgba(194,255,0,0.2);border-radius:26px;padding:clamp(40px,6vw,90px);position:relative;overflow:hidden">
+      <div style="position:absolute;top:-180px;right:-100px;width:560px;height:460px;background:radial-gradient(ellipse,rgba(194,255,0,0.2),transparent 70%);pointer-events:none"></div>
+      <div style="position:relative">
+        <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#c2ff00;margin-bottom:28px">Let’s build</div>
+        <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;font-size:clamp(38px,6.8vw,90px);line-height:0.98;letter-spacing:-0.03em;max-width:15ch">Have an AI product worth designing?</h2>
+        <div style="margin-top:50px;display:flex;gap:36px;flex-wrap:wrap;align-items:center">
+          <a href="mailto:olhatsurika@gmail.com" style="display:inline-flex;align-items:center;gap:12px;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:clamp(17px,2vw,22px);text-decoration:none;background:#c2ff00;color:#000;padding:16px 30px;border-radius:100px">olhatsurika@gmail.com <span class="om-up">↗</span></a>
+          <div style="display:flex;gap:26px;flex-wrap:wrap">
+            <a href="https://www.linkedin.com/in/olga-tsurika/" target="_blank" style="display:inline-flex;align-items:center;gap:7px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#cbc8be;text-decoration:none;border-bottom:1px solid rgba(242,244,236,0.2);padding-bottom:3px">LinkedIn <span style="font-size:11px">↗</span></a>
+            <a href="tel:+4591927980" style="display:inline-flex;align-items:center;gap:7px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#cbc8be;text-decoration:none;border-bottom:1px solid rgba(242,244,236,0.2);padding-bottom:3px">+45 91 92 79 80 <span style="font-size:11px">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding-top:30px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:#75726a;flex-wrap:wrap;gap:10px">
+      <span>© 2026 Olha Tsurika</span>
+      <span>Designed at the intersection of design + AI</span>
+    </div>
+  </section>
+
+  <!-- ===== MODAL ===== -->
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed;inset:0;z-index:90;background:rgba(0,0,0,0.75);backdrop-filter:blur(10px);display:flex;justify-content:center;align-items:flex-start;padding:40px 20px;overflow-y:auto" class="om-modal-scroll">
+      <div onClick="{{ stop }}" style="position:relative;width:100%;max-width:940px;background:#080808;border:1px solid rgba(242,244,236,0.1);border-radius:24px;overflow:hidden;animation:rise .5s cubic-bezier(.16,.84,.34,1) both;margin:auto">
+
+        <div style="position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:22px 28px;background:rgba(8,8,8,0.86);backdrop-filter:blur(12px);border-bottom:1px solid rgba(242,244,236,0.08)">
+          <span style="display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#928f86"><span style="width:8px;height:8px;border-radius:50%;background:{{ active.tone }}"></span>{{ active.kind }} · {{ active.num }}</span>
+          <button onClick="{{ closeModal }}" style="all:unset;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#cbc8be;border:1px solid rgba(242,244,236,0.16);border-radius:100px;padding:8px 14px">Close ✕</button>
+        </div>
+
+        <div style="padding:clamp(28px,4vw,48px)">
+          <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:400;font-size:clamp(28px,4vw,48px);line-height:1.02;letter-spacing:-0.03em;max-width:20ch">{{ active.title }}</h2>
+          <div style="margin-top:22px;display:flex;flex-wrap:wrap;gap:26px">
+            <sc-for list="{{ active.meta }}" as="m" hint-placeholder-count="3">
+              <div>
+                <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:#75726a">{{ m.k }}</div>
+                <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:15px;color:#e6e3d8;margin-top:5px">{{ m.v }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="margin-top:38px;border-left:2px solid {{ active.tone }};padding-left:22px">
+            <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:{{ active.tone }};margin-bottom:12px">The challenge</div>
+            <p style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;font-size:clamp(18px,2.4vw,25px);line-height:1.4;color:#ebe8dd;letter-spacing:-0.015em">{{ active.challenge }}</p>
+          </div>
+
+          <div style="margin-top:40px">
+            <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#928f86;margin-bottom:16px">Key screens</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px">
+              <sc-for list="{{ active.screens }}" as="sc" hint-placeholder-count="4">
+                <div style="aspect-ratio:9/16;border-radius:12px;background-image:repeating-linear-gradient(135deg,{{ active.stripeA }} 0 14px,{{ active.stripeB }} 14px 28px);border:1px solid rgba(242,244,236,0.08);display:flex;align-items:flex-end;padding:12px">
+                  <span style="font-family:'Space Mono',monospace;font-size:10px;line-height:1.3;letter-spacing:0.03em;text-transform:uppercase;color:rgba(242,244,236,0.62);background:rgba(0,0,0,0.5);padding:5px 8px;border-radius:6px">{{ sc }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="margin-top:42px;display:grid;grid-template-columns:1fr 1fr;gap:38px">
+            <div>
+              <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#928f86;margin-bottom:18px">Design thinking</div>
+              <div style="display:flex;flex-direction:column;gap:18px">
+                <sc-for list="{{ active.thinking }}" as="th" hint-placeholder-count="3">
+                  <div style="display:flex;gap:14px">
+                    <span style="font-family:'Space Mono',monospace;font-size:12px;color:{{ active.tone }};padding-top:2px">{{ th.i }}</span>
+                    <p style="font-size:15px;line-height:1.55;color:#bbb8ae;font-weight:300">{{ th.t }}</p>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div>
+              <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#928f86;margin-bottom:18px">Impact</div>
+              <div style="display:flex;flex-direction:column;gap:14px">
+                <sc-for list="{{ active.impact }}" as="im" hint-placeholder-count="3">
+                  <div style="display:flex;align-items:baseline;gap:12px;border-bottom:1px solid rgba(242,244,236,0.07);padding-bottom:12px">
+                    <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:24px;color:#f2f4ec;letter-spacing:-0.02em;white-space:nowrap">{{ im.n }}</span>
+                    <span style="font-size:14px;line-height:1.4;color:#a8a59b;font-weight:300">{{ im.l }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <sc-if value="{{ active.note }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:38px;background:rgba(194,255,0,0.06);border:1px solid rgba(194,255,0,0.2);border-radius:14px;padding:26px 28px">
+              <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#c2ff00;margin-bottom:12px">AI-augmented workflow</div>
+              <p style="font-size:15px;line-height:1.62;color:#cbc8be;font-weight:300">{{ active.note }}</p>
+            </div>
+          </sc-if>
+
+          <div style="margin-top:40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;border-top:1px solid rgba(242,244,236,0.08);padding-top:28px">
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <sc-for list="{{ active.tools }}" as="tl" hint-placeholder-count="4">
+                <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.04em;text-transform:uppercase;color:#8f8c82;border:1px solid rgba(242,244,236,0.13);padding:6px 11px;border-radius:100px">{{ tl }}</span>
+              </sc-for>
+            </div>
+            <button onClick="{{ closeModal }}" style="all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:9px;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:14px;color:#000;background:#c2ff00;padding:13px 22px;border-radius:100px">Back to work <span class="om-up">↗</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { open: -1 };
+
+  componentDidMount() {
+    const root = document;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('om-in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    root.querySelectorAll('.om-rev').forEach((el, i) => { el.style.transitionDelay = (Math.min(i, 4) * 70) + 'ms'; io.observe(el); });
+    this._io = io;
+
+    const glow = root.querySelector('[data-glow]');
+    this._mv = (ev) => { if (glow) glow.style.transform = `translate(${ev.clientX}px,${ev.clientY}px)`; };
+    window.addEventListener('pointermove', this._mv, { passive: true });
+  }
+  componentWillUnmount() {
+    if (this._io) this._io.disconnect();
+    if (this._mv) window.removeEventListener('pointermove', this._mv);
+    document.body.style.overflow = '';
+  }
+
+  openModal = (i) => { this.setState({ open: i }); document.body.style.overflow = 'hidden'; };
+  closeModal = () => { this.setState({ open: -1 }); document.body.style.overflow = ''; };
+
+  renderVals() {
+    const lime = '#c2ff00', neon = '#6ef0d0', orange = '#ff6a2c';
+    const data = [
+      {
+        kind: 'iOS · AI Onboarding', tone: lime, stripeA: '#141a05', stripeB: '#1c2408', cover: 'assets/gymapp-hero.png',
+        title: 'Gym App — AI Fitness Coach & Personalised Training Platform',
+        summary: 'A 6-step questionnaire feeding an AI generator that builds a personalised 14-day programme in real time.',
+        shot: 'onboarding → AI build → 14-day plan reveal',
+        meta: [{k:'Role',v:'Sole UX/UI Designer'},{k:'Year',v:'2025'},{k:'Scope',v:'22-screen system'},{k:'Platform',v:'iOS'}],
+        challenge: 'Intermediate gym-goers were stuck with one-size-fits-all apps — no personalisation, no real-time feedback, no sense of progression.',
+        screens: ['Goal & metrics step','AI plan build animation','14-day plan reveal','Weekly schedule'],
+        thinking: [
+          {i:'01',t:'Front-loaded the value: a short, visual 6-step flow that asks only what the AI needs — goal, body metrics, weekly schedule.'},
+          {i:'02',t:'Turned the wait into delight — a real-time build animation that makes the AI feel like it’s working for you before the reveal.'},
+          {i:'03',t:'Designed the reveal as a moment, not a screen — the personalised programme lands as a payoff, not a settings page.'}
+        ],
+        impact: [{n:'>80%',l:'modelled onboarding completion in usability tests'},{n:'6 steps',l:'from cold start to personalised plan'},{n:'×3',l:'testers re-watched the build animation'}],
+        note: 'The first hi-fi interactive prototype was built entirely in Claude Artifacts as a single HTML file — 3 iterations, 17→22 screens. It became the source of truth for interaction specs before any Figma work began. Workflow: design in Figma → prototype in Claude → test in Figma Make → finalize in Claude.',
+        tools: ['Claude Artifacts','Figma','HTML/CSS/JS','Midjourney']
+      },
+      {
+        kind: 'iOS · Insurance', tone: neon, stripeA: '#06231d', stripeB: '#0a2c25', cover: 'assets/swiss-hero.png',
+        title: 'Swiss Insurance — UX/UI Design',
+        summary: 'A premium coach marketplace and a set-by-set workout screen with video demos, form upload and AI review.',
+        shot: 'coach cards · paywall · set logging',
+        meta: [{k:'Role',v:'Sole UX/UI Designer'},{k:'Year',v:'2025'},{k:'Focus',v:'Monetisation + execution'},{k:'Platform',v:'iOS'}],
+        challenge: 'Coaches had no digital tool to package programmes or review form, and users had no reason to pay before feeling the value.',
+        screens: ['Coach marketplace','Programme detail + paywall','Workout — set logging','Rest timer ring'],
+        thinking: [
+          {i:'01',t:'Browse by coach and specialty — strength, mobility, cardio, cut — so value is felt before any paywall appears.'},
+          {i:'02',t:'A paywall that sells the outcome: it communicates what you unlock before asking for payment.'},
+          {i:'03',t:'Workout screen built around one decision at a time — weight/reps adjusters, coach video, form upload, auto-advancing “Set Done”.'}
+        ],
+        impact: [{n:'Premium',l:'testers said it felt “like hiring a real trainer”'},{n:'#1 fix',l:'addressed top complaint: no feedback during sets'},{n:'Full',l:'coach → programme → workout flow shipped'}],
+        note: '',
+        tools: ['Figma','Component Library','Prototyping']
+      },
+      {
+        kind: 'iOS · Social Games', tone: orange, stripeA: '#2a1206', stripeB: '#331810', cover: 'assets/social-hero.png',
+        title: 'Interactive Social Games App — UX/UI Design',
+        summary: 'A private progress module — photo timeline, per-exercise trend charts and a dashboard tying the experience together.',
+        shot: 'dashboard · progress charts · photo timeline',
+        meta: [{k:'Role',v:'Sole UX/UI Designer'},{k:'Year',v:'2025'},{k:'Deliverable',v:'Design system + handoff'},{k:'Platform',v:'iOS'}],
+        challenge: 'Users wanted to feel progression without public comparisons — a private archive that motivates rather than ranks.',
+        screens: ['Home dashboard','Per-exercise trend chart','Photo timeline by week','Body measurements (private)'],
+        thinking: [
+          {i:'01',t:'Privacy by default — a personal archive with no leaderboards; measurements always marked private.'},
+          {i:'02',t:'Trend lines for Bench, Squat, Deadlift and OHP make progress legible at a glance.'},
+          {i:'03',t:'Documented the full system — colour tokens, type scale, component library, motion notes — for clean developer handoff.'}
+        ],
+        impact: [{n:'22',l:'screens delivered, ready for handoff'},{n:'Tokens',l:'colour + type + component library documented'},{n:'5 tabs',l:'Home · Programs · Workout · Stats · Profile'}],
+        note: '',
+        tools: ['Figma','Design Tokens','Charts','Handoff Specs']
+      }
+    ];
+
+    const projects = data.map((p, i) => ({ ...p, num: '0' + (i + 1), open: () => this.openModal(i) }));
+    const open = this.state.open;
+    const active = open >= 0 ? projects[open] : null;
+
+    return {
+      projects,
+      modalOpen: open >= 0,
+      active: active || {},
+      closeModal: this.closeModal,
+      stop: (e) => e.stopPropagation(),
+      marquee: ['AI Product Design','Design Systems','Interactive Prototyping','UX Research','iOS','Vibe Coding','Claude Artifacts','UX Writing','Figma','Conversion']
+    };
+  }
+}
+</script>
+</body>
+</html>

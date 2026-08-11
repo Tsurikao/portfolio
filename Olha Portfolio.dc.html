@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#0c0a09;color:#f0ebe4}
+  ::selection{background:#f0a93b;color:#0c0a09}
+  a{color:inherit}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0.25}}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes rise{from{opacity:0;transform:translateY(24px) scale(.99)}to{opacity:1;transform:none}}
+  .om-rev{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.16,.84,.34,1),transform .9s cubic-bezier(.16,.84,.34,1)}
+  .om-in{opacity:1!important;transform:none!important}
+  .om-card:hover .om-thumb{transform:scale(1.04)}
+  .om-card:hover .om-arrow{transform:translate(4px,-4px);opacity:1}
+  .om-card:hover .om-title{color:#fff}
+  .om-modal-scroll::-webkit-scrollbar{width:8px}
+  .om-modal-scroll::-webkit-scrollbar-thumb{background:#2a241d;border-radius:8px}
+</style>
+</helmet>
+<div id="top" style="background:#0c0a09;color:#f0ebe4;font-family:'Manrope',sans-serif;min-height:100vh;overflow-x:hidden;position:relative">
+
+  <!-- ambient warm glow -->
+  <div style="position:fixed;top:-280px;left:50%;transform:translateX(-50%);width:1100px;height:620px;background:radial-gradient(ellipse at center,rgba(240,169,59,0.10),transparent 70%);pointer-events:none;z-index:0"></div>
+
+  <!-- NAV -->
+  <nav style="position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:20px 40px;background:rgba(12,10,9,0.6);backdrop-filter:blur(14px);border-bottom:1px solid rgba(240,235,228,0.07)">
+    <a href="#top" style="display:flex;align-items:center;gap:11px;text-decoration:none">
+      <span style="width:30px;height:30px;border-radius:50%;background:#f0a93b;color:#0c0a09;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center">O</span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;letter-spacing:0.02em">Olha Tsurika</span>
+    </a>
+    <div style="display:flex;gap:30px;align-items:center">
+      <a href="#work" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:#9b9388">Work</a>
+      <a href="#about" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:#9b9388">About</a>
+      <a href="#contact" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:#9b9388">Contact</a>
+      <div style="display:flex;align-items:center;gap:8px;border:1px solid rgba(240,235,228,0.14);border-radius:100px;padding:7px 13px">
+        <span style="width:7px;height:7px;border-radius:50%;background:#9fd14a;animation:blink 2s ease-in-out infinite"></span>
+        <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#d8d2c8">Available Q3 ’26</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header style="position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:90px 40px 70px">
+    <div class="om-rev" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#f0a93b;margin-bottom:34px">Senior Product Designer — UX/UI · AI Products</div>
+    <h1 class="om-rev" style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(44px,8vw,108px);line-height:0.94;letter-spacing:-0.03em;max-width:18ch">Designing AI products that feel <span style="color:#f0a93b">effortless</span> to use.</h1>
+    <div class="om-rev" style="margin-top:46px;display:flex;gap:48px;flex-wrap:wrap;align-items:flex-end;justify-content:space-between">
+      <p style="max-width:50ch;font-size:19px;line-height:1.6;color:#b6afa4;font-weight:300">I turn complex ideas into intuitive, beautiful, scalable products — working at the intersection of design, AI, and rapid prototyping. Currently building intelligent interfaces and design systems for startups.</p>
+      <a href="#work" style="display:inline-flex;align-items:center;gap:12px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none;background:#f0ebe4;color:#0c0a09;padding:15px 26px;border-radius:100px;white-space:nowrap">View selected work
+      <span style="font-size:18px">↘</span></a>
+    </div>
+  </header>
+
+  <!-- MARQUEE -->
+  <div style="position:relative;z-index:1;border-top:1px solid rgba(240,235,228,0.09);border-bottom:1px solid rgba(240,235,228,0.09);overflow:hidden;padding:16px 0;background:rgba(20,16,13,0.4)">
+    <div style="display:flex;width:max-content;animation:marquee 34s linear infinite;gap:0">
+      <sc-for list="{{ marquee }}" as="m" hint-placeholder-count="14">
+        <span style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:15px;color:#cfc8bd;padding:0 26px;display:inline-flex;align-items:center;gap:26px">{{ m }}<span style="color:#f0a93b">✦</span></span>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- SELECTED WORK -->
+  <section id="work" style="position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:96px 40px 40px">
+    <div class="om-rev" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:50px;flex-wrap:wrap;gap:16px">
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(28px,4vw,46px);letter-spacing:-0.02em">Selected Work</h2>
+      <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#9b9388">03 case studies · Gym App</span>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="3">
+        <button class="om-card om-rev" onClick="{{ p.open }}" style="all:unset;cursor:pointer;display:grid;grid-template-columns:1fr 1.05fr;gap:0;background:#15110d;border:1px solid rgba(240,235,228,0.08);border-radius:18px;overflow:hidden">
+          <!-- text side -->
+          <div style="padding:40px 40px 38px;display:flex;flex-direction:column;justify-content:space-between;min-height:300px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start">
+              <span style="font-family:'Space Mono',monospace;font-size:13px;color:#7c756a">{{ p.num }}</span>
+              <span style="display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#9b9388"><span style="width:8px;height:8px;border-radius:50%;background:{{ p.tone }}"></span>{{ p.kind }}</span>
+            </div>
+            <div style="margin-top:36px">
+              <h3 class="om-title" style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(26px,3vw,38px);line-height:1.04;letter-spacing:-0.02em;color:#ece6dc;transition:color .3s">{{ p.title }}</h3>
+              <p style="margin-top:16px;font-size:16px;line-height:1.55;color:#a39c91;font-weight:300;max-width:42ch">{{ p.summary }}</p>
+            </div>
+            <div style="margin-top:30px;display:flex;justify-content:space-between;align-items:center">
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <sc-for list="{{ p.tags }}" as="t" hint-placeholder-count="3">
+                  <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.04em;text-transform:uppercase;color:#8f887d;border:1px solid rgba(240,235,228,0.13);padding:5px 10px;border-radius:100px">{{ t }}</span>
+                </sc-for>
+              </div>
+              <span class="om-arrow" style="font-family:'Space Grotesk',sans-serif;font-size:22px;color:{{ p.tone }};opacity:0.5;transition:transform .35s,opacity .35s">↗</span>
+            </div>
+          </div>
+          <!-- visual side -->
+          <div style="position:relative;overflow:hidden;background:#0a0807;min-height:300px">
+            <div class="om-thumb" style="position:absolute;inset:0;transition:transform .6s cubic-bezier(.16,.84,.34,1);background-image:repeating-linear-gradient(135deg,{{ p.stripeA }} 0 16px,{{ p.stripeB }} 16px 32px);display:flex;align-items:flex-end;padding:22px">
+              <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(240,235,228,0.55);background:rgba(10,8,7,0.55);padding:6px 11px;border-radius:7px;backdrop-filter:blur(3px)">{{ p.shot }}</span>
+            </div>
+          </div>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" style="position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:110px 40px 40px">
+    <div style="display:grid;grid-template-columns:0.8fr 1.4fr;gap:64px;align-items:start">
+      <div class="om-rev" style="position:sticky;top:96px">
+        <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#f0a93b;margin-bottom:26px">About</div>
+        <div style="width:100%;aspect-ratio:4/5;border-radius:16px;background-image:repeating-linear-gradient(135deg,#1a1510 0 16px,#1f1812 16px 32px);border:1px solid rgba(240,235,228,0.08);display:flex;align-items:flex-end;padding:18px">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(240,235,228,0.5)">drop portrait — 800×1000</span>
+        </div>
+      </div>
+      <div class="om-rev">
+        <p style="font-family:'Space Grotesk',sans-serif;font-weight:400;font-size:clamp(24px,3vw,36px);line-height:1.32;letter-spacing:-0.015em;color:#ece6dc">Hi, I'm Olha — I design AI-powered products, modern web experiences, and scalable design systems, turning ideas into products that move teams faster.</p>
+        <p style="margin-top:28px;font-size:18px;line-height:1.66;color:#a8a196;font-weight:300;max-width:60ch">I work at the intersection of design, AI, and vibe coding — using tools like Claude, VS Code, and Vercel to prototype, validate, and ship. From AI SaaS platforms to startup MVPs and conversion-focused sites, I make advanced technology feel simple and human.</p>
+
+        <div style="margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;border-top:1px solid rgba(240,235,228,0.1);border-bottom:1px solid rgba(240,235,228,0.1);padding:30px 0">
+          <sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
+            <div>
+              <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(30px,4vw,44px);color:#f0a93b;letter-spacing:-0.02em">{{ s.n }}</div>
+              <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:#9b9388;margin-top:8px">{{ s.l }}</div>
+            </div>
+          </sc-for>
+        </div>
+
+        <!-- capabilities -->
+        <div style="margin-top:40px">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#9b9388;margin-bottom:18px">What I do</div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px">
+            <sc-for list="{{ capabilities }}" as="c" hint-placeholder-count="8">
+              <span style="font-family:'Space Grotesk',sans-serif;font-size:14px;color:#d8d2c8;border:1px solid rgba(240,235,228,0.13);background:rgba(240,235,228,0.02);padding:9px 15px;border-radius:100px">{{ c }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REVIEWS -->
+    <div style="margin-top:96px">
+      <div class="om-rev" style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:36px;flex-wrap:wrap;gap:12px">
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(24px,3vw,34px);letter-spacing:-0.02em">From people I’ve worked with</h3>
+        <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#7c756a">[ placeholder quotes — swap for real ]</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+        <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+          <div class="om-rev" style="background:#15110d;border:1px solid rgba(240,235,228,0.08);border-radius:16px;padding:30px 26px;display:flex;flex-direction:column;gap:22px">
+            <span style="font-family:'Space Grotesk',sans-serif;font-size:36px;color:#f0a93b;line-height:0.4;height:18px">“</span>
+            <p style="font-size:16px;line-height:1.6;color:#cfc8bd;font-weight:300;flex:1">{{ r.quote }}</p>
+            <div style="display:flex;align-items:center;gap:12px;border-top:1px solid rgba(240,235,228,0.08);padding-top:18px">
+              <span style="width:36px;height:36px;border-radius:50%;background:{{ r.tone }};color:#0c0a09;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center">{{ r.initials }}</span>
+              <div>
+                <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;color:#ece6dc">{{ r.name }}</div>
+                <div style="font-family:'Space Mono',monospace;font-size:11px;color:#9b9388;margin-top:2px">{{ r.role }}</div>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="position:relative;z-index:1;margin:110px auto 0;max-width:1280px;padding:0 40px 70px">
+    <div class="om-rev" style="background:linear-gradient(160deg,#1a1410,#120e0b);border:1px solid rgba(240,169,59,0.18);border-radius:24px;padding:clamp(40px,6vw,80px);position:relative;overflow:hidden">
+      <div style="position:absolute;top:-160px;right:-80px;width:520px;height:420px;background:radial-gradient(ellipse,rgba(240,169,59,0.16),transparent 70%);pointer-events:none"></div>
+      <div style="position:relative">
+        <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#f0a93b;margin-bottom:28px">Let’s build</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(36px,6.5vw,84px);line-height:0.98;letter-spacing:-0.03em;max-width:15ch">Have an AI product worth designing?</h2>
+        <div style="margin-top:50px;display:flex;gap:40px;flex-wrap:wrap;align-items:center">
+          <a href="mailto:olhatsurika@gmail.com" style="display:inline-flex;align-items:center;gap:12px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(17px,2vw,22px);text-decoration:none;background:#f0a93b;color:#0c0a09;padding:16px 30px;border-radius:100px">olhatsurika@gmail.com <span>→</span></a>
+          <div style="display:flex;gap:26px;flex-wrap:wrap">
+            <a href="https://www.linkedin.com/in/olga-tsurika/" target="_blank" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#cfc8bd;text-decoration:none;border-bottom:1px solid rgba(240,235,228,0.2);padding-bottom:3px">LinkedIn</a>
+            <a href="tel:+4591927980" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#cfc8bd;text-decoration:none;border-bottom:1px solid rgba(240,235,228,0.2);padding-bottom:3px">+45 91 92 79 80</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding-top:30px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:#7c756a;flex-wrap:wrap;gap:10px">
+      <span>© 2026 Olha Tsurika</span>
+      <span>Designed at the intersection of design + AI</span>
+    </div>
+  </section>
+
+  <!-- ===== MODAL ===== -->
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed;inset:0;z-index:90;background:rgba(6,5,4,0.7);backdrop-filter:blur(8px);display:flex;justify-content:center;align-items:flex-start;padding:40px 20px;overflow-y:auto" class="om-modal-scroll">
+      <div onClick="{{ stop }}" style="position:relative;width:100%;max-width:920px;background:#13100c;border:1px solid rgba(240,235,228,0.1);border-radius:22px;overflow:hidden;animation:rise .5s cubic-bezier(.16,.84,.34,1) both;margin:auto">
+
+        <!-- modal header -->
+        <div style="position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:22px 28px;background:rgba(19,16,12,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(240,235,228,0.08)">
+          <span style="display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#9b9388"><span style="width:8px;height:8px;border-radius:50%;background:{{ active.tone }}"></span>{{ active.kind }} · {{ active.num }}</span>
+          <button onClick="{{ closeModal }}" style="all:unset;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#cfc8bd;border:1px solid rgba(240,235,228,0.16);border-radius:100px;padding:8px 14px">Close ✕</button>
+        </div>
+
+        <div style="padding:clamp(28px,4vw,46px)">
+          <!-- title block -->
+          <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(28px,4vw,46px);line-height:1.02;letter-spacing:-0.025em;max-width:20ch">{{ active.title }}</h2>
+          <div style="margin-top:22px;display:flex;flex-wrap:wrap;gap:26px">
+            <sc-for list="{{ active.meta }}" as="m" hint-placeholder-count="3">
+              <div>
+                <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:#7c756a">{{ m.k }}</div>
+                <div style="font-family:'Space Grotesk',sans-serif;font-size:15px;color:#e3ddd2;margin-top:5px">{{ m.v }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <!-- challenge -->
+          <div style="margin-top:38px;border-left:2px solid {{ active.tone }};padding-left:22px">
+            <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:{{ active.tone }};margin-bottom:12px">The challenge</div>
+            <p style="font-family:'Space Grotesk',sans-serif;font-weight:400;font-size:clamp(18px,2.4vw,24px);line-height:1.4;color:#e8e2d7;letter-spacing:-0.01em">{{ active.challenge }}</p>
+          </div>
+
+          <!-- screens gallery -->
+          <div style="margin-top:40px">
+            <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#9b9388;margin-bottom:16px">Key screens</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px">
+              <sc-for list="{{ active.screens }}" as="sc" hint-placeholder-count="4">
+                <div style="aspect-ratio:9/16;border-radius:12px;background-image:repeating-linear-gradient(135deg,{{ active.stripeA }} 0 14px,{{ active.stripeB }} 14px 28px);border:1px solid rgba(240,235,228,0.08);display:flex;align-items:flex-end;padding:12px">
+                  <span style="font-family:'Space Mono',monospace;font-size:10px;line-height:1.3;letter-spacing:0.03em;text-transform:uppercase;color:rgba(240,235,228,0.62);background:rgba(10,8,7,0.5);padding:5px 8px;border-radius:6px">{{ sc }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <!-- approach -->
+          <div style="margin-top:42px;display:grid;grid-template-columns:1fr 1fr;gap:38px">
+            <div>
+              <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#9b9388;margin-bottom:18px">Design thinking</div>
+              <div style="display:flex;flex-direction:column;gap:18px">
+                <sc-for list="{{ active.thinking }}" as="th" hint-placeholder-count="3">
+                  <div style="display:flex;gap:14px">
+                    <span style="font-family:'Space Mono',monospace;font-size:12px;color:{{ active.tone }};padding-top:2px">{{ th.i }}</span>
+                    <p style="font-size:15px;line-height:1.55;color:#bdb6ab;font-weight:300">{{ th.t }}</p>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div>
+              <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#9b9388;margin-bottom:18px">Impact</div>
+              <div style="display:flex;flex-direction:column;gap:14px">
+                <sc-for list="{{ active.impact }}" as="im" hint-placeholder-count="3">
+                  <div style="display:flex;align-items:baseline;gap:12px;border-bottom:1px solid rgba(240,235,228,0.07);padding-bottom:12px">
+                    <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:24px;color:#f0ebe4;letter-spacing:-0.02em;white-space:nowrap">{{ im.n }}</span>
+                    <span style="font-size:14px;line-height:1.4;color:#a8a196;font-weight:300">{{ im.l }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <!-- optional workflow note -->
+          <sc-if value="{{ active.note }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:38px;background:rgba(240,169,59,0.06);border:1px solid rgba(240,169,59,0.18);border-radius:14px;padding:26px 28px">
+              <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#f0a93b;margin-bottom:12px">AI-augmented workflow</div>
+              <p style="font-size:15px;line-height:1.62;color:#cfc8bd;font-weight:300">{{ active.note }}</p>
+            </div>
+          </sc-if>
+
+          <!-- tools + cta -->
+          <div style="margin-top:40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;border-top:1px solid rgba(240,235,228,0.08);padding-top:28px">
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <sc-for list="{{ active.tools }}" as="tl" hint-placeholder-count="4">
+                <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.04em;text-transform:uppercase;color:#8f887d;border:1px solid rgba(240,235,228,0.13);padding:6px 11px;border-radius:100px">{{ tl }}</span>
+              </sc-for>
+            </div>
+            <button onClick="{{ closeModal }}" style="all:unset;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;color:#0c0a09;background:#f0ebe4;padding:13px 22px;border-radius:100px">← Back to work</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { open: -1 };
+
+  componentDidMount() {
+    // scroll reveals — set via JS so React re-renders (modal open/close) don't disturb DOM
+    const els = this.base ? this.base.querySelectorAll('.om-rev') : document.querySelectorAll('.om-rev');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('om-in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach((el, i) => { el.style.transitionDelay = (Math.min(i, 4) * 60) + 'ms'; io.observe(el); });
+    this._io = io;
+  }
+  componentWillUnmount() { if (this._io) this._io.disconnect(); document.body.style.overflow = ''; }
+
+  openModal = (i) => { this.setState({ open: i }); document.body.style.overflow = 'hidden'; };
+  closeModal = () => { this.setState({ open: -1 }); document.body.style.overflow = ''; };
+
+  renderVals() {
+    const lime = '#bfd500', amber = '#f0a93b', orange = '#ff6a2c';
+    const data = [
+      {
+        kind: 'iOS · AI Onboarding', tone: lime, stripeA: '#141a05', stripeB: '#1a2208',
+        title: 'Gym App — AI Onboarding & Plan Generation',
+        summary: 'A 6-step questionnaire that feeds an AI generator, building a personalised 14-day programme in real time.',
+        tags: ['UX/UI', 'AI Flow', 'Prototype'],
+        shot: 'onboarding → AI build → 14-day plan reveal',
+        meta: [{k:'Role',v:'Sole UX/UI Designer'},{k:'Year',v:'2025'},{k:'Scope',v:'22-screen system'},{k:'Platform',v:'iOS'}],
+        challenge: 'Intermediate gym-goers were stuck with one-size-fits-all apps — no personalisation, no real-time feedback, no sense of progression.',
+        screens: ['Goal & metrics step','AI plan build animation','14-day plan reveal','Weekly schedule'],
+        thinking: [
+          {i:'01',t:'Front-loaded the value: a short, visual 6-step flow that asks only what the AI needs — goal, body metrics, weekly schedule.'},
+          {i:'02',t:'Turned the wait into delight — a real-time build animation that makes the AI feel like it’s working for you before the reveal.'},
+          {i:'03',t:'Designed the reveal as a moment, not a screen — the personalised programme lands as a payoff, not a settings page.'}
+        ],
+        impact: [{n:'>80%',l:'modelled onboarding completion in usability tests'},{n:'6 steps',l:'from cold start to personalised plan'},{n:'×3',l:'testers re-watched the build animation'}],
+        note: 'The first hi-fi interactive prototype was built entirely in Claude Artifacts as a single HTML file — 3 iterations, 17→22 screens. It became the source of truth for interaction specs before any Figma work began. Workflow: design in Figma → prototype in Claude → test in Figma Make → finalize in Claude.',
+        tools: ['Claude Artifacts','Figma','HTML/CSS/JS','Midjourney']
+      },
+      {
+        kind: 'iOS · Marketplace', tone: orange, stripeA: '#2a1206', stripeB: '#33180a',
+        title: 'Gym App — Coach Marketplace & Workout Execution',
+        summary: 'A premium coach marketplace and a set-by-set workout screen with video demos, form upload and AI review.',
+        tags: ['Marketplace', 'Paywall', 'Interaction'],
+        shot: 'coach cards · paywall · set logging',
+        meta: [{k:'Role',v:'Sole UX/UI Designer'},{k:'Year',v:'2025'},{k:'Focus',v:'Monetisation + execution'},{k:'Platform',v:'iOS'}],
+        challenge: 'Coaches had no digital tool to package programmes or review form, and users had no reason to pay before feeling the value.',
+        screens: ['Coach marketplace','Programme detail + paywall','Workout — set logging','Rest timer ring'],
+        thinking: [
+          {i:'01',t:'Browse by coach and specialty — strength, mobility, cardio, cut — so value is felt before any paywall appears.'},
+          {i:'02',t:'A paywall that sells the outcome: it communicates what you unlock before asking for payment.'},
+          {i:'03',t:'Workout screen built around one decision at a time — weight/reps adjusters, coach video, form upload, auto-advancing “Set Done”.'}
+        ],
+        impact: [{n:'Premium',l:'testers said it felt “like hiring a real trainer”'},{n:'#1 fix',l:'addressed top complaint: no feedback during sets'},{n:'Full',l:'coach → programme → workout flow shipped'}],
+        note: '',
+        tools: ['Figma','Component Library','Prototyping']
+      },
+      {
+        kind: 'iOS · Progress System', tone: amber, stripeA: '#2a2207', stripeB: '#33290a',
+        title: 'Gym App — Dashboard, Programs & Progress',
+        summary: 'A private progress module — photo timeline, per-exercise trend charts and a dashboard tying the whole experience together.',
+        tags: ['Dashboard', 'Data Viz', 'Design System'],
+        shot: 'dashboard · progress charts · photo timeline',
+        meta: [{k:'Role',v:'Sole UX/UI Designer'},{k:'Year',v:'2025'},{k:'Deliverable',v:'Design system + handoff'},{k:'Platform',v:'iOS'}],
+        challenge: 'Users wanted to feel progression without public comparisons — a private archive that motivates rather than ranks.',
+        screens: ['Home dashboard','Per-exercise trend chart','Photo timeline by week','Body measurements (private)'],
+        thinking: [
+          {i:'01',t:'Privacy by default — a personal archive with no leaderboards; measurements always marked private.'},
+          {i:'02',t:'Trend lines for Bench, Squat, Deadlift and OHP make progress legible at a glance.'},
+          {i:'03',t:'Documented the full system — colour tokens, type scale, component library, motion notes — for clean developer handoff.'}
+        ],
+        impact: [{n:'22',l:'screens delivered, ready for handoff'},{n:'Tokens',l:'colour + type + component library documented'},{n:'5 tabs',l:'Home · Programs · Workout · Stats · Profile'}],
+        note: '',
+        tools: ['Figma','Design Tokens','Charts','Handoff Specs']
+      }
+    ];
+
+    const projects = data.map((p, i) => ({ ...p, num: '0' + (i + 1), open: () => this.openModal(i) }));
+
+    const open = this.state.open;
+    const active = open >= 0 ? projects[open] : null;
+
+    return {
+      projects,
+      modalOpen: open >= 0,
+      active: active || {},
+      closeModal: this.closeModal,
+      stop: (e) => e.stopPropagation(),
+      marquee: ['AI Product Design','Design Systems','Interactive Prototyping','UX Research','iOS','Vibe Coding','Claude Artifacts','UX Writing','Figma','Conversion'],
+      stats: [
+        { n: '22', l: 'Screens shipped' },
+        { n: 'AI-first', l: 'Design workflow' },
+        { n: '0→1', l: 'Systems from scratch' }
+      ],
+      capabilities: ['AI Product Design','UX/UI (iOS)','Design Systems','Interactive Prototyping','User Research','Information Architecture','UX Writing','Vibe Coding','Developer Handoff','Component Libraries'],
+      reviews: [
+        { quote: 'Olha turned a vague AI concept into a product the whole team could rally around. The prototype was so real it shortcut weeks of debate.', name: 'Placeholder Name', role: 'Founder, Fitness Startup', initials: 'FS', tone: lime },
+        { quote: 'Rare to find a designer who can research, design the system, and prototype it in code. Handoff was the cleanest I’ve worked with.', name: 'Placeholder Name', role: 'Lead Engineer', initials: 'LE', tone: amber },
+        { quote: 'Every screen had a reason. She pushed back where it mattered and the product was sharper for it.', name: 'Placeholder Name', role: 'Product Manager', initials: 'PM', tone: orange }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

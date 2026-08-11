@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#000;color:#f2f4ec}
+  ::selection{background:#c2ff00;color:#000}
+  a{color:inherit}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0.25}}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+  @keyframes rise{from{opacity:0;transform:translateY(24px) scale(.99)}to{opacity:1;transform:none}}
+  .om-rev{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.16,.84,.34,1),transform 1s cubic-bezier(.16,.84,.34,1)}
+  .om-in{opacity:1!important;transform:none!important}
+  .om-card:hover .om-thumb{transform:scale(1.08)}
+  .om-card:hover .om-arrow{transform:translate(5px,-5px)}
+  .om-card:hover .om-title{color:#fff}
+  .om-card:hover .om-line{width:100%}
+  .om-hover-desc{opacity:0;transform:translateY(10px);transition:opacity .45s cubic-bezier(.16,.84,.34,1),transform .45s cubic-bezier(.16,.84,.34,1)}
+  .om-card:hover .om-hover-desc{opacity:1;transform:translateY(0)}
+  .om-svc-tagline{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.8em}
+  .om-modal-scroll::-webkit-scrollbar{width:8px}
+  .om-modal-scroll::-webkit-scrollbar-thumb{background:#1c1f12;border-radius:8px}
+  .om-up{display:inline-block}
+  @media(hover:hover){body{cursor:none}}
+  .om-tilt{transition:transform .5s cubic-bezier(.16,.84,.34,1);transform-style:preserve-3d;will-change:transform}
+  .om-depth{will-change:transform;transform-origin:top left}
+  [data-cursor]{mix-blend-mode:difference}
+  .om-contact-grid{display:block}
+</style>
+</helmet>
+<div id="top" style="background:#000;color:#f2f4ec;font-family:'Schibsted Grotesk',sans-serif;min-height:100vh;overflow-x:hidden;position:relative">
+
+  <!-- focused cursor: bright dot inside a ring -->
+  <div data-cursor style="position:fixed;left:0;top:0;z-index:9999;pointer-events:none;transform:translate(-50%,-50%);will-change:transform">
+    <div data-ring style="width:40px;height:40px;border:1.5px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:width .3s cubic-bezier(.16,.84,.34,1),height .3s cubic-bezier(.16,.84,.34,1),background .3s,opacity .3s">
+      <div style="width:5px;height:5px;border-radius:50%;background:#fff"></div>
+    </div>
+  </div>
+  <!-- soft cursor glow -->
+  <div data-glow style="position:fixed;top:0;left:0;width:460px;height:460px;margin:-230px 0 0 -230px;border-radius:50%;background:radial-gradient(circle,rgba(194,255,0,0.08),transparent 65%);pointer-events:none;z-index:2;will-change:transform"></div>
+
+  <!-- ambient blobs -->
+  <div style="position:absolute;top:-200px;left:-120px;width:760px;height:620px;background:radial-gradient(ellipse,rgba(194,255,0,0.07),transparent 70%);pointer-events:none;z-index:0"></div>
+  <div style="position:absolute;top:1100px;right:-160px;width:680px;height:680px;background:radial-gradient(ellipse,rgba(194,255,0,0.05),transparent 70%);pointer-events:none;z-index:0"></div>
+
+  <!-- NAV -->
+  <nav style="position:sticky;top:0;z-index:40;background:rgba(0,0,0,0.5);backdrop-filter:blur(16px);border-bottom:1px solid rgba(242,244,236,0.06)">
+    <div style="max-width:1320px;margin:0 auto;padding:20px 40px;display:flex;justify-content:space-between;align-items:center">
+    <a href="#top" style="display:flex;align-items:center;gap:11px;text-decoration:none">
+      <span style="width:30px;height:30px;border-radius:50%;background:#c2ff00;color:#000;font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:14px;display:flex;align-items:center;justify-content:center">O</span>
+      <span style="font-family:'Schibsted Grotesk',sans-serif;font-weight:500;font-size:14px;letter-spacing:0.02em">Olha Tsurika</span>
+    </a>
+    <div style="display:flex;gap:30px;align-items:center">
+      <a href="#work" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:#928f86">Work</a>
+      <a href="#about" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:#928f86">About</a>
+      <a href="#services" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:#928f86">Services</a>
+      <a href="#contact" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:#928f86">Contact</a>
+      <div style="display:flex;align-items:center;gap:8px;border:1px solid rgba(242,244,236,0.14);border-radius:100px;padding:7px 13px">
+        <span style="width:7px;height:7px;border-radius:50%;background:#c2ff00;animation:blink 2s ease-in-out infinite"></span>
+        <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#d9d6cc">Available Q3 ’26</span>
+      </div>
+    </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header style="position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:64px 40px 56px">
+    <div style="display:grid;grid-template-columns:1.18fr 0.62fr;gap:48px;align-items:center">
+      <div>
+        <div class="om-rev" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#c2ff00;margin-bottom:28px">AI Product Engineering for B2B Growth</div>
+        <h1 class="om-rev" style="font-family:'Schibsted Grotesk',sans-serif;font-weight:400;font-size:clamp(44px,6vw,92px);line-height:0.96;letter-spacing:-0.035em">High-converting<br>AI interfaces for<br><span style="font-weight:500;color:#c2ff00">B2B growth.</span></h1>
+        <p class="om-rev" style="margin-top:30px;max-width:46ch;font-size:18px;line-height:1.65;color:#aeaa9f;font-weight:300">I turn complex B2B logic into dead-simple flows that launch fast and convert from day one — no wasted budget, no slow rollouts. Every interface is hyper-adaptive: it senses shifting user behavior and friction in real time, so your product is always one step ahead of what the customer needs next.</p>
+        <div class="om-rev" style="margin-top:38px;display:flex;gap:18px;flex-wrap:wrap;align-items:center">
+          <a href="#work" style="display:inline-flex;align-items:center;gap:12px;font-family:'Schibsted Grotesk',sans-serif;font-weight:500;font-size:15px;text-decoration:none;background:#c2ff00;color:#000;padding:15px 26px;border-radius:100px">Selected work <span class="om-up" style="font-size:17px">↗</span></a>
+          <a href="#contact" style="display:inline-flex;align-items:center;gap:10px;font-family:'Schibsted Grotesk',sans-serif;font-weight:500;font-size:15px;text-decoration:none;color:#f2f4ec;border:1px solid rgba(242,244,236,0.22);padding:15px 26px;border-radius:100px">Get in touch <span class="om-up" style="font-size:15px">↗</span></a>
+        </div>
+        <div class="om-rev" style="margin-top:26px;display:flex;align-items:center;gap:10px">
+          <span style="width:7px;height:7px;border-radius:50%;background:#c2ff00"></span>
+          <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#928f86">Trusted by 300+ B2B clients &amp; startups worldwide</span>
+        </div>
+      </div>
+
+      <!-- B/W portrait (identity) -->
+      <div class="om-rev" data-tiltwrap style="position:relative;justify-self:center;perspective:1100px">
+        <div style="position:absolute;inset:4%;border-radius:50%;background:radial-gradient(circle,rgba(194,255,0,0.30),transparent 64%);filter:blur(34px);pointer-events:none"></div>
+        <div data-float style="animation:floaty 7s ease-in-out infinite">
+          <img data-tilt class="om-tilt" src="assets/portrait.png" alt="Olha Tsurika" style="position:relative;display:block;width:min(360px,72vw);height:auto">
+        </div>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- MARQUEE -->
+  <div style="position:relative;z-index:1;border-top:1px solid rgba(242,244,236,0.08);border-bottom:1px solid rgba(242,244,236,0.08);overflow:hidden;padding:18px 0">
+    <div style="display:flex;width:max-content;animation:marquee 36s linear infinite">
+      <sc-for list="{{ marquee }}" as="m" hint-placeholder-count="14">
+        <span style="font-family:'Schibsted Grotesk',sans-serif;font-weight:300;font-size:clamp(18px,2.4vw,30px);color:#cbc8be;padding:0 28px;display:inline-flex;align-items:center;gap:28px;letter-spacing:-0.01em">{{ m }}<span style="color:#c2ff00;font-size:0.6em">✦</span></span>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- SELECTED WORK -->
+  <section id="work" data-depth="0.5" class="om-depth" style="position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:24px 40px 0">
+    <div class="om-rev" style="border-top:1px solid rgba(242,244,236,0.14);padding-top:30px;margin-bottom:48px">
+      <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#c2ff00;margin-bottom:20px">(01)</div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px">
+        <h2 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:400;font-size:clamp(28px,3.8vw,52px);line-height:1.08;letter-spacing:-0.03em">Selected Work <span style="color:#c2ff00">↗</span></h2>
+        <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#928f86">04 case studies · Gym App, Poshuk</span>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:56px;perspective:1400px">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="3">
+        <button class="om-card om-rev om-tilt" data-card-tilt onClick="{{ p.open }}" style="all:unset;cursor:pointer;position:relative;display:block;border-radius:22px;overflow:hidden;border:1px solid rgba(242,244,236,0.08);background:#070707">
+          <!-- large preview -->
+          <div style="position:relative;height:clamp(360px,46vw,560px);overflow:hidden">
+            <img class="om-thumb" src="{{ p.cover }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,.84,.34,1)">
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.1) 0%,transparent 26%,rgba(0,0,0,0.86) 100%)"></div>
+            <!-- top row -->
+            <div style="position:absolute;top:24px;left:26px;right:26px;display:flex;justify-content:space-between;align-items:flex-start">
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;max-width:70%">
+                <sc-for list="{{ p.badgeList }}" as="bd" hint-placeholder-count="2">
+                  <span style="display:flex;align-items:center;gap:7px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#cbc8be;background:rgba(0,0,0,0.4);padding:6px 11px;border-radius:100px;backdrop-filter:blur(3px)"><span style="width:6px;height:6px;border-radius:50%;background:{{ p.tone }}"></span>{{ bd }}</span>
+                </sc-for>
+              </div>
+              <span style="font-family:'Space Mono',monospace;font-size:13px;color:rgba(242,244,236,0.7)">{{ p.num }}</span>
+            </div>
+            <!-- bottom content -->
+            <div style="position:absolute;left:26px;right:26px;bottom:26px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px">
+              <div style="max-width:62%">
+                <h3 class="om-title" style="font-family:'Schibsted Grotesk',sans-serif;font-weight:400;font-size:clamp(26px,3.4vw,46px);line-height:1.02;letter-spacing:-0.025em;color:#eceadf;transition:color .3s">{{ p.title }}</h3>
+                <div class="om-line" style="height:2px;width:48px;background:{{ p.tone }};margin-top:16px;transition:width .6s cubic-bezier(.16,.84,.34,1)"></div>
+                <p class="om-hover-desc" style="margin-top:16px;font-size:14px;line-height:1.5;color:#c9c6bc;font-weight:300;max-width:44ch">View full case study — problem, approach &amp; impact.</p>
+              </div>
+              <span class="om-arrow" style="flex-shrink:0;width:56px;height:56px;border-radius:50%;background:#c2ff00;color:#000;display:flex;align-items:center;justify-content:center;font-size:24px;transition:transform .4s cubic-bezier(.16,.84,.34,1)">↗</span>
+            </div>
+          </div>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" data-depth="0.35" class="om-depth" style="position:relative;z-index:1;max-width:1320px;margin:48px auto 0;padding:0 40px">
+    <div class="om-rev" style="border-top:1px solid rgba(242,244,236,0.14);padding-top:30px">
+      <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#c2ff00;margin-bottom:20px">(02)</div>
+      <h2 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:400;font-size:clamp(28px,3.8vw,52px);line-height:1.08;letter-spacing:-0.03em">Services</h2>
+      <p style="margin-top:16px;font-size:17px;line-height:1.6;color:#a8a59b;font-weight:300;max-width:50ch">Three fixed-scope packages engineered for velocity and ROI — no scope creep, no guesswork.</p>
+    </div>
+
+    <div style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;align-items:stretch">
+      <sc-for list="{{ services }}" as="svc" hint-placeholder-count="3">
+        <div class="om-svc-card" style="position:relative;display:flex;flex-direction:column;height:100%;border-radius:22px;padding:36px 32px 32px;background:{{ svc.bg }};border:1px solid {{ svc.border }}">
+          <sc-if value="{{ svc.popular }}" hint-placeholder-val="{{ false }}">
+            <span style="position:absolute;top:-13px;left:32px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#000;background:#c2ff00;padding:7px 16px;border-radius:100px">Most Popular</span>
+          </sc-if>
+
+          <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;color:#75726a">{{ svc.num }}</div>
+          <h3 style="margin-top:16px;font-family:'Schibsted Grotesk',sans-serif;font-weight:500;font-size:24px;line-height:1.16;letter-spacing:-0.02em;color:#f2f4ec">{{ svc.title }}</h3>
+          <p class="om-svc-tagline" style="margin-top:12px;font-size:14.5px;line-height:1.4;color:#a8a59b;font-weight:300">{{ svc.tagline }}</p>
+
+          <span style="margin-top:18px;align-self:flex-start;font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:{{ svc.tone }};background:rgba(242,244,236,0.06);border-radius:6px;padding:6px 10px">{{ svc.price }}</span>
+
+          <div class="om-svc-details">
+            <div style="margin-top:24px;border-top:1px solid rgba(242,244,236,0.1);padding-top:22px">
+              <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#75726a;margin-bottom:14px">Includes</div>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <sc-for list="{{ svc.includes }}" as="inc" hint-placeholder-count="6">
+                  <div style="display:flex;gap:10px;align-items:flex-start">
+                    <span style="flex-shrink:0;margin-top:7px;width:5px;height:5px;border-radius:50%;background:{{ svc.tone }}"></span>
+                    <span style="font-size:14px;line-height:1.5;color:#c9c6bc;font-weight:300">{{ inc }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="margin-top:22px;border-top:1px solid rgba(242,244,236,0.1);padding-top:20px">
+              <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#75726a;margin-bottom:14px">Best for</div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <sc-for list="{{ svc.bestFor }}" as="bf" hint-placeholder-count="3">
+                  <span style="font-size:13.5px;line-height:1.5;color:#928f86;font-weight:300">— {{ bf }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <div style="flex:1"></div>
+          <a href="#contact" style="margin-top:20px;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:'Schibsted Grotesk',sans-serif;font-weight:500;font-size:15px;text-decoration:none;color:{{ svc.ctaColor }};background:{{ svc.ctaBg }};border:{{ svc.ctaBorder }};padding:14px 22px;border-radius:100px">Start Project <span class="om-up">↗</span></a>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ABOUT + EXPERIENCE -->
+  <section id="about" data-depth="0.4" class="om-depth" style="position:relative;z-index:1;max-width:1320px;margin:48px auto 0;padding:0 40px">
+    <!-- section head (collapsible trigger) -->
+    <button onClick="{{ toggleAbout }}" style="all:unset;cursor:pointer;display:block;width:100%;text-align:left;border-top:1px solid rgba(242,244,236,0.14);padding-top:30px">
+      <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#c2ff00;margin-bottom:20px">(03) ABOUT ME</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:24px">
+        <h2 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:400;font-size:clamp(28px,3.8vw,52px);line-height:1.08;letter-spacing:-0.03em;max-width:20ch">AI Product Engineer &amp; iOS&nbsp;MVP Developer turning ideas into <span style="color:#c2ff00">scalable, user-centered</span> products.</h2>
+        <span style="flex-shrink:0;display:inline-flex;align-items:center;gap:9px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#000;background:#c2ff00;padding:12px 20px;border-radius:100px">{{ aboutToggleLabel }}<span style="display:inline-block;font-size:14px;transition:transform .4s cubic-bezier(.16,.84,.34,1);transform:{{ aboutIconRotate }}">⌄</span></span>
+      </div>
+    </button>
+
+    <!-- collapsible body -->
+    <div style="display:grid;grid-template-rows:{{ aboutRows }};transition:grid-template-rows .5s cubic-bezier(.16,.84,.34,1)">
+      <div style="overflow:hidden">
+        <!-- about body -->
+        <div style="margin-top:48px">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#75726a;margin-bottom:16px">Profile</div>
+          <div style="max-width:64ch">
+            <p style="font-size:18px;line-height:1.7;color:#cbc8be;font-weight:300">I build AI-native products for B2B teams who can't afford wasted budget or slow timelines — every engagement is scoped for velocity: validated MVPs, shipped fast, engineered to convert from the first release.</p>
+            <p style="margin-top:22px;font-size:18px;line-height:1.7;color:#9b9388;font-weight:300">The interfaces I design are hyper-adaptive by default — built to sense shifting user behavior and friction points in real time, so your product anticipates what a customer needs next instead of reacting to what they clicked last.</p>
+          </div>
+        </div>
+
+        <!-- core skills -->
+        <div style="margin-top:48px;border-top:1px solid rgba(242,244,236,0.1);padding-top:36px">
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#75726a;margin-bottom:16px">Core skills</div>
+          <div style="display:flex;flex-wrap:wrap;gap:9px;max-width:70ch">
+            <sc-for list="{{ skills }}" as="s" hint-placeholder-count="12">
+              <span style="font-family:'Schibsted Grotesk',sans-serif;font-size:14px;color:#d8d6cc;border:1px solid rgba(242,244,236,0.14);background:rgba(242,244,236,0.02);padding:9px 15px;border-radius:100px">{{ s }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- experience -->
+    <div class="om-rev" style="margin-top:80px;border-top:1px solid rgba(242,244,236,0.14);padding-top:30px">
+      <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#c2ff00;margin-bottom:8px">(04) Experience</div>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ experience }}" as="x" hint-placeholder-count="3">
+          <div class="om-rev" style="display:grid;grid-template-columns:0.42fr 1fr;gap:28px;padding:34px 0;border-bottom:1px solid rgba(242,244,236,0.1)">
+            <div>
+              <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.05em;color:#c2ff00">{{ x.period }}</div>
+              <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#75726a;margin-top:8px">{{ x.dur }}</div>
+              <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#75726a;margin-top:4px">{{ x.place }}</div>
+            </div>
+            <div>
+              <h3 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:500;font-size:clamp(22px,2.6vw,30px);letter-spacing:-0.02em;color:#f2f4ec">{{ x.role }}</h3>
+              <div style="font-family:'Schibsted Grotesk',sans-serif;font-size:15px;color:#9fd14a;margin-top:6px">{{ x.company }}</div>
+              <p style="margin-top:14px;font-size:16px;line-height:1.6;color:#a8a59b;font-weight:300;max-width:54ch">{{ x.desc }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" data-depth="0.4" class="om-depth" style="position:relative;z-index:1;margin:48px auto 0;max-width:1320px;padding:0 40px 40px">
+    <div class="om-rev om-contact-grid" style="background:linear-gradient(160deg,#0c0e06,#050505);border:1px solid rgba(194,255,0,0.2);border-radius:22px;padding:clamp(36px,5vw,60px) clamp(32px,5vw,64px);position:relative;overflow:hidden">
+      <div style="position:absolute;top:-180px;right:-100px;width:560px;height:460px;background:radial-gradient(ellipse,rgba(194,255,0,0.2),transparent 70%);pointer-events:none"></div>
+      <div style="position:absolute;bottom:-160px;left:-80px;width:420px;height:360px;background:radial-gradient(ellipse,rgba(194,255,0,0.10),transparent 70%);pointer-events:none"></div>
+      <div style="position:relative">
+        <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#c2ff00;margin-bottom:16px">Let’s build</div>
+        <h2 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:400;font-size:clamp(28px,4.5vw,52px);line-height:1;letter-spacing:-0.03em;max-width:14ch">Have a <span style="font-weight:500;color:#c2ff00">B2B</span> product worth scaling?</h2>
+        <p style="margin-top:16px;max-width:42ch;font-size:15.5px;line-height:1.55;color:#a8a59b;font-weight:300">Fixed scope, fast turnaround, engineered for ROI — let’s talk about what you’re building.</p>
+        <div style="margin-top:30px;display:flex;gap:12px;flex-wrap:wrap">
+          <a href="https://www.linkedin.com/in/olga-tsurika/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:12px;font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none;background:#c2ff00;color:#000;padding:14px 26px;border-radius:100px">LinkedIn <span class="om-up">↗</span></a>
+          <a href="https://wa.me/4591927980" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:12px;font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none;color:#f2f4ec;border:1px solid rgba(242,244,236,0.22);padding:14px 26px;border-radius:100px">WhatsApp <span class="om-up">↗</span></a>
+          <a href="https://t.me/+4591927980" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:12px;font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none;color:#f2f4ec;border:1px solid rgba(242,244,236,0.22);padding:14px 26px;border-radius:100px">Telegram <span class="om-up">↗</span></a>
+          <a href="tel:+4591927980" style="display:inline-flex;align-items:center;gap:12px;font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none;color:#f2f4ec;border:1px solid rgba(242,244,236,0.22);padding:14px 26px;border-radius:100px">+45 91 92 79 80 <span class="om-up">↗</span></a>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding-top:20px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:#75726a;flex-wrap:wrap;gap:10px">
+      <span>© 2026 Olha Tsurika</span>
+      <span>Designed at the intersection of design + AI</span>
+    </div>
+  </section>
+
+  <!-- ===== MODAL ===== -->
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed;inset:0;z-index:90;background:rgba(0,0,0,0.75);backdrop-filter:blur(10px);display:flex;justify-content:center;align-items:flex-start;padding:40px 20px;overflow-y:auto" class="om-modal-scroll">
+      <div onClick="{{ stop }}" style="position:relative;width:100%;max-width:940px;background:#080808;border:1px solid rgba(242,244,236,0.1);border-radius:24px;overflow:hidden;animation:rise .5s cubic-bezier(.16,.84,.34,1) both;margin:auto">
+
+        <div style="position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:22px 28px;background:rgba(8,8,8,0.86);backdrop-filter:blur(12px);border-bottom:1px solid rgba(242,244,236,0.08)">
+          <span style="display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#928f86"><span style="width:8px;height:8px;border-radius:50%;background:{{ active.tone }}"></span>{{ active.kind }} · {{ active.num }}</span>
+          <button onClick="{{ closeModal }}" style="all:unset;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#cbc8be;border:1px solid rgba(242,244,236,0.16);border-radius:100px;padding:8px 14px">Close ✕</button>
+        </div>
+
+        <div style="padding:clamp(28px,4vw,48px)">
+          <h2 style="font-family:'Schibsted Grotesk',sans-serif;font-weight:400;font-size:clamp(28px,4vw,48px);line-height:1.02;letter-spacing:-0.03em;max-width:20ch">{{ active.title }}</h2>
+          <div style="margin-top:22px;display:flex;flex-wrap:wrap;gap:26px">
+            <sc-for list="{{ active.meta }}" as="m" hint-placeholder-count="3">
+              <div>
+                <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:#75726a">{{ m.k }}</div>
+                <div style="font-family:'Schibsted Grotesk',sans-serif;font-size:15px;color:#e6e3d8;margin-top:5px">{{ m.v }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="margin-top:38px;border-left:2px solid {{ active.tone }};padding-left:22px">
+            <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:{{ active.tone }};margin-bottom:12px">The challenge</div>
+            <p style="font-family:'Schibsted Grotesk',sans-serif;font-weight:300;font-size:clamp(18px,2.4vw,25px);line-height:1.4;color:#ebe8dd;letter-spacing:-0.015em">{{ active.challenge }}</p>
+          </div>
+
+          <sc-if value="{{ active.overview }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:34px">
+              <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#928f86;margin-bottom:14px">Overview</div>
+              <p style="font-size:16px;line-height:1.7;color:#bdbab0;font-weight:300;max-width:68ch">{{ active.overview }}</p>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ active.solutionShown }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:34px">
+              <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#928f86;margin-bottom:16px">What I designed</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+                <sc-for list="{{ active.solution }}" as="so" hint-placeholder-count="4">
+                  <div style="background:rgba(242,244,236,0.025);border:1px solid rgba(242,244,236,0.08);border-radius:14px;padding:20px 22px">
+                    <div style="font-family:'Schibsted Grotesk',sans-serif;font-weight:500;font-size:16px;color:#eceadf;margin-bottom:8px">{{ so.h }}</div>
+                    <p style="font-size:14px;line-height:1.55;color:#a8a59b;font-weight:300">{{ so.t }}</p>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <div style="margin-top:40px">
+            <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#928f86;margin-bottom:16px">Key screens</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px">
+              <sc-for list="{{ active.shots }}" as="sh" hint-placeholder-count="6">
+                <div style="position:relative;aspect-ratio:9/16;border-radius:12px;overflow:hidden;border:1px solid rgba(242,244,236,0.08);background:#0a0a0a">
+                  <img src="{{ sh.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+                  <div style="position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(0,0,0,0.7));padding:18px 10px 9px">
+                    <span style="font-family:'Space Mono',monospace;font-size:9.5px;line-height:1.25;letter-spacing:0.03em;text-transform:uppercase;color:rgba(242,244,236,0.85)">{{ sh.label }}</span>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="margin-top:42px;display:grid;grid-template-columns:1fr 1fr;gap:38px">
+            <div>
+              <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#928f86;margin-bottom:18px">Design thinking</div>
+              <div style="display:flex;flex-direction:column;gap:18px">
+                <sc-for list="{{ active.thinking }}" as="th" hint-placeholder-count="3">
+                  <div style="display:flex;gap:14px">
+                    <span style="font-family:'Space Mono',monospace;font-size:12px;color:{{ active.tone }};padding-top:2px">{{ th.i }}</span>
+                    <p style="font-size:15px;line-height:1.55;color:#bbb8ae;font-weight:300">{{ th.t }}</p>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div>
+              <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#928f86;margin-bottom:18px">Impact</div>
+              <div style="display:flex;flex-direction:column;gap:14px">
+                <sc-for list="{{ active.impact }}" as="im" hint-placeholder-count="3">
+                  <div style="display:flex;align-items:baseline;gap:12px;border-bottom:1px solid rgba(242,244,236,0.07);padding-bottom:12px">
+                    <span style="font-family:'Schibsted Grotesk',sans-serif;font-weight:500;font-size:24px;color:#f2f4ec;letter-spacing:-0.02em;white-space:nowrap">{{ im.n }}</span>
+                    <span style="font-size:14px;line-height:1.4;color:#a8a59b;font-weight:300">{{ im.l }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <sc-if value="{{ active.roleShown }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:40px">
+              <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#928f86;margin-bottom:16px">My role &amp; idea</div>
+              <div style="display:flex;flex-direction:column;gap:13px">
+                <sc-for list="{{ active.role }}" as="rl" hint-placeholder-count="5">
+                  <div style="display:flex;gap:13px;align-items:flex-start">
+                    <span style="width:5px;height:5px;border-radius:50%;background:{{ active.tone }};margin-top:9px;flex-shrink:0"></span>
+                    <p style="font-size:15px;line-height:1.6;color:#bbb8ae;font-weight:300">{{ rl }}</p>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ active.note }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:38px;background:rgba(194,255,0,0.06);border:1px solid rgba(194,255,0,0.2);border-radius:14px;padding:26px 28px">
+              <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#c2ff00;margin-bottom:12px">AI-augmented workflow</div>
+              <p style="font-size:15px;line-height:1.62;color:#cbc8be;font-weight:300">{{ active.note }}</p>
+            </div>
+          </sc-if>
+
+          <div style="margin-top:40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;border-top:1px solid rgba(242,244,236,0.08);padding-top:28px">
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <sc-for list="{{ active.tools }}" as="tl" hint-placeholder-count="4">
+                <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.04em;text-transform:uppercase;color:#8f8c82;border:1px solid rgba(242,244,236,0.13);padding:6px 11px;border-radius:100px">{{ tl }}</span>
+              </sc-for>
+            </div>
+            <button onClick="{{ closeModal }}" style="all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:9px;font-family:'Schibsted Grotesk',sans-serif;font-weight:500;font-size:14px;color:#000;background:#c2ff00;padding:13px 22px;border-radius:100px">Back to work <span class="om-up">↗</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { open: -1, aboutOpen: false };
+
+  componentDidMount() {
+    const root = document;
+    // scroll reveals
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('om-in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    root.querySelectorAll('.om-rev').forEach((el, i) => { el.style.transitionDelay = (Math.min(i, 4) * 70) + 'ms'; io.observe(el); });
+    this._io = io;
+
+    // ----- focused cursor + glow (lerp follow) -----
+    const cur = root.querySelector('[data-cursor]');
+    const ring = root.querySelector('[data-ring]');
+    const glow = root.querySelector('[data-glow]');
+    const tgt = { x: innerWidth / 2, y: innerHeight / 2 };
+    const pos = { x: tgt.x, y: tgt.y };
+    const gpos = { x: tgt.x, y: tgt.y };
+    this._move = (ev) => { tgt.x = ev.clientX; tgt.y = ev.clientY; };
+    window.addEventListener('pointermove', this._move, { passive: true });
+
+    // grow ring over interactive elements
+    this._over = (ev) => {
+      const hit = ev.target.closest && ev.target.closest('a,button,[data-card-tilt],[data-tiltwrap]');
+      if (ring) {
+        ring.style.width = hit ? '64px' : '40px';
+        ring.style.height = hit ? '64px' : '40px';
+        ring.style.background = hit ? 'rgba(194,255,0,0.16)' : 'transparent';
+        ring.style.borderColor = hit ? '#c2ff00' : '#fff';
+      }
+    };
+    window.addEventListener('pointerover', this._over, { passive: true });
+
+    // ----- pointer-driven isometric tilt -----
+    this._tilts = [];
+    const addTilt = (zone, target, max) => {
+      const onMove = (ev) => {
+        const r = zone.getBoundingClientRect();
+        const px = (ev.clientX - r.left) / r.width - 0.5;
+        const py = (ev.clientY - r.top) / r.height - 0.5;
+        target.style.transform = `rotateY(${px * max}deg) rotateX(${-py * max}deg) translateZ(0)`;
+      };
+      const onLeave = () => { target.style.transform = 'rotateY(0deg) rotateX(0deg)'; };
+      zone.addEventListener('pointermove', onMove);
+      zone.addEventListener('pointerleave', onLeave);
+      this._tilts.push([zone, onMove, onLeave]);
+    };
+    root.querySelectorAll('[data-tiltwrap]').forEach((pw) => {
+      const pimg = pw.querySelector('[data-tilt]');
+      if (pimg) addTilt(pw, pimg, 7);
+    });
+    root.querySelectorAll('[data-card-tilt]').forEach((c) => addTilt(c, c, 4));
+
+    // ----- scroll depth / parallax for big blocks -----
+    const depthEls = [...root.querySelectorAll('[data-depth]')];
+    let scrollPending = false;
+    const applyDepth = () => {
+      scrollPending = false;
+      const vh = innerHeight;
+      depthEls.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        const center = r.top + r.height / 2;
+        const d = (center - vh / 2) / vh; // ~ -1..1, 0 at viewport center
+        const f = parseFloat(el.getAttribute('data-depth')) || 0.4;
+        const ty = d * 46 * f;
+        el.style.transform = `translateY(${ty.toFixed(1)}px)`;
+        el.style.opacity = (1 - Math.min(0.35, Math.abs(d) * 0.3)).toFixed(3);
+      });
+    };
+    this._scroll = () => { if (!scrollPending) { scrollPending = true; requestAnimationFrame(applyDepth); } };
+    window.addEventListener('scroll', this._scroll, { passive: true });
+    window.addEventListener('resize', this._scroll, { passive: true });
+    applyDepth();
+
+    // ----- rAF loop for smooth cursor -----
+    const loop = () => {
+      pos.x += (tgt.x - pos.x) * 0.22; pos.y += (tgt.y - pos.y) * 0.22;
+      gpos.x += (tgt.x - gpos.x) * 0.08; gpos.y += (tgt.y - gpos.y) * 0.08;
+      if (cur) cur.style.transform = `translate(${pos.x}px,${pos.y}px) translate(-50%,-50%)`;
+      if (glow) glow.style.transform = `translate(${gpos.x}px,${gpos.y}px)`;
+      this._raf = requestAnimationFrame(loop);
+    };
+    this._raf = requestAnimationFrame(loop);
+  }
+  componentWillUnmount() {
+    if (this._io) this._io.disconnect();
+    if (this._move) window.removeEventListener('pointermove', this._move);
+    if (this._over) window.removeEventListener('pointerover', this._over);
+    if (this._scroll) { window.removeEventListener('scroll', this._scroll); window.removeEventListener('resize', this._scroll); }
+    if (this._raf) cancelAnimationFrame(this._raf);
+    if (this._tilts) this._tilts.forEach(([z, m, l]) => { z.removeEventListener('pointermove', m); z.removeEventListener('pointerleave', l); });
+    document.body.style.overflow = '';
+  }
+
+  openModal = (i) => { this.setState({ open: i }); document.body.style.overflow = 'hidden'; };
+  closeModal = () => { this.setState({ open: -1 }); document.body.style.overflow = ''; };
+  toggleAbout = () => { this.setState((s) => ({ aboutOpen: !s.aboutOpen })); };
+
+  renderVals() {
+    const lime = '#c2ff00', neon = '#1ff0e0', magenta = '#ff2bd6', sky = '#4a90c2';
+    const data = [
+      {
+        kind: 'iOS · Humanitarian Tech', tone: sky, cover: 'assets/poshuk-hero.png',
+        title: 'Poshuk — Fast, Remote Search Support for Missing Persons in Ukraine',
+        summary: 'A guided flow that turns a chaotic, multi-channel missing-persons search into one calm, shareable search card with a QR code.',
+        shot: 'onboarding → search card → QR sharing',
+        meta: [{k:'Role',v:'Founder, Product & UX Designer'},{k:'Year',v:'2026'},{k:'Scope',v:'15+ screen prototype'},{k:'Platform',v:'iOS'},{k:'Status',v:'Concept — seeking collaborators'}],
+        challenge: 'Searching for a missing person in Ukraine means navigating disconnected channels — Facebook groups, Telegram chats, the official registry, police, Red Cross — each with its own format and no shared record. The same facts have to be retyped for every channel, at a moment of severe emotional strain, and incomplete information (no unit number, no exact date) is treated as a blocker instead of the norm.',
+        overview: 'Poshuk (Ukrainian for "search") is a mobile concept that replaces repeated manual submissions with one guided intake. A short 3-step onboarding — photo, location and date, status and details — generates a ready-to-send request plus a shareable search card with a unique QR code, so anyone, anywhere can scan it and respond in seconds. Poshuk is not a government platform; it aggregates publicly available resources — hotlines, registries, service contacts — into a single low-friction experience.',
+        solutionShown: true,
+        solution: [
+          {h:'Guided 3-step onboarding', t:'Photo, location/date/unit, status and details — with an upfront "what to expect" screen and explicit permission to leave unknowns blank.'},
+          {h:'Auto-generated requests', t:'Ready-to-send text for the Missing Persons Commission, national registry, Red Cross and police, tracked per organisation.'},
+          {h:'Shareable QR search card', t:'Generated instantly, viewable full-screen for showing in person, and shareable to Telegram, Viber, WhatsApp and Facebook.'},
+          {h:'Contextual help, not just contacts', t:'A dedicated contacts screen with verified hotlines and guidance on reaching a Territorial Recruitment Center when details are unknown.'}
+        ],
+        shots: [
+          {img:'assets/poshuk-1-splash.png',label:'Splash — open-source aggregator'},
+          {img:'assets/poshuk-2-home.png',label:'Home — start a search'},
+          {img:'assets/poshuk-3-card.png',label:'Search card + QR overview'},
+          {img:'assets/poshuk-4-fullscreen.png',label:'Full-screen physical display'},
+          {img:'assets/poshuk-5-list.png',label:'Lists & filters'},
+          {img:'assets/poshuk-6-support.png',label:'Support — not alone'},
+          {img:'assets/poshuk-7-premium.png',label:'Premium — advanced features'}
+        ],
+        thinking: [
+          {i:'01',t:'Reframed the ask: instead of another form, one guided flow that asks only what services actually need.'},
+          {i:'02',t:'Made "I don\u2019t know" a valid answer — unknown fields are explicitly allowed, with a path to fill gaps via the TCC.'},
+          {i:'03',t:'Designed the QR card as the connective tissue — one shareable artifact that works across Telegram, Viber, WhatsApp, Facebook and in person.'},
+          {i:'04',t:'Scoped the language deliberately — an open-source aggregator, not a state platform — to stay credible and honest.'}
+        ],
+        impact: [{n:'15+',l:'screens in a fully clickable prototype, splash to premium'},{n:'3 steps',l:'from cold start to a shareable search card'},{n:'0',l:'fabricated metrics — framed honestly as concept-stage'},{n:'EN + UA',l:'full localization pass preserving all interaction logic'}],
+        roleShown: true,
+        role: [
+          'Identified the problem and shaped the product thesis: reduce a fragmented, repetitive, emotionally taxing process to one guided flow.',
+          'Designed the full information architecture and user flow, from first launch to card sharing to tip response.',
+          'Art-directed the visual language — a calm, editorial blue-and-yellow palette (a restrained nod to Ukrainian identity, without overclaiming official status), Newsreader serif for warmth and Manrope for clarity.',
+          'Iteratively built and refined the interactive prototype directly in Claude, testing and correcting the flow screen by screen before considering a handoff to Figma or engineering.',
+          'Deliberately scoped what the product does not claim to be — an open-source aggregator, not a state platform — to keep the concept both credible and honest.'
+        ],
+        note: 'Built iteratively inside Claude, screen by screen — onboarding, then navigation, the QR card, the full-screen display mode, and finally the premium assistant and publishing features. Each round of feedback — tone adjustments, removing state-affiliation language, adding contact resources for people without full details — was applied directly to the live prototype before any of it touched Figma. The English version is a full localization pass over the finished Ukrainian prototype, preserving all interaction logic.',
+        tools: ['Claude Artifacts','Figma','HTML/CSS/JS','QR Generation']
+      },
+      {
+        kind: 'iOS · AI Onboarding', tone: lime, cover: 'assets/gymapp-hero.png',
+        title: 'Gym App — AI Fitness Coach & Personalised Training Platform',
+        summary: 'Gym App is a dark-aesthetic iOS fitness platform built for a fitness startup that needed a complete design system from scratch.',
+        shot: 'onboarding → AI build → 14-day plan reveal',
+        meta: [{k:'Role',v:'Sole UX/UI Designer'},{k:'Year',v:'2025'},{k:'Scope',v:'22-screen system'},{k:'Platform',v:'iOS'},{k:'Client',v:'Fitness startup'}],
+        challenge: 'Intermediate gym-goers were frustrated with generic apps — one-size-fits-all programs, no real-time feedback during sets, and no sense of progression. The startup needed a product that felt premium, motivating and genuinely personalised, not another calorie counter.',
+        overview: 'Gym App is a dark-aesthetic iOS fitness platform built from scratch. It uses AI to generate personalised 14-day workout plans, adapts sessions to the user’s goal and fitness level, and delivers a premium coaching experience through a coach feedback loop, rest timers and progress analytics — 22 screens across onboarding, dashboard, workout execution and progress, built on a bold black + lime system.',
+        solutionShown: true,
+        solution: [
+          {h:'AI-powered onboarding', t:'A 6-step questionnaire — goal, gender, body metrics, weekly schedule — feeding an AI generator that shows a real-time build animation before revealing the personalised 14-day programme.'},
+          {h:'Coach marketplace', t:'Browse programmes by coach and specialty (strength, mobility, cardio, cut); a paywall that communicates value before asking for payment.'},
+          {h:'Workout execution', t:'Set-by-set logging with weight/reps adjusters, coach video demo, form upload for AI review and an auto-advancing “Set Done” CTA.'},
+          {h:'Progress module', t:'A private personal archive — photo timeline by week and per-exercise trend charts (Bench, Squat, Deadlift, OHP); measurements always private.'}
+        ],
+        shots: [
+          {img:'assets/p1-1.png',label:'Welcome / sign-in'},
+          {img:'assets/p1-2.png',label:'Goal — what brings you'},
+          {img:'assets/p1-3.png',label:'Days per week'},
+          {img:'assets/p1-4.png',label:'Building 14-day plan'},
+          {img:'assets/p1-5.png',label:'Plan ready'},
+          {img:'assets/p1-6.png',label:'Dashboard'}
+        ],
+        thinking: [
+          {i:'01',t:'Front-loaded the value: a short, visual 6-step flow that asks only what the AI needs — goal, body metrics, weekly schedule.'},
+          {i:'02',t:'Turned the wait into delight — a real-time build animation that makes the AI feel like it’s working for you before the reveal.'},
+          {i:'03',t:'Designed the reveal as a moment, not a screen — the personalised programme lands as a payoff, not a settings page.'},
+          {i:'04',t:'Grounded everything in research — 8-app competitive audit, 5 interviews (ages 24–38) and two personas: “Consistent Alex” and “Result-Driven Max”.'}
+        ],
+        impact: [{n:'22',l:'screens delivered, ready for developer handoff'},{n:'>80%',l:'modelled onboarding completion in usability tests'},{n:'6 steps',l:'from cold start to a personalised plan'},{n:'“real trainer”',l:'how testers described the premium feel'},{n:'×3',l:'testers re-watched the AI build animation'}],
+        note: 'The first hi-fi interactive prototype was built entirely in Claude Artifacts as a single HTML file — 3 iterations, 17→22 screens. It became the source of truth for interaction specs before any Figma work began. Workflow: design in Figma → prototype in Claude → test in Figma Make → finalize in Claude.',
+        tools: ['Claude Artifacts','Figma','HTML/CSS/JS','Midjourney']
+      },
+      {
+        kind: 'FinTech · Enterprise', badges: ['FinTech','Enterprise','AI Architecture'], tone: '#c0392b', cover: 'assets/opt-swiss.jpg',
+        title: 'Swiss Insurance',
+        summary: 'A high-velocity, AI-driven interface that turns complex enterprise insurance logic into a 2-minute guided flow.',
+        shot: 'onboarding → policy dashboard → claims & support',
+        meta: [{k:'Client',v:'Swiss B2B Insurance Ecosystem'},{k:'Role',v:'Sole UX/UI Designer'},{k:'Year',v:'2025'},{k:'Focus',v:'Enterprise onboarding + activation'},{k:'Platform',v:'iOS'}],
+        challenge: 'Complex legacy insurance logic, slow multi-step onboarding, and low conversion in enterprise sales were costing real revenue — every extra form field meant another dropped applicant.',
+        overview: 'Engineered a high-velocity, intuitive AI-driven interface that collapsed complex legacy logic and multi-step forms into a flawless, guided 2-minute workflow — without losing compliance coverage or account depth.',
+        solutionShown: true,
+        solution: [
+          {h:'Guided enterprise onboarding', t:'Legacy multi-step forms compressed into a single guided flow — one decision per screen, plan selection to family coverage.'},
+          {h:'Unified policy dashboard', t:'Linked policies, emergency assistance and documents surfaced in one view instead of scattered legacy portals.'},
+          {h:'Instant appointment & care access', t:'Booking, provider messaging and appointment history consolidated for faster time-to-value after signup.'},
+          {h:'Built for enterprise scale', t:'A component system designed to extend across new insurance products without re-engineering the core flow.'}
+        ],
+        shots: [
+          {img:'assets/swiss-app.png',label:'Onboarding, policy & profile screens'},
+          {img:'assets/swiss-hero.png',label:'Product overview'}
+        ],
+        thinking: [
+          {i:'01',t:'Reframed onboarding as one guided decision at a time, not a legacy form dump — cutting time-to-activation.'},
+          {i:'02',t:'Unified fragmented legacy account, policy and support data into a single coherent dashboard.'},
+          {i:'03',t:'Designed the system to scale — new products and plans slot into the same guided pattern.'}
+        ],
+        impact: [{n:'2 min',l:'average enterprise onboarding time, down from multi-step legacy forms'},{n:'\u2191','l':'boosted enterprise sales velocity and activation rate'},{n:'1 flow',l:'onboarding, policy, claims & support unified end-to-end'}],
+        note: '',
+        tools: ['Figma','Component Library','Prototyping']
+      },
+      {
+        kind: 'Web3 · SocialTech', badges: ['Web3','SocialTech','Gamification Ecosystem'], tone: '#a83279', cover: 'assets/opt-social.jpg',
+        title: 'Interactive Social Game Up',
+        summary: 'A frictionless onboarding flow and social loop interfaces that turn passive users into active players instantly.',
+        shot: 'onboarding → live game → social loop',
+        meta: [{k:'Client',v:'Interactive Social Game Platform / Web3 Gamified App'},{k:'Role',v:'Sole UX/UI Designer'},{k:'Year',v:'2025'},{k:'Deliverable',v:'Design system + handoff'},{k:'Platform',v:'iOS'}],
+        challenge: 'Low user engagement, high churn, and complex mechanics confused first-time users before they ever reached a real game session.',
+        overview: 'Designed a frictionless, high-velocity onboarding flow and intuitive social loop interfaces that turn passive users into active players instantly — replacing confusing mechanics with guided, game-ready moments.',
+        solutionShown: true,
+        solution: [
+          {h:'Instant-start onboarding', t:'New players reach a live game session in seconds, not screens of rules and setup.'},
+          {h:'Social loop mechanics', t:'Invite, match and play flows designed to keep groups looping back into sessions.'},
+          {h:'Live game interface', t:'Real-time prompts and reactions kept clear and legible mid-session, even in fast group play.'},
+          {h:'Scalable game library', t:'A component system built to onboard new game modes without redesigning the core loop.'}
+        ],
+        shots: [
+          {img:'assets/social-app.png',label:'Onboarding, game & social flows'},
+          {img:'assets/social-hero.png',label:'Product overview'}
+        ],
+        thinking: [
+          {i:'01',t:'Cut time-to-first-play to seconds — the biggest lever against early churn.'},
+          {i:'02',t:'Built the social loop (invite → play → share) as the retention engine, not an afterthought.'},
+          {i:'03',t:'Documented the full system — tokens, components, motion notes — for clean developer handoff.'}
+        ],
+        impact: [{n:'DAU \u2191',l:'maximized daily active users through faster activation'},{n:'Viral loop',l:'boosted invite-and-replay mechanics'},{n:'Retention',l:'increased long-term user retention'}],
+        note: '',
+        tools: ['Figma','Design Tokens','Charts','Handoff Specs']
+      }
+    ];
+
+    const services = [
+      {
+        num: '01 / 03', title: 'Redesign Essentials',
+        tagline: 'For B2B teams whose site undersells the product — a fast, high-impact refresh, no rebuild required.',
+        price: 'Fixed price', tone: '#928f86', bg: '#070707', border: 'rgba(242,244,236,0.08)',
+        ctaColor: '#f2f4ec', ctaBg: 'transparent', ctaBorder: '1px solid rgba(242,244,236,0.22)',
+        includes: ['Conversion-focused redesign of your existing site','Content hierarchy that gets decision-makers to yes faster','Mobile-perfect experience on every device','UI polish that signals credibility to enterprise buyers','Ready-to-ship code, handed off same week'],
+        bestFor: ['Sites that already exist but underperform','Small businesses needing a fast visual upgrade','Teams who want better design without a rebuild'],
+        popular: false
+      },
+      {
+        num: '02 / 03', title: 'Website Refresh + Code Delivery',
+        tagline: 'For growing B2B businesses ready to turn their site into a real sales engine.',
+        price: 'Project-based', tone: '#c2ff00', bg: 'linear-gradient(160deg,#0c0e06,#050505)', border: 'rgba(194,255,0,0.35)',
+        ctaColor: '#000', ctaBg: '#c2ff00', ctaBorder: 'none',
+        includes: ['Full redesign of your highest-impact pages','Frictionless UX that secures more enterprise deals','Responsive system tested desktop to mobile','Component system your team can scale on its own','Clean code handoff plus post-launch support'],
+        bestFor: ['Businesses ready for more than a visual refresh','Teams that need stronger conversion and usability','Clients who want design and code, together'],
+        popular: true
+      },
+      {
+        num: '03 / 03', title: 'Landing Page / App Website Full Build',
+        tagline: 'For startups and SaaS teams launching fast — built to convert from day one, supported after.',
+        price: 'Custom quote', tone: '#928f86', bg: '#070707', border: 'rgba(242,244,236,0.08)',
+        ctaColor: '#f2f4ec', ctaBg: 'transparent', ctaBorder: '1px solid rgba(242,244,236,0.22)',
+        includes: ['Strategy and IA built around your growth goals','Custom design system from a blank canvas','SEO-ready, performance-tuned build','Full development and final code delivery','Launch support plus ongoing maintenance'],
+        bestFor: ['New brands and digital products','Startups needing speed without cut corners','Clients who want idea-to-live handled end-to-end'],
+        popular: false
+      }
+    ];
+
+    const projects = data.map((p, i) => ({ ...p, num: '0' + (i + 1), badgeList: p.badges || [p.kind], open: () => this.openModal(i) }));
+    const open = this.state.open;
+    const active = open >= 0 ? projects[open] : null;
+
+    return {
+      projects,
+      services,
+      toggleAbout: this.toggleAbout,
+      aboutRows: this.state.aboutOpen ? '1fr' : '0fr',
+      aboutIconRotate: this.state.aboutOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+      aboutToggleLabel: this.state.aboutOpen ? 'Show less' : 'Show more',
+      modalOpen: open >= 0,
+      active: active || {},
+      closeModal: this.closeModal,
+      stop: (e) => e.stopPropagation(),
+      marquee: ['AI Product Design','Design Systems','Interactive Prototyping','UX Research','iOS','Vibe Coding','Claude Artifacts','Stitch design','UX Writing','Figma','Conversion'],
+      skills: ['AI Product Development','iOS Development','MVP Development','Claude','ChatGPT','Cursor','GitHub Copilot','VS Code','Vercel','OpenAI APIs','Prompt Engineering','AI Agents','Automation','Swift','React','Next.js','API Integration','Cloud Deployment','Product Strategy','UI/UX','Agile'],
+      experience: [
+        { period: 'Mar 2025 — Present', dur: '1 yr 4 mos · Part-time', place: 'Aarhus, Denmark · Remote', role: 'Lead UI/UX Designer', company: 'Unifood Import A/S', desc: 'Leading end-to-end product design for e-commerce and B2B platforms — UX research, scalable design systems and AI-integrated design workflows.' },
+        { period: 'Jul 2014 — Aug 2023', dur: '9 yrs 2 mos · Full-time', place: 'Kyiv, Ukraine · Hybrid', role: 'Lead UX/UI Designer & Art Director', company: 'WAMP', desc: 'Grew from designer into a leadership role over 9 years, owning end-to-end product and creative direction for SaaS, e-commerce and B2B clients across the EU and US.' },
+        { period: 'Feb 2011 — Nov 2013', dur: '2 yrs 10 mos · Full-time', place: 'Mykolaiv, Ukraine · On-site', role: 'Graphic Designer', company: 'GeeksForLess Inc.', desc: 'First professional design role at an international IT outsourcing company serving US and EU clients — branding, print and digital across Photoshop and InDesign.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
