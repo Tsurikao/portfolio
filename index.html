@@ -134,7 +134,7 @@
       <sc-for list="{{ projects }}" as="p" hint-placeholder-count="4">
         <button class="om-card om-rev" onClick="{{ p.open }}" style="all:unset;cursor:pointer;position:relative;display:block;border-radius:16px;overflow:hidden;background:rgba(186,214,247,0.03);box-shadow:inset 0 1px 1px rgba(199,211,234,0.12),inset 0 24px 48px rgba(199,211,234,0.05),0 24px 32px rgba(6,6,14,0.7)">
           <div style="position:relative;height:clamp(320px,42vw,480px);overflow:hidden;border-radius:16px">
-            <img class="om-thumb" src="{{ p.cover }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,.84,.34,1)">
+            <img class="om-thumb" src="{{ p.cover }}" alt="" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.16,.84,.34,1)">
             <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,6,15,0.1) 0%,transparent 26%,rgba(5,6,15,0.92) 100%)"></div>
             <div style="position:absolute;top:22px;left:24px;right:24px;display:flex;justify-content:space-between;align-items:flex-start">
               <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;max-width:70%">
@@ -176,10 +176,6 @@
           </sc-if>
           <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9da7ba">{{ svc.num }}</span>
           <h3 style="margin-top:12px;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:21px;line-height:1.25;color:#d8ecf8">{{ svc.title }}</h3>
-          <div style="margin-top:18px;display:flex;align-items:baseline;gap:8px">
-            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9da7ba">{{ T.fromWord }}</span>
-            <span style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:32px;letter-spacing:-0.01em;color:#C4FF00">{{ svc.price }}</span>
-          </div>
           <p style="margin-top:16px;font-size:14px;line-height:1.55;color:#c7d3ea">{{ svc.tagline }}</p>
           <div style="margin-top:22px;display:flex;flex-direction:column;gap:10px">
             <sc-for list="{{ svc.includes }}" as="inc" hint-placeholder-count="3">
@@ -204,7 +200,6 @@
         <p style="margin-top:10px;font-size:14px;line-height:1.55;color:#9da7ba;max-width:60ch">{{ T.auditDesc }}</p>
       </div>
       <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
-        <span style="font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:24px;color:#C4FF00">{{ T.auditPrice }}</span>
         <a href="#contact" class="om-cta" style="display:inline-flex;align-items:center;font-family:'Inter',sans-serif;font-weight:500;font-size:14px;text-decoration:none;background:#663af3;color:#fff;padding:12px 22px;border-radius:999px">{{ T.auditCta }}</a>
       </div>
     </div>
@@ -806,6 +801,7 @@ class Component extends DCLogic {
           { h: 'Shareable QR search card', t: 'Generated instantly, viewable full-screen for showing in person, and shareable to Telegram, Viber, WhatsApp and Facebook.' },
           { h: 'Contextual help, not just contacts', t: 'A dedicated contacts screen with verified hotlines and guidance on reaching a Territorial Recruitment Center when details are unknown.' }
         ],
+        wideShots: true,
         shots: [
           { img: 'poshuk-1-splash.png', label: 'Splash — open-source aggregator' },
           { img: 'poshuk-2-home.png', label: 'Home — start a search' },
@@ -916,9 +912,9 @@ class Component extends DCLogic {
           { h: 'Instant appointment & care access', t: 'Booking, provider messaging and appointment history consolidated for faster time-to-value after signup.' },
           { h: 'Built for enterprise scale', t: 'A component system designed to extend across new insurance products without re-engineering the core flow.' }
         ],
+        wideShots: true,
         shots: [
-          { img: 'swiss-app.png', label: 'Onboarding, policy & profile screens' },
-          { img: 'swiss-hero.png', label: 'Product overview' }
+          { img: 'swiss-app.png', label: 'Onboarding, policy & profile screens' }
         ],
         thinking: [
           { i: '01', t: 'Reframed onboarding as one guided decision at a time, not a legacy form dump — cutting time-to-activation.' },
