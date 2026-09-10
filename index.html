@@ -433,7 +433,7 @@ class Component extends DCLogic {
       heroSub: "I turn complex B2B logic into dead-simple flows that launch fast and convert from day one — no wasted budget, no slow rollouts. Whether you're an enterprise team or an early-stage startup, every interface is hyper-adaptive: it senses shifting user behavior and friction in real time, so your product is always one step ahead of what the customer needs next.",
       heroCta1: 'Selected work', heroCta2: 'Get in touch',
       trustLine: 'Available for B2B & startup projects worldwide',
-      workEyebrow: 'Selected Work', workTitle: 'Four case studies, one B2B focus.',
+      workEyebrow: 'Selected Work', workTitle: 'Selected case studies, one B2B focus.',
       svcEyebrow: 'Services', svcTitle: 'Three ways to work together.',
       popular: 'Most Popular', bestForLabel: 'Best for', startProject: 'Start Project', fromWord: 'From',
       packages: [
@@ -471,7 +471,7 @@ class Component extends DCLogic {
       heroSub: 'Jeg omsætter kompleks B2B-logik til enkle flows, der lanceres hurtigt og konverterer fra dag ét — uden spildt budget, uden langsomme udrulninger. Uanset om du er en virksomhed eller en tidlig startup, er hver grænseflade hyper-adaptiv: den registrerer skiftende brugeradfærd og friktion i realtid, så dit produkt altid er et skridt foran, hvad kunden har brug for næste gang.',
       heroCta1: 'Se arbejde', heroCta2: 'Kontakt mig',
       trustLine: 'Ledig for B2B- & startup-projekter verden over',
-      workEyebrow: 'Udvalgt arbejde', workTitle: 'Fire cases, ét B2B-fokus.',
+      workEyebrow: 'Udvalgt arbejde', workTitle: 'Udvalgte cases, ét B2B-fokus.',
       svcEyebrow: 'Services', svcTitle: 'Tre måder at samarbejde på.',
       popular: 'Mest populær', bestForLabel: 'Bedst til', startProject: 'Start projekt', fromWord: 'Fra',
       packages: [
@@ -509,7 +509,7 @@ class Component extends DCLogic {
       heroSub: 'Я перетворюю складну B2B-логіку на прості флоу, які швидко запускаються і конвертують з першого дня — без витраченого бюджету і повільних релізів. Незалежно від того, чи ви велика компанія, чи ранній стартап, кожен інтерфейс гіпер-адаптивний: він відчуває зміну поведінки користувачів і тертя в реальному часі, тож ваш продукт завжди на крок попереду того, що потрібно клієнту далі.',
       heroCta1: 'Мої роботи', heroCta2: "Зв'язатися",
       trustLine: 'Відкрита до B2B- і стартап-проєктів у всьому світі',
-      workEyebrow: 'Мої роботи', workTitle: 'Чотири кейси, один B2B-фокус.',
+      workEyebrow: 'Мої роботи', workTitle: 'Вибрані кейси, один B2B-фокус.',
       svcEyebrow: 'Послуги', svcTitle: 'Три способи працювати разом.',
       popular: 'Найпопулярніше', bestForLabel: 'Підходить для', startProject: 'Почати проєкт', fromWord: 'Від',
       packages: [
@@ -847,13 +847,12 @@ class Component extends DCLogic {
           { h: 'Workout execution', t: 'Set-by-set logging with weight/reps adjusters, coach video demo, form upload for AI review and an auto-advancing “Set Done” CTA.' },
           { h: 'Progress module', t: 'A private personal archive — photo timeline by week and per-exercise trend charts (Bench, Squat, Deadlift, OHP); measurements always private.' }
         ],
+        wideShots: true,
         shots: [
-          { img: 'p1-1.png', label: 'Welcome / sign-in' },
-          { img: 'p1-2.png', label: 'Goal — what brings you' },
-          { img: 'p1-3.png', label: 'Days per week' },
-          { img: 'p1-4.png', label: 'Building 14-day plan' },
-          { img: 'p1-5.png', label: 'Plan ready' },
-          { img: 'p1-6.png', label: 'Dashboard' }
+          { img: 'gymapp-1.png', label: 'Onboarding — sign-in to personalised 14-day plan' },
+          { img: 'gymapp-4.png', label: 'Home, coach programs & workout execution' },
+          { img: 'gymapp-2.png', label: 'Live session, AI form analysis & coach review' },
+          { img: 'gymapp-3.png', label: 'Form checklist, profile & settings' }
         ],
         thinking: [
           { i: '01', t: 'Front-loaded the value: a short, visual 6-step flow that asks only what the AI needs — goal, body metrics, weekly schedule.' },
@@ -864,6 +863,44 @@ class Component extends DCLogic {
         impact: [{ n: '22', l: 'screens delivered, ready for developer handoff' }, { n: '>80%', l: 'modelled onboarding completion in usability tests' }, { n: '6 steps', l: 'from cold start to a personalised plan' }, { n: '“real trainer”', l: 'how testers described the premium feel' }, { n: '×3', l: 'testers re-watched the AI build animation' }],
         note: 'The first hi-fi interactive prototype was built entirely in Claude Artifacts as a single HTML file — 3 iterations, 17→22 screens. It became the source of truth for interaction specs before any Figma work began. Workflow: design in Figma → prototype in Claude → test in Figma Make → finalize in Claude.',
         tools: ['Claude Artifacts', 'Figma', 'HTML/CSS/JS', 'Midjourney']
+      },
+      {
+        kind: 'E-commerce · Apple Retail', cover: 'ifranko-hero.png',
+        title: 'iFranko — Apple Store E-commerce Redesign',
+        badges: ['E-commerce', 'Apple Products', 'Redesign'],
+        meta: [{ k: 'Role', v: 'Product & UX/UI Design' }, { k: 'Year', v: '2026' }, { k: 'Scope', v: 'Full store redesign' }, { k: 'Client', v: 'iFranko' }, { k: 'Status', v: 'Shipped' }],
+        challenge: 'Apple resellers compete on a product range they do not control — the differentiator is the buying experience. iFranko\u2019s store made that harder than it needed to be: a dense navigation covering iPhone, iPad, Mac, Watch, gadgets, accessories and refurbished stock, product pages that buried the specs buyers actually compare, and repair and trade-in services hidden behind the catalogue rather than sold alongside it.',
+        overview: 'A full redesign of the iFranko storefront around a dark, product-forward system. Category navigation is persistent and scannable, product pages lead with imagery and the specs that drive a decision, and the catalogue grid supports the rating and price comparison people actually shop by. Repair and trade-in sit in the primary navigation as services, not afterthoughts.',
+        solutionShown: true,
+        wideShots: true,
+        solution: [
+          { h: 'Persistent category bar', t: 'iPhone, iPad, Mac, Watch, gadgets, accessories and refurbished Apple always one click away, under the main nav.' },
+          { h: 'Product-forward pages', t: 'Large product imagery with a colour and configuration strip, so the decision happens above the fold.' },
+          { h: 'Comparable catalogue grid', t: 'Sort by rating and price with consistent cards, built for the side-by-side comparison Apple buyers do.' },
+          { h: 'Services in the nav', t: 'Repair and Trade-In promoted to primary navigation instead of being buried under the catalogue.' },
+          { h: 'Dark product-first system', t: 'A deep teal-to-black palette that lets Apple product photography carry the page.' }
+        ],
+        shots: [
+          { img: 'ifranko-hero.png', label: 'Home, category & product pages' },
+          { img: 'ifranko-1.png', label: 'Catalogue, comparison & checkout flows' }
+        ],
+        thinking: [
+          { i: '01', t: 'Started from the reseller\u2019s real problem: the product range is fixed, so the experience is the only lever.' },
+          { i: '02', t: 'Made the category bar persistent — an Apple store is browsed by device type, not by search.' },
+          { i: '03', t: 'Let product photography lead and kept chrome dark and quiet so nothing competes with it.' },
+          { i: '04', t: 'Pulled repair and trade-in up into the nav, turning services into a reason to choose iFranko over a bigger reseller.' }
+        ],
+        impact: [{ n: '7', l: 'device categories navigable from any page' }, { n: 'Services', l: 'repair & trade-in promoted to primary nav' }, { n: 'One system', l: 'consistent cards across catalogue, category and product pages' }],
+        roleShown: true,
+        role: [
+          'Led product and UX/UI design for the full storefront redesign.',
+          'Ran UX research on how Apple buyers compare configurations and prices before purchase.',
+          'Restructured the information architecture so device categories and services are always reachable.',
+          'Designed the dark, product-forward visual system and the component set behind it.',
+          'Built the design system covering navigation, product, catalogue and checkout.'
+        ],
+        note: '',
+        tools: ['Figma', 'Design System', 'UX Research', 'Prototyping']
       },
       {
         kind: 'FinTech · Enterprise', cover: 'swiss-hero.png',
@@ -906,9 +943,9 @@ class Component extends DCLogic {
           { h: 'Live game interface', t: 'Real-time prompts and reactions kept clear and legible mid-session, even in fast group play.' },
           { h: 'Scalable game library', t: 'A component system built to onboard new game modes without redesigning the core loop.' }
         ],
+        wideShots: true,
         shots: [
-          { img: 'social-app.png', label: 'Onboarding, game & social flows' },
-          { img: 'social-hero.png', label: 'Product overview' }
+          { img: 'social-app.png', label: 'Onboarding, game & social flows' }
         ],
         thinking: [
           { i: '01', t: 'Cut time-to-first-play to seconds — the biggest lever against early churn.' },
@@ -1076,7 +1113,7 @@ class Component extends DCLogic {
         : 'inset 0 1px 1px rgba(199,211,234,0.12),inset 0 24px 48px rgba(199,211,234,0.05),0 24px 32px rgba(6,6,14,0.7)'
     }));
 
-    const projects = data.map((p, i) => ({ ...p, num: '0' + (i + 1), badgeList: p.badges || [p.kind], gridShots: !p.wideShots, wideShots: !!p.wideShots, open: () => this.openModal(i) }));
+    const projects = data.map((p, i) => ({ ...p, num: String(i + 1).padStart(2, '0'), badgeList: p.badges || [p.kind], gridShots: !p.wideShots, wideShots: !!p.wideShots, open: () => this.openModal(i) }));
     const open = this.state.open;
     const active = open >= 0 ? projects[open] : null;
 
