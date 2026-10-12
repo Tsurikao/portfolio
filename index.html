@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="js/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+  body{background:#0A0A0A;color:#F2F1EF}
+  ::selection{background:#FF2D4F;color:#0A0A0A}
+  a{color:inherit;text-decoration:none;transition:color .25s ease}
+  a:not([data-row]):hover{color:#FF2D4F}
+  a[data-row]:hover,a[data-row]:focus-visible,a[data-row]:active{background:#F2F1EF!important;color:#0A0A0A!important;outline:none}
+  a[data-row] *{color:inherit}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-align:inherit}
+  img{display:block}
+  .q-rev{opacity:0;transform:translateY(32px);transition:opacity 1.1s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1)}
+  .q-in{opacity:1;transform:none}
+  html.q-fine,html.q-fine *{cursor:none!important}
+  .q-slide{opacity:0;transform:translateX(14vw);transition:opacity 1.2s cubic-bezier(.16,1,.3,1),transform 1.4s cubic-bezier(.16,1,.3,1)}
+  .q-slide.q-in{opacity:1;transform:none}
+  .q-slide-s{opacity:0;transform:translateX(80px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
+  .q-slide-s.q-in{opacity:1;transform:none}
+  .q-xl>*{opacity:0;transform:translateX(100vw);transition:opacity .9s ease,transform 1.2s cubic-bezier(0.16,1,0.3,1)}
+  .q-xl.q-in>*{opacity:1;transform:none}
+  @keyframes qHeroIn{from{opacity:0;transform:translateX(28vw)}to{opacity:1;transform:none}}
+  @keyframes qFade{from{opacity:0}to{opacity:1}}
+  .q-hero{animation:qHeroIn 1.2s cubic-bezier(0.16,1,0.3,1) both}
+  .q-li{display:block;opacity:0;transform:translateY(0.9em);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+  .q-in .q-li{opacity:1;transform:none}
+  .q-show-m{display:none!important}
+  @media (max-width:760px){.q-g>*{grid-column:1/-1!important}.q-hide-m{display:none!important}.q-g2{grid-template-columns:minmax(0,1fr)!important}.q-show-m{display:flex!important}}
+  @media (max-width:760px){[data-sz="l"],[data-sz="s"]{aspect-ratio:1616 / 1264!important}}
+  @media (prefers-reduced-motion:reduce){[data-acc]{transition:none!important}}
+  @media (prefers-reduced-motion:reduce){.q-rev,.q-slide,.q-slide-s,.q-xl>*,.q-li{opacity:1!important;transform:none!important;transition:opacity .6s ease!important}.q-hero{animation:qFade .6s ease both}[data-recede]{transform:none!important}html{scroll-behavior:auto}}
+</style>
+</helmet>
+<div id="top" style="background:#0A0A0A;color:#F2F1EF;font-family:'Inter Tight',sans-serif;min-height:100vh;overflow-x:hidden">
+
+  <div ref="{{ curRef }}" style="display:none;position:fixed;left:0;top:0;z-index:9999;pointer-events:none;will-change:transform">
+    <div ref="{{ dotRef }}" style="position:absolute;left:0;top:0;width:10px;height:10px;transform:translate(-50%,-50%);border-radius:50%;background:#FF2D4F;display:flex;align-items:center;justify-content:center;transition:width .35s cubic-bezier(.16,1,.3,1),height .35s cubic-bezier(.16,1,.3,1)">
+      <span ref="{{ labelRef }}" style="font-family:'Geist Mono',monospace;font-size:10px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:#0A0A0A;white-space:nowrap;opacity:0;transition:opacity .2s ease">See more</span>
+    </div>
+  </div>
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <div>
+      <nav style="position:fixed;top:0;left:0;right:0;z-index:50;mix-blend-mode:difference;color:#F2F1EF;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:22px clamp(16px,2.5vw,40px)">
+        <a href="#top" style="font-family:'Geist Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap">Olha Tsurika</a>
+        <div style="display:flex;align-items:center;gap:clamp(16px,2.4vw,40px)">
+          <div class="q-hide-m" style="display:flex;gap:clamp(16px,2.4vw,40px)">
+            <a href="#work" style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap">{{ T.navWork }}</a>
+            <a href="#about" style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap">{{ T.navAbout }}</a>
+            <button onClick="{{ openContact }}" style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap">{{ T.navContact }}</button>
+          </div>
+          <div style="display:flex;gap:10px">
+            <sc-for list="{{ langs }}" as="l" hint-placeholder-count="3">
+              <button onClick="{{ l.set }}" style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:{{ l.color }};padding:4px 0">{{ l.label }}</button>
+            </sc-for>
+          </div>
+          <button class="q-show-m" onClick="{{ openMenu }}" aria-label="Menu" style="flex-direction:column;justify-content:center;align-items:flex-end;gap:6px;width:40px;height:40px"><span style="display:block;width:26px;height:1.5px;background:#F2F1EF"></span><span style="display:block;width:26px;height:1.5px;background:#F2F1EF"></span></button>
+        </div>
+      </nav>
+
+      <header style="overflow-x:clip;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;gap:64px;padding:96px clamp(16px,2.5vw,40px) clamp(24px,3vw,40px)">
+        <div class="q-g q-rev" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:12px">
+          <div style="grid-column:1 / 5;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88">{{ T.heroEyebrow }}</div>
+          <div style="grid-column:7 / 10;display:flex;align-items:center;gap:8px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88">
+            <span style="display:flex;flex-direction:column;width:10px;height:10px"><span style="flex:1;background:#0057b7"></span><span style="flex:1;background:#ffd700"></span></span>
+            <span>{{ T.ukraineBadge }}</span>
+          </div>
+          <div style="grid-column:10 / 13;display:flex;align-items:center;gap:8px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#F2F1EF">
+            <span style="width:6px;height:6px;background:#FF2D4F;flex-shrink:0"></span>
+            <span>{{ T.trustLine }}</span>
+          </div>
+        </div>
+        <div>
+          <div class="q-hero"><h1 ref="{{ heroRef }}" style="font-family:'Inter Tight',sans-serif;font-weight:500;font-size:clamp(72px,20vw,420px);line-height:0.92;letter-spacing:-0.04em;margin-left:-0.04em;will-change:transform">{{ T.heroTitle }}</h1></div>
+          <div class="q-g" style="margin-top:clamp(32px,4vw,56px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:32px;align-items:end">
+            <div style="grid-column:1 / 7">
+              <div class="q-rev" style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#F2F1EF">{{ T.heroRole }}</div>
+              <p class="q-lines" data-lines="{{ T.heroSub }}" style="margin-top:16px;font-size:18px;line-height:1.45;letter-spacing:-0.01em;color:#BDBCB9;max-width:52ch"></p>
+            </div>
+            <div class="q-rev" style="grid-column:9 / 13;display:flex;justify-content:flex-end;gap:12px">
+              <a href="#work" style="width:clamp(108px,9vw,140px);height:clamp(108px,9vw,140px);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;font-family:'Geist Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;transition:transform .4s cubic-bezier(.16,1,.3,1),background .3s ease;background:#FF2D4F;color:#0A0A0A" style-hover="transform:scale(1.06);color:#0A0A0A">{{ T.heroCta1 }}</a>
+              <button onClick="{{ openContact }}" style="width:clamp(108px,9vw,140px);height:clamp(108px,9vw,140px);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;font-family:'Geist Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;transition:transform .4s cubic-bezier(.16,1,.3,1),background .3s ease;border:1px solid #F2F1EF" style-hover="transform:scale(1.06);background:#F2F1EF;color:#0A0A0A">{{ T.heroCta2 }}</button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section id="work" style="overflow-x:clip;border-top:1px solid #262626;padding-top:clamp(80px,10vw,160px)">
+        <div class="q-g" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:20px;align-items:end;padding:0 clamp(16px,2.5vw,40px)">
+          <h2 class="q-slide" style="grid-column:1 / 9;font-weight:500;font-size:clamp(56px,10vw,184px);line-height:0.92;letter-spacing:-0.04em">{{ T.workEyebrow }}</h2>
+          <div class="q-rev" style="grid-column:9 / 13;display:flex;justify-content:space-between;gap:16px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88;padding-bottom:10px">
+            <span>{{ T.workTitle }}</span>
+            <span style="color:#F2F1EF">{{ total }}</span>
+          </div>
+        </div>
+
+        <div style="margin-top:clamp(64px,8vw,128px);padding:0 clamp(16px,2.5vw,40px)">
+          <div style="border-bottom:1px solid #262626">
+          <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+            <div data-cat="{{ g.id }}" style="border-top:1px solid #262626">
+              <h3 style="margin:0;font:inherit">
+                <button id="{{ g.btnId }}" aria-expanded="{{ g.expanded }}" aria-controls="{{ g.panelId }}" onClick="{{ g.toggle }}" style="width:100%;min-height:72px;display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:clamp(16px,3vw,48px);padding:20px 0">
+                  <span style="font-weight:500;font-size:clamp(28px,3.4vw,56px);line-height:1;letter-spacing:-0.04em;text-wrap:pretty">{{ g.title }}</span>
+                  <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88;text-align:right">{{ g.countLabel }}</span>
+                  <span aria-hidden="true" data-acc style="display:inline-block;font-size:clamp(20px,2.4vw,40px);line-height:1;transform:{{ g.rot }};transition:transform .6s cubic-bezier(.16,1,.3,1)">↗</span>
+                </button>
+              </h3>
+              <div id="{{ g.panelId }}" role="region" aria-labelledby="{{ g.btnId }}" aria-hidden="{{ g.hidden }}" data-acc style="display:grid;grid-template-rows:{{ g.gridRows }};visibility:{{ g.vis }};transition:grid-template-rows .6s cubic-bezier(.16,1,.3,1),visibility .6s">
+                <div style="min-height:0;overflow:hidden">
+                  <div style="padding:clamp(16px,2vw,32px) 0 clamp(64px,7vw,112px);display:flex;flex-direction:column;gap:clamp(64px,7vw,112px)">
+                    <sc-for list="{{ g.rows }}" as="r" hint-placeholder-count="2">
+                      <div class="q-g" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px;row-gap:clamp(64px,7vw,112px)">
+                        <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="2">
+                          <div style="grid-column:span {{ c.span }};align-self:start;min-width:0;display:flex;flex-direction:column;gap:16px">
+                            <button data-case onClick="{{ c.p.open }}" style="display:flex;flex-direction:column;justify-content:flex-start;min-width:0;width:100%">
+                              <div data-sz="{{ c.sz }}" style="width:100%;aspect-ratio:{{ c.ar }};overflow:hidden;background:#161616">
+                                <sc-if value="{{ c.p.cover }}" hint-placeholder-val="{{ true }}">
+                                  <img src="{{ c.p.cover }}" alt="{{ c.p.title }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:{{ c.p.focus }};transition:transform 1.2s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.03)">
+                                </sc-if>
+                                <sc-if value="{{ c.noImg }}" hint-placeholder-val="{{ false }}">
+                                  <div style="width:100%;height:100%;display:flex;align-items:flex-end;padding:clamp(16px,2vw,32px);font-weight:500;font-size:clamp(32px,4vw,72px);line-height:0.92;letter-spacing:-0.04em;color:#3A3A3A">{{ c.p.head }}</div>
+                                </sc-if>
+                              </div>
+                              <div style="width:100%;margin-top:16px;display:flex;justify-content:space-between;align-items:flex-start;gap:24px">
+                                <span data-title style="font-weight:500;font-size:clamp(18px,1.5vw,24px);line-height:1.15;letter-spacing:-0.02em;max-width:36ch;text-align:left;min-height:2.3em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{{ c.p.title }}</span>
+                                <span style="flex-shrink:0;padding-top:0.35em;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88;text-align:right">{{ c.p.metaLine }}</span>
+                              </div>
+                              <sc-if value="{{ c.isS }}" hint-placeholder-val="{{ false }}">
+                                <span data-desc style="width:100%;margin-top:10px;text-align:left;font-size:15px;line-height:1.45;color:#8C8B88;max-width:60ch;height:2.9em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{{ c.p.desc }}</span>
+                              </sc-if>
+                              <sc-if value="{{ c.isL }}" hint-placeholder-val="{{ false }}">
+                                <span data-desc style="width:100%;margin-top:10px;text-align:left;font-size:15px;line-height:1.45;color:#8C8B88;max-width:72ch;height:4.35em;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">{{ c.p.desc }}</span>
+                              </sc-if>
+                            </button>
+                            <sc-if value="{{ c.link }}" hint-placeholder-val="{{ false }}">
+                              <a href="{{ c.link.url }}" target="_blank" rel="noopener" style="align-self:flex-start;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap;font-weight:500;border-bottom:1px solid currentColor;padding-bottom:4px">{{ c.link.label }}</a>
+                            </sc-if>
+                          </div>
+                        </sc-for>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+          </div>
+          <div class="q-g" style="margin-top:clamp(64px,7vw,112px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px">
+            <button onClick="{{ onCta }}" aria-label="Your project — open contact options" style="width:100%;aspect-ratio:1 / 1;background:#FF2D4F;color:#0A0A0A;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(20px,2.4vw,40px);transition:background .3s ease" style-hover="background:#F2F1EF">
+              <span style="align-self:flex-end;font-weight:300;font-size:clamp(48px,5vw,88px);line-height:0.8">+</span>
+              <span style="font-weight:500;font-size:clamp(40px,5vw,96px);line-height:0.92;letter-spacing:-0.04em">{{ T.yourProject }}</span>
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+      <section id="live" style="overflow-x:clip;margin-top:clamp(120px,14vw,224px);border-top:1px solid #262626;padding:clamp(80px,10vw,160px) clamp(16px,2.5vw,40px) 0">
+        <h2 data-recede style="font-weight:500;font-size:clamp(56px,10vw,184px);line-height:0.92;letter-spacing:-0.04em;transform-origin:0 100%;will-change:transform">{{ T.liveEyebrow }}</h2>
+        <div style="margin-top:clamp(64px,8vw,128px);display:flex;flex-direction:column;gap:clamp(56px,6vw,96px)">
+          <div class="q-g" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:24px">
+            <div style="grid-column:1 / 4;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88;padding-top:14px">{{ T.liveA }}</div>
+            <div style="grid-column:4 / 13"><div style="border-top:1px solid #262626">
+              <sc-for list="{{ liveSites }}" as="lw" hint-placeholder-count="3">
+                <a href="{{ lw.url }}" target="_blank" rel="noopener" style="display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:baseline;gap:clamp(16px,3vw,48px);padding:20px 0;min-height:44px;border-bottom:1px solid #262626">
+                  <span style="font-weight:500;font-size:clamp(28px,3.4vw,56px);line-height:1;letter-spacing:-0.04em">{{ lw.title }}</span>
+                  <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88;text-align:right">{{ lw.label }}</span>
+                  <span style="font-size:clamp(20px,2.4vw,40px);line-height:1">↗</span>
+                </a>
+              </sc-for>
+            </div></div>
+          </div>
+          <div class="q-g" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:24px">
+            <div style="grid-column:1 / 4;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88;padding-top:14px">{{ T.liveB }}</div>
+            <div style="grid-column:4 / 13"><div style="border-top:1px solid #262626">
+              <sc-for list="{{ liveApps }}" as="lw" hint-placeholder-count="3">
+                <a href="{{ lw.url }}" target="_blank" rel="noopener" style="display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:baseline;gap:clamp(16px,3vw,48px);padding:20px 0;min-height:44px;border-bottom:1px solid #262626">
+                  <span style="font-weight:500;font-size:clamp(28px,3.4vw,56px);line-height:1;letter-spacing:-0.04em">{{ lw.title }}</span>
+                  <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88;text-align:right">{{ lw.label }}</span>
+                  <span style="font-size:clamp(20px,2.4vw,40px);line-height:1">↗</span>
+                </a>
+              </sc-for>
+            </div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" style="overflow-x:clip;margin-top:clamp(120px,14vw,224px);border-top:1px solid #262626;padding:clamp(80px,10vw,160px) clamp(16px,2.5vw,40px) 0">
+        <h2 class="q-slide-s" style="font-weight:500;font-size:clamp(56px,10vw,184px);line-height:0.92;letter-spacing:-0.04em">{{ T.aboutEyebrow }}</h2>
+        <div class="q-g" style="margin-top:clamp(64px,8vw,128px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:56px">
+          <div style="grid-column:1 / 6;min-width:0">
+            <button onClick="{{ flipClick }}" onPointerEnter="{{ flipEnter }}" onPointerLeave="{{ flipLeave }}" onFocus="{{ flipFocus }}" onBlur="{{ flipBlur }}" aria-label="Let's talk — open contact options" style="display:block;width:100%;max-width:560px;aspect-ratio:1 / 1;border-radius:50%;perspective:1000px;padding:0;margin:0 auto">
+              <span style="position:relative;display:block;width:100%;height:100%;border-radius:50%;transform-style:preserve-3d;transition:transform .6s ease-in-out;transform:{{ flip.inner }}">
+                <span style="position:absolute;inset:0;border-radius:50%;overflow:hidden;background:#FF2D4F;backface-visibility:hidden;-webkit-backface-visibility:hidden">
+                  <img src="images/olha-photo.png" alt="Olha Tsurika" style="width:100%;height:100%;object-fit:cover">
+                </span>
+                <span style="position:absolute;inset:0;border-radius:50%;background:#FF2D4F;color:#0A0A0A;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:opacity .4s ease;transform:{{ flip.back }};opacity:{{ flip.backOp }}">
+                  <span style="font-weight:500;font-size:clamp(40px,5vw,88px);line-height:0.92;letter-spacing:-0.04em">{{ T.contactEyebrow }}</span>
+                  <span style="font-size:clamp(28px,3vw,48px);line-height:1">↗</span>
+                </span>
+              </span>
+            </button>
+          </div>
+          <div class="q-g2" style="grid-column:7 / 13;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px;row-gap:56px;align-content:end">
+            <div>
+              <h3 class="q-rev" style="font-weight:500;font-size:clamp(28px,2.6vw,44px);line-height:0.96;letter-spacing:-0.04em;text-wrap:balance">{{ T.aboutHeading1 }}</h3>
+              <p class="q-lines" data-lines="{{ T.aboutP1 }}" style="margin-top:24px;font-size:17px;line-height:1.5;color:#BDBCB9"></p>
+            </div>
+            <div>
+              <h3 class="q-rev" style="font-weight:500;font-size:clamp(28px,2.6vw,44px);line-height:0.96;letter-spacing:-0.04em;text-wrap:balance">{{ T.aboutHeading2 }}</h3>
+              <p class="q-lines" data-lines="{{ T.aboutP2 }}" style="margin-top:24px;font-size:17px;line-height:1.5;color:#BDBCB9"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-g" style="margin-top:clamp(96px,12vw,176px);border-top:1px solid #262626;padding-top:24px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:24px">
+          <div style="grid-column:1 / 4;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88">{{ T.skillsLabel }}</div>
+          <div class="q-rev" style="grid-column:4 / 13;display:flex;flex-wrap:wrap;column-gap:14px;row-gap:6px">
+            <sc-for list="{{ skills }}" as="s" hint-placeholder-count="12">
+              <span style="font-weight:500;font-size:clamp(24px,2.8vw,48px);line-height:1.05;letter-spacing:-0.04em;white-space:nowrap">{{ s }}<span style="color:#FF2D4F"> /</span></span>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="margin-top:clamp(96px,12vw,176px)">
+          <h2 data-recede style="font-weight:500;font-size:clamp(56px,10vw,184px);line-height:0.92;letter-spacing:-0.04em;margin-bottom:clamp(48px,6vw,96px);transform-origin:0 100%;will-change:transform">{{ T.experienceLabel }}</h2>
+          <sc-for list="{{ T.experience }}" as="x" hint-placeholder-count="3">
+            <div class="q-g q-rev" style="border-top:1px solid #262626;padding:32px 0 48px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:20px">
+              <div style="grid-column:1 / 4;display:flex;flex-direction:column;gap:6px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88">
+                <span style="color:#F2F1EF">{{ x.period }}</span>
+                <span>{{ x.dur }}</span>
+                <span>{{ x.place }}</span>
+              </div>
+              <div style="grid-column:4 / 9">
+                <h3 style="font-weight:500;font-size:clamp(28px,3.2vw,56px);line-height:0.96;letter-spacing:-0.04em;text-wrap:balance">{{ x.role }}</h3>
+                <div style="margin-top:14px;font-family:'Geist Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:#FF2D4F">{{ x.company }}</div>
+              </div>
+              <p class="q-lines" data-lines="{{ x.desc }}" style="grid-column:9 / 13;font-size:16px;line-height:1.5;color:#BDBCB9"></p>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section id="contact" style="overflow-x:clip;margin-top:clamp(120px,14vw,224px);border-top:1px solid #262626;padding:clamp(80px,10vw,160px) clamp(16px,2.5vw,40px) 0">
+        <div class="q-rev" style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88">{{ T.contactTitle }}</div>
+        <div class="q-xl" style="margin-top:24px"><h2 style="margin-left:-0.04em;font-weight:500;font-size:clamp(72px,17vw,340px);line-height:0.92;letter-spacing:-0.04em">{{ T.contactEyebrow }}</h2></div>
+        <div class="q-g" style="margin-top:clamp(48px,6vw,96px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:40px;align-items:end">
+          <p class="q-lines" data-lines="{{ T.contactSub }}" style="grid-column:1 / 6;font-size:18px;line-height:1.45;color:#BDBCB9"></p>
+          <div style="grid-column:10 / 13;display:flex;justify-content:flex-end">
+            <button onClick="{{ openContact }}" style="width:clamp(120px,11vw,168px);height:clamp(120px,11vw,168px);border-radius:50%;background:#FF2D4F;color:#0A0A0A;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;font-family:'Geist Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;transition:transform .4s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.06);color:#0A0A0A">{{ T.navContact }}</button>
+          </div>
+        </div>
+        <a href="mailto:olhatsurika@gmail.com" class="q-rev" style="margin-top:clamp(48px,6vw,96px);display:block;border-top:1px solid #262626;border-bottom:1px solid #262626;padding:24px 0;font-weight:500;font-size:clamp(28px,6.4vw,124px);line-height:0.92;letter-spacing:-0.04em;overflow-wrap:anywhere">olhatsurika@gmail.com</a>
+        <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:12px clamp(20px,3vw,48px);font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase">
+          <a href="https://www.linkedin.com/in/olga-tsurika/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a href="https://wa.me/4591927980" target="_blank" rel="noopener">WhatsApp ↗</a>
+          <a href="https://t.me/+4591927980" target="_blank" rel="noopener">Telegram ↗</a>
+          <a href="tel:+4591927980">+45 91 92 79 80</a>
+          <a href="files/Olha_Tsurika_CV-3-1b7cf026.pdf" target="_blank" rel="noopener" download="files/Olha_Tsurika_CV.pdf">CV — PDF ↓</a>
+        </div>
+        <footer style="margin-top:clamp(96px,12vw,176px);border-top:1px solid #262626;padding:20px 0 28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88">
+          <span>© 2026 Olha Tsurika</span>
+          <span>{{ T.footerTag }}</span>
+        </footer>
+      </section>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:90;background:#0A0A0A;display:flex;flex-direction:column;padding:22px clamp(16px,2.5vw,40px) 32px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase">Olha Tsurika</span>
+        <button onClick="{{ closeMenu }}" style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap;padding:8px 0">Close ✕</button>
+      </div>
+      <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
+        <a href="#work" onClick="{{ closeMenu }}" style="font-weight:500;font-size:clamp(52px,15vw,120px);line-height:0.92;letter-spacing:-0.04em">{{ T.navWork }}</a>
+        <a href="#about" onClick="{{ closeMenu }}" style="font-weight:500;font-size:clamp(52px,15vw,120px);line-height:0.92;letter-spacing:-0.04em">{{ T.navAbout }}</a>
+        <button onClick="{{ menuContact }}" style="font-weight:500;font-size:clamp(52px,15vw,120px);line-height:0.92;letter-spacing:-0.04em;text-align:left">{{ T.navContact }}</button>
+      </div>
+      <div style="margin-top:48px;border-top:1px solid #262626;padding-top:20px;display:flex;gap:16px">
+        <sc-for list="{{ langs }}" as="l" hint-placeholder-count="3">
+          <button onClick="{{ l.set }}" style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:{{ l.color }};padding:4px 0">{{ l.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ contactOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeContact }}" role="dialog" aria-modal="true" aria-label="Get in touch" style="position:fixed;inset:0;z-index:95;background:rgba(10,10,10,0.72)">
+      <div onClick="{{ stop }}" style="position:absolute;left:0;right:0;bottom:0;background:#0A0A0A;border-top:1px solid #F2F1EF">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:22px clamp(16px,2.5vw,40px);border-bottom:1px solid #262626">
+          <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88">{{ T.navContact }}</span>
+          <button onClick="{{ closeContact }}" style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap;padding:8px 0">Close ✕</button>
+        </div>
+        <sc-for list="{{ contacts }}" as="ct" hint-placeholder-count="5">
+          <a data-row href="{{ ct.url }}" target="_blank" rel="noopener noreferrer" style="display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:clamp(16px,3vw,48px);padding:clamp(20px,2.4vw,32px) clamp(16px,2.5vw,40px);border-bottom:1px solid #262626;color:#F2F1EF;transition:background .3s ease,color .3s ease" style-hover="background:#F2F1EF;color:#0A0A0A" style-focus="background:#F2F1EF;color:#0A0A0A;outline:none" style-active="background:#F2F1EF;color:#0A0A0A">
+            <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase">{{ ct.k }}</span>
+            <span style="font-weight:500;font-size:clamp(20px,2.6vw,44px);line-height:1;letter-spacing:-0.04em;overflow-wrap:anywhere;text-align:right">{{ ct.v }}</span>
+            <span style="font-size:clamp(20px,2.6vw,44px);line-height:1">↗</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isCase }}" hint-placeholder-val="{{ false }}">
+    <article>
+      <button onClick="{{ goHome }}" aria-label="Back to work" style="position:fixed;top:10px;left:clamp(12px,2vw,32px);z-index:60;mix-blend-mode:difference;color:#F2F1EF;font-weight:300;font-size:clamp(52px,5.4vw,88px);line-height:1;letter-spacing:-0.04em;padding:4px 8px 8px 0;transition:transform .35s cubic-bezier(.16,1,.3,1)" style-hover="transform:translateX(-6px)">←</button>
+      <div style="position:fixed;top:28px;right:clamp(16px,2.5vw,40px);z-index:60;mix-blend-mode:difference;color:#F2F1EF;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase">{{ c.num }} / {{ total }}</div>
+
+      <header style="padding:clamp(140px,16vw,240px) clamp(16px,2.5vw,40px) 0">
+        <div class="q-rev" style="display:flex;flex-wrap:wrap;gap:8px 24px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88">
+          <span style="color:#F2F1EF">{{ c.catLabel }}</span>
+          <sc-if value="{{ c.year }}" hint-placeholder-val="{{ true }}"><span>{{ c.year }}</span></sc-if>
+          <sc-for list="{{ c.badgeList }}" as="bd" hint-placeholder-count="2"><span>{{ bd }}</span></sc-for>
+        </div>
+        <h1 class="q-rev" style="margin-top:28px;margin-left:-0.04em;font-weight:500;font-size:clamp(56px,11vw,212px);line-height:0.92;letter-spacing:-0.04em;text-wrap:balance">{{ c.head }}</h1>
+        <sc-if value="{{ c.sub }}" hint-placeholder-val="{{ false }}">
+          <p class="q-rev" style="margin-top:24px;max-width:22ch;font-weight:400;font-size:clamp(24px,2.8vw,48px);line-height:1;letter-spacing:-0.04em;color:#BDBCB9">{{ c.sub }}</p>
+        </sc-if>
+        <div class="q-g" style="margin-top:clamp(64px,8vw,128px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:48px">
+          <div class="q-rev" style="grid-column:1 / 5;border-top:1px solid #262626">
+            <sc-for list="{{ c.meta }}" as="m" hint-placeholder-count="4">
+              <div style="display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid #262626">
+                <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88;flex-shrink:0">{{ m.k }}</span>
+                <span style="font-size:15px;line-height:1.3;text-align:right">{{ m.v }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="grid-column:6 / 13">
+            <p class="q-lines" data-lines="{{ c.overview }}" style="font-size:clamp(22px,2vw,34px);line-height:1.2;letter-spacing:-0.02em"></p>
+            <sc-if value="{{ c.hasStores }}" hint-placeholder-val="{{ false }}">
+              <div class="q-rev" style="margin-top:32px;display:flex;flex-wrap:wrap;gap:12px 32px">
+                <sc-for list="{{ c.stores }}" as="st" hint-placeholder-count="1">
+                  <a href="{{ st.url }}" target="_blank" rel="noopener noreferrer" style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap;font-weight:500;border-bottom:1px solid currentColor;padding-bottom:4px">{{ st.label }} ↗</a>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </header>
+
+      <div style="margin-top:clamp(96px,12vw,200px);overflow:hidden;background:#161616">
+        <sc-if value="{{ c.heroImg }}" hint-placeholder-val="{{ false }}"><img src="{{ c.heroImg }}" alt="{{ c.title }}" loading="lazy" decoding="async" style="width:100%;height:auto;transition:transform 1.4s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.02)"></sc-if>
+      </div>
+
+      <sc-for list="{{ blocks }}" as="b" hint-placeholder-count="0">
+        <div style="margin-top:clamp(112px,14vw,224px)">
+          <sc-if value="{{ b.isStack }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:0;line-height:0;background:#161616">
+              <sc-for list="{{ b.stack }}" as="s" hint-placeholder-count="0">
+                <img src="{{ s.img }}" alt="{{ s.label }}" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;margin:0">
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ b.isBleed }}" hint-placeholder-val="{{ false }}">
+            <figure>
+              <div style="overflow:hidden;background:#161616">
+                <img src="{{ b.img }}" alt="{{ b.label }}" loading="lazy" decoding="async" onLoad="{{ b.onLoad }}" style="width:100%;height:auto;transition:transform 1.4s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.02)">
+              </div>
+              <figcaption style="margin-top:16px;padding:0 clamp(16px,2.5vw,40px);font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88">{{ b.label }}</figcaption>
+            </figure>
+          </sc-if>
+          <sc-if value="{{ b.isTall }}" hint-placeholder-val="{{ false }}">
+            <div class="q-g" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;padding:0 clamp(16px,2.5vw,40px)">
+              <figure style="grid-column:1 / 9">
+                <div style="overflow:hidden;background:#161616">
+                  <img src="{{ b.img }}" alt="{{ b.label }}" loading="lazy" decoding="async" onLoad="{{ b.onLoad }}" style="width:100%;height:auto;transition:transform 1.4s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.02)">
+                </div>
+                <figcaption style="margin-top:16px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88">{{ b.label }}</figcaption>
+              </figure>
+            </div>
+          </sc-if>
+          <sc-if value="{{ b.isText }}" hint-placeholder-val="{{ false }}">
+            <div class="q-g" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:20px;padding:0 clamp(16px,2.5vw,40px)">
+              <div class="q-rev" style="grid-column:1 / 4;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88;padding-top:10px">{{ b.label }}</div>
+              <p class="q-lines" data-lines="{{ b.body }}" style="grid-column:5 / 13;font-size:clamp(24px,2.5vw,42px);line-height:1.12;letter-spacing:-0.03em"></p>
+            </div>
+          </sc-if>
+          <sc-if value="{{ b.isSolution }}" hint-placeholder-val="{{ false }}">
+            <div class="q-g" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:20px;padding:0 clamp(16px,2.5vw,40px)">
+              <div class="q-rev" style="grid-column:1 / 4;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88;padding-top:20px">{{ b.label }}</div>
+              <div class="q-g2" style="grid-column:5 / 13;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px;row-gap:48px">
+                <sc-for list="{{ b.items }}" as="so" hint-placeholder-count="4">
+                  <div class="q-rev" style="border-top:1px solid #262626;padding-top:20px">
+                    <h3 style="font-weight:500;font-size:clamp(22px,1.9vw,32px);line-height:1;letter-spacing:-0.03em">{{ so.h }}</h3>
+                    <p style="margin-top:16px;font-size:16px;line-height:1.5;color:#BDBCB9;text-wrap:pretty">{{ so.t }}</p>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ b.isThinking }}" hint-placeholder-val="{{ false }}">
+            <div class="q-g" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:20px;padding:0 clamp(16px,2.5vw,40px)">
+              <div class="q-rev" style="grid-column:1 / 4;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88;padding-top:24px">{{ b.label }}</div>
+              <div style="grid-column:5 / 13">
+                <sc-for list="{{ b.items }}" as="th" hint-placeholder-count="3">
+                  <div class="q-rev" style="display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;border-top:1px solid #262626;padding:22px 0 30px">
+                    <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;color:#8C8B88;padding-top:6px">{{ th.i }}</span>
+                    <p style="font-size:clamp(18px,1.5vw,24px);line-height:1.3;letter-spacing:-0.015em;text-wrap:pretty">{{ th.t }}</p>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ b.isImpact }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:0 clamp(16px,2.5vw,40px)">
+              <div class="q-rev" style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88">{{ b.label }}</div>
+              <div style="margin-top:32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));column-gap:20px;row-gap:56px">
+                <sc-for list="{{ b.items }}" as="im" hint-placeholder-count="3">
+                  <div class="q-rev" style="border-top:1px solid #F2F1EF;padding-top:20px;min-width:0">
+                    <div style="font-weight:500;font-size:clamp(56px,7vw,128px);line-height:0.92;letter-spacing:-0.04em;overflow-wrap:anywhere">{{ im.n }}</div>
+                    <div style="margin-top:20px;max-width:30ch;font-family:'Geist Mono',monospace;font-size:11px;line-height:1.5;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88">{{ im.l }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ b.isRole }}" hint-placeholder-val="{{ false }}">
+            <div class="q-g" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:20px;padding:0 clamp(16px,2.5vw,40px)">
+              <div class="q-rev" style="grid-column:1 / 4;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88;padding-top:24px">{{ b.label }}</div>
+              <div style="grid-column:5 / 13">
+                <sc-for list="{{ b.items }}" as="rl" hint-placeholder-count="4">
+                  <p class="q-rev" style="border-top:1px solid #262626;padding:20px 0 26px;font-size:clamp(18px,1.5vw,24px);line-height:1.3;letter-spacing:-0.015em;text-wrap:pretty">{{ rl }}</p>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+
+      <div class="q-g" style="margin-top:clamp(112px,14vw,224px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:16px;padding:24px clamp(16px,2.5vw,40px) 0;border-top:1px solid #262626">
+        <div style="grid-column:1 / 13;display:flex;flex-wrap:wrap;gap:10px 28px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#8C8B88">
+          <sc-for list="{{ c.tools }}" as="tl" hint-placeholder-count="4"><span>{{ tl }}</span></sc-for>
+        </div>
+      </div>
+      <button onClick="{{ goHome }}" style="display:block;width:100%;margin-top:clamp(96px,12vw,176px);padding:0 clamp(16px,2.5vw,40px) clamp(40px,5vw,72px);font-weight:500;font-size:clamp(48px,9vw,176px);line-height:0.92;letter-spacing:-0.04em;transition:color .3s ease" style-hover="color:#8C8B88">← Back to work</button>
+    </article>
+  </sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { view: -1, lang: 'en', orient: {}, menuOpen: false, contactOpen: false, flipped: false, openCats: {} };
+  // Selected Work categories — order = display order. To add a category, add an entry here and use its id in cases[].category.
+  categories = [
+    { id: 'ecom', tKey: 'catEcom', open: true },
+    { id: 'web', tKey: 'catWeb' },
+    { id: 'apps', tKey: 'catApps', layout: 'grid' } // layout 'grid' = equal small cards, 2 per row; default = large / two small rhythm
+  ];
+  toggleCat = (id) => this.setState((s) => { const cur = id in s.openCats ? s.openCats[id] : !!(this.categories.find((c) => c.id === id) || {}).open; return { openCats: { ...s.openCats, [id]: !cur } }; });
+  heroRef = React.createRef();
+  curRef = React.createRef();
+  dotRef = React.createRef();
+  labelRef = React.createRef();
+
+  translations = {
+    en: {
+      navWork: 'Work', navServices: 'Services', navAbout: 'About', navContact: 'Get in touch',
+      ukraineBadge: 'Proudly Ukrainian',
+      heroEyebrow: 'Mobile Apps · Startup MVPs · Web Products',
+      heroTitle: 'Olha Tsurika.',
+      heroRole: 'Lead UI/UX Designer', heroStack2: 'Mobile apps & MVPs', heroStack3: 'Startups',
+      heroSub: "15 years turning complex products into interfaces people actually understand. Based in Aarhus, Denmark. Open to a full-time design role or a co-founder seat in an early-stage startup.",
+      heroCta1: 'Selected work', heroCta2: 'Get in touch',
+      trustLine: 'Open to full-time roles & co-founder opportunities',
+      yourProject: 'Your project', liveEyebrow: 'Live Work', liveA: 'Websites · Promo · Corporate', liveB: 'Applications', workEyebrow: 'Selected Work', workTitle: 'Selected case studies, one B2B focus.',
+      catApps: 'Mobile Apps & Startups', catWeb: 'Promo & Corporate Websites', catEcom: 'E-commerce', projWord: 'projects', projWord1: 'project',
+      svcEyebrow: 'Services', svcTitle: 'Three ways to work together.',
+      popular: 'Most Popular', bestForLabel: 'Best for', startProject: 'Start Project', fromWord: 'From',
+      packages: [
+        { num: '01', title: 'Express & Startup MVP', price: '8,000 DKK', tagline: 'A high-converting single-page website or a fast frontend layout designed to validate your startup idea or service quickly.',
+          includes: ['Single-page site or fast frontend layout', 'Conversion-focused structure & copy support', 'Responsive across mobile and desktop', 'Deployed and connected to your domain'],
+          bestFor: 'Small businesses launching a new service, or early-stage startups that need to pitch to investors or test an application concept.' },
+        { num: '02', title: 'Full Business Platform', price: '25,000 DKK', tagline: 'A fully functional multi-page business website or a custom frontend application implementation (React/Vue) with easy CMS integration.', popular: true,
+          includes: ['Multi-page site or custom frontend app', 'React / Vue implementation', 'CMS integration for self-service editing', 'Scalable component architecture'],
+          bestFor: 'Established SMEs needing a robust digital presence, and startups ready to scale their core application.' },
+        { num: '03', title: 'Product Design & UX/UI System', price: '12,000 DKK', tagline: 'Comprehensive user experience research, modern interface design, and a complete scalable design system.',
+          includes: ['UX research & competitive audit', 'Full interface design in Figma', 'Interactive prototype with real states', 'Scalable design system & handoff specs'],
+          bestFor: 'Founders and businesses revamping an existing application, or building an intuitive digital product from scratch.' }
+      ],
+      auditTitle: 'Expert Consultation & Technical Audit', auditPrice: '1,200 DKK / hour',
+      auditDesc: 'In-depth code review, architecture analysis, or strategic advice on your current tech stack.',
+      auditCta: 'Book a session',
+      aboutEyebrow: 'About me',
+      aboutHeading1: 'Complex logic, clear product',
+      aboutP1: "I start with structure: flows, states, edge cases. Then I build it in Figma with real components and variables, so a developer opens the file and builds without guessing. Messy brief in, buildable product out.",
+      aboutHeading2: 'Designer who prototypes',
+      aboutP2: "I don't stop at static screens. With Cursor, v0, Framer and Claude I turn a design into a working, clickable prototype. For a founder that means testing an idea with real users in days, and finding out early whether anyone wants it.",
+      readMore: 'Read more', readLess: 'Read less',
+      skillsLabel: 'Core skills', experienceLabel: 'Experience',
+      experience: [
+        { period: 'Mar 2025 — Present', dur: 'Current', place: 'Denmark, Remote', role: 'Lead UI/UX Designer', company: 'Unifood Import A/S', desc: 'Redesigned the website for a Danish B2B food importer. Built the full visual system from scratch: typography, spacing scale, and a component library ready for developer handoff.' },
+        { period: 'Jul 2014 — Aug 2023', dur: 'Completed', place: 'Kyiv, Hybrid', role: 'Lead UX/UI Designer & Art Director', company: 'WAMP', desc: 'Grew from designer into a leadership role over 9 years, owning end-to-end product and creative direction for SaaS, e-commerce and B2B clients across the EU and US markets.' },
+        { period: 'Feb 2011 — Nov 2013', dur: '2 yrs 10 mos', place: 'Mykolaiv, Ukraine, On-site', role: 'Graphic Designer', company: 'GeeksForLess Inc.', desc: 'First professional design role at a US-based IT outsourcing company serving US and EU clients — branding, print and digital design.' }
+      ],
+      contactEyebrow: "Let's talk", contactTitle: 'Hiring a designer or building a startup?', contactSub: "I'm looking for a team where design shapes the product, not just decorates it. Whether you need a senior designer on staff or a design partner from day one, let's talk.",
+      footerTag: 'Designed at the intersection of design + AI'
+    },
+    dk: {
+      navWork: 'Arbejde', navServices: 'Services', navAbout: 'Om mig', navContact: 'Kontakt',
+      ukraineBadge: 'Stolt ukrainer',
+      heroEyebrow: 'Mobile apps · Startup MVP\u2019er · Webprodukter',
+      heroTitle: 'Olha Tsurika.',
+      heroRole: 'Lead UI/UX-designer', heroStack2: 'Mobile apps & MVP’er', heroStack3: 'Startups',
+      heroSub: '15 års erfaring i at gøre komplekse produkter forståelige. Baseret i Aarhus, Danmark. Åben for en fuldtidsrolle som designer eller en co-founder-plads i en tidlig startup.',
+      heroCta1: 'Se arbejde', heroCta2: 'Kontakt mig',
+      trustLine: 'Åben for fuldtidsroller & co-founder-muligheder',
+      yourProject: 'Dit projekt', liveEyebrow: 'Live projekter', liveA: 'Websites · Promo · Corporate', liveB: 'Applikationer', workEyebrow: 'Udvalgt arbejde', workTitle: 'Udvalgte cases, ét B2B-fokus.',
+      catApps: 'Mobilapps & Startups', catWeb: 'Promo- & virksomhedswebsites', catEcom: 'E-handel', projWord: 'projekter', projWord1: 'projekt',
+      svcEyebrow: 'Services', svcTitle: 'Tre måder at samarbejde på.',
+      popular: 'Mest populær', bestForLabel: 'Bedst til', startProject: 'Start projekt', fromWord: 'Fra',
+      packages: [
+        { num: '01', title: 'Express & Startup MVP', price: '8.000 DKK', tagline: 'En konverterende single-page hjemmeside eller et hurtigt frontend-layout designet til hurtigt at validere din startup-idé eller service.',
+          includes: ['Single-page site eller hurtigt frontend-layout', 'Konverteringsfokuseret struktur & tekststøtte', 'Responsiv på mobil og desktop', 'Deployet og tilkoblet dit domæne'],
+          bestFor: 'Små virksomheder der lancerer en ny service, eller tidlige startups der skal pitche til investorer eller teste et app-koncept.' },
+        { num: '02', title: 'Fuld forretningsplatform', price: '25.000 DKK', tagline: 'En fuldt funktionel hjemmeside med flere sider eller en skræddersyet frontend-applikation (React/Vue) med nem CMS-integration.', popular: true,
+          includes: ['Site med flere sider eller custom frontend-app', 'React / Vue-implementering', 'CMS-integration til selvbetjent redigering', 'Skalerbar komponentarkitektur'],
+          bestFor: 'Etablerede SMV\u2019er der har brug for en robust digital tilstedeværelse, og startups klar til at skalere deres kerneapplikation.' },
+        { num: '03', title: 'Produktdesign & UX/UI-system', price: '12.000 DKK', tagline: 'Grundig brugeroplevelses-research, moderne interfacedesign og et komplet, skalerbart designsystem.',
+          includes: ['UX-research & konkurrentanalyse', 'Komplet interfacedesign i Figma', 'Interaktiv prototype med rigtige tilstande', 'Skalerbart designsystem & handoff-specs'],
+          bestFor: 'Founders og virksomheder der fornyer en eksisterende applikation, eller bygger et intuitivt digitalt produkt fra bunden.' }
+      ],
+      auditTitle: 'Ekspertkonsultation & teknisk audit', auditPrice: '1.200 DKK / time',
+      auditDesc: 'Dybdegående code review, arkitekturanalyse eller strategisk rådgivning om din nuværende tech stack.',
+      auditCta: 'Book en session',
+      aboutEyebrow: 'Om mig',
+      aboutHeading1: 'Kompleks logik, klart produkt',
+      aboutP1: 'Jeg starter med struktur: flows, tilstande, kantsager. Derefter bygger jeg det i Figma med rigtige komponenter og variabler, så en udvikler kan åbne filen og bygge uden at gætte. Rodet brief ind, byggbart produkt ud.',
+      aboutHeading2: 'Designer, der prototyper',
+      aboutP2: 'Jeg stopper ikke ved statiske skærme. Med Cursor, v0, Framer og Claude omsætter jeg et design til en fungerende, klikbar prototype. For en founder betyder det at teste en idé med rigtige brugere på få dage — og finde ud af tidligt, om nogen vil have den.',
+      readMore: 'Læs mere', readLess: 'Læs mindre',
+      skillsLabel: 'Kernekompetencer', experienceLabel: 'Erfaring',
+      experience: [
+        { period: 'Mar 2025 — nu', dur: 'Nuværende', place: 'Danmark, Remote', role: 'Lead UI/UX-designer', company: 'Unifood Import A/S', desc: 'Redesignede hjemmesiden for en dansk B2B-fødevareimportør. Byggede hele det visuelle system fra bunden: typografi, spacing-skala og et komponentbibliotek klar til udviklerhandoff.' },
+        { period: 'Jul 2014 — Aug 2023', dur: 'Afsluttet', place: 'Kyiv, Hybrid', role: 'Lead UX/UI Designer & Art Director', company: 'WAMP', desc: 'Voksede fra designer til en ledende rolle over 9 år og stod for produkt- og kreativ ledelse for SaaS-, e-handels- og B2B-kunder i EU og USA.' },
+        { period: 'Feb 2011 — Nov 2013', dur: '2 år 10 mdr', place: 'Mykolaiv, Ukraine, On-site', role: 'Grafisk designer', company: 'GeeksForLess Inc.', desc: 'Første professionelle designrolle hos et amerikansk IT-outsourcingfirma med kunder i USA og EU — branding, print- og digitalt design.' }
+      ],
+      contactEyebrow: 'Lad os tale', contactTitle: 'Ansætter du en designer, eller bygger du en startup?', contactSub: 'Jeg leder efter et team, hvor design former produktet — ikke bare dekorerer det. Uanset om du har brug for en senior designer i teamet eller en designpartner fra dag ét, så lad os tale.',
+      footerTag: 'Designet i krydsfeltet mellem design + AI'
+    },
+    ua: {
+      navWork: 'Роботи', navServices: 'Послуги', navAbout: 'Про мене', navContact: "Зв'язатися",
+      ukraineBadge: 'З гордістю з України',
+      heroEyebrow: 'Мобільні застосунки · MVP для стартапів · Веб-продукти',
+      heroTitle: 'Ольга Цурика.',
+      heroRole: 'Lead UI/UX Designer', heroStack2: 'Mobile apps & MVPs', heroStack3: 'Startups',
+      heroSub: '15 років перетворюю складні продукти на зрозумілі інтерфейси. Базуюся в Орхусі, Данія. Відкрита до full-time ролі дизайнерки або посади кофаундера в стартапі на ранній стадії.',
+      heroCta1: 'Мої роботи', heroCta2: "Зв'язатися",
+      trustLine: 'Відкрита до full-time ролей і co-founder можливостей',
+      yourProject: 'Ваш проєкт', liveEyebrow: 'Живі проєкти', liveA: 'Вебсайти · Промо · Корпоративні', liveB: 'Застосунки', workEyebrow: 'Мої роботи', workTitle: 'Вибрані кейси, один B2B-фокус.',
+      catApps: 'Мобільні застосунки та стартапи', catWeb: 'Промо та корпоративні вебсайти', catEcom: 'E-commerce', projWord: 'проєкти', projWord1: 'проєкт',
+      svcEyebrow: 'Послуги', svcTitle: 'Три способи працювати разом.',
+      popular: 'Найпопулярніше', bestForLabel: 'Підходить для', startProject: 'Почати проєкт', fromWord: 'Від',
+      packages: [
+        { num: '01', title: 'Express та MVP для стартапу', price: '8 000 DKK', tagline: 'Односторінковий сайт з високою конверсією або швидкий фронтенд-лейаут, створений, щоб швидко перевірити ідею стартапу чи послугу.',
+          includes: ['Односторінковий сайт або швидкий фронтенд-лейаут', 'Структура, орієнтована на конверсію, і підтримка тексту', 'Адаптивність для мобільних і десктопу', 'Розгортання і підключення до вашого домену'],
+          bestFor: 'Малий бізнес, що запускає нову послугу, або стартапи ранньої стадії, яким потрібно презентувати проєкт інвесторам чи протестувати концепцію застосунку.' },
+        { num: '02', title: 'Повна бізнес-платформа', price: '25 000 DKK', tagline: 'Повністю функціональний багатосторінковий бізнес-сайт або кастомна фронтенд-реалізація (React/Vue) з простою CMS-інтеграцією.', popular: true,
+          includes: ['Багатосторінковий сайт або кастомний фронтенд-застосунок', 'Реалізація на React / Vue', 'CMS-інтеграція для самостійного редагування', 'Масштабована компонентна архітектура'],
+          bestFor: 'Сталий середній бізнес, якому потрібна надійна цифрова присутність, і стартапи, готові масштабувати свій основний продукт.' },
+        { num: '03', title: 'Продуктовий дизайн і UX/UI-система', price: '12 000 DKK', tagline: 'Комплексне дослідження користувацького досвіду, сучасний дизайн інтерфейсу та повна масштабована дизайн-система.',
+          includes: ['UX-дослідження та аудит конкурентів', 'Повний дизайн інтерфейсу у Figma', 'Інтерактивний прототип з реальними станами', 'Масштабована дизайн-система та специфікації для розробки'],
+          bestFor: 'Фаундери та компанії, які оновлюють наявний застосунок або створюють інтуїтивний цифровий продукт з нуля.' }
+      ],
+      auditTitle: 'Експертна консультація та технічний аудит', auditPrice: '1 200 DKK / година',
+      auditDesc: 'Глибокий code review, аналіз архітектури або стратегічні поради щодо вашого технологічного стеку.',
+      auditCta: 'Забронювати сесію',
+      aboutEyebrow: 'Про мене',
+      aboutHeading1: 'Складна логіка, зрозумілий продукт',
+      aboutP1: 'Я починаю зі структури: флоу, стани, крайні випадки. Потім будую це у Figma з реальними компонентами і варіаблами, щоб розробник відкрив файл і зробив усе без вгадування. На вході — хаотичний бриф, на виході — продукт, який можна будувати.',
+      aboutHeading2: 'Дизайнерка, яка прототипує',
+      aboutP2: 'Я не зупиняюся на статичних екранах. За допомогою Cursor, v0, Framer і Claude перетворюю дизайн на робочий, клікабельний прототип. Для фаундера це означає протестувати ідею на реальних користувачах за кілька днів і рано зрозуміти, чи вона комусь потрібна.',
+      readMore: 'Читати далі', readLess: 'Згорнути',
+      skillsLabel: 'Ключові навички', experienceLabel: 'Досвід',
+      experience: [
+        { period: 'бер. 2025 — зараз', dur: 'Наразі', place: 'Данія, віддалено', role: 'Lead UI/UX Designer', company: 'Unifood Import A/S', desc: 'Редизайн сайту для данського B2B-імпортера продуктів харчування. Побудувала візуальну систему з нуля: типографіку, шкалу відступів і бібліотеку компонентів, готову для передачі розробникам.' },
+        { period: 'лип. 2014 — серп. 2023', dur: 'Завершено', place: 'Київ, гібрид', role: 'Lead UX/UI Designer & Art Director', company: 'WAMP', desc: 'Виросла з дизайнерки до керівної ролі за 9 років, відповідала за продуктовий і креативний напрямок для SaaS, e-commerce та B2B клієнтів у ЄС і США.' },
+        { period: 'лют. 2011 — лист. 2013', dur: '2 р. 10 міс.', place: 'Миколаїв, Україна, офіс', role: 'Графічна дизайнерка', company: 'GeeksForLess Inc.', desc: 'Перша професійна посада дизайнерки в американській ІТ-аутсорсинговій компанії з клієнтами у США та ЄС — брендинг, друкований і цифровий дизайн.' }
+      ],
+      contactEyebrow: 'Поговоримо', contactTitle: 'Шукаєте дизайнерку або будуєте стартап?', contactSub: 'Я шукаю команду, де дизайн формує продукт, а не просто прикрашає його. Потрібен senior-дизайнер у штат чи дизайн-партнер з першого дня — напишіть, обговоримо.',
+      footerTag: 'Створено на перетині дизайну + AI'
+    }
+  };
+
+  cases = [
+      {
+        category: 'apps', kind: 'iOS · Mental Health', cover: 'images/mintra-cover2.png', order: -2, seamlessShots: true,
+        title: 'Mintra — Fast Psychological Relief & Daily Mental Recovery',
+        badges: ['Mental Health', 'iOS'],
+        meta: [{ k: 'Role', v: 'Product & UX/UI Design' }, { k: 'Year', v: '2026' }, { k: 'Scope', v: '20+ screen prototype' }, { k: 'Platform', v: 'iOS' }, { k: 'Status', v: 'Prototype — scaling to MVP' }],
+        challenge: 'Most mental health apps ask for 20–30 minutes a day, front-load long assessments, and treat anxiety and racing thoughts as something to journal about at length. People in acute stress do not have that time or focus — they need relief in minutes, and a way to offload the mental clutter (tasks, worries, half-finished thoughts) that is actually causing the overwhelm.',
+        overview: 'Mintra is a 5–10 minute daily app for mental recovery — anxiety relief, sleep tracking, affirmations and breathing exercises, built around a signature feature called Brain Dump: unload everything on your mind, categorize it, then pick just one task that matters today. Reducing cognitive load, not adding another to-do list, is the core mechanic.',
+        solutionShown: true,
+        solution: [
+          { h: 'Brain Dump', t: 'A free-form unload of tasks and worries, auto-categorized, ending in a forced choice of one priority — the single mechanic the rest of the app supports.' },
+          { h: 'Rituals library', t: 'Breathing, CBT and meditation techniques filtered by time (2–20 min) and need, from acute stress to wind-down.' },
+          { h: 'Progress dashboard', t: 'Stress trend, sleep score and streaks pulled from wearable data (HRV, sleep, activity), framed around recovery rather than gamified streaks.' },
+          { h: 'Guided onboarding', t: 'A short, empathetic intake — what\u2019s been weighing on you — that personalizes the first Home screen before any setup friction.' }
+        ],
+        shots: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((n) => ({ img: 'images/mintra-lr-' + String(n).padStart(2, '0') + '.png', label: 'Mintra — case study, part ' + n, long: true })),
+        thinking: [
+          { i: '01', t: 'Started from research: benchmarked mental-health app patterns to find where existing apps ask too much, too soon.' },
+          { i: '02', t: 'Designed Brain Dump as the anchor feature — one unload, one forced choice — instead of another open-ended journal.' },
+          { i: '03', t: 'Built and iterated the full prototype directly in Claude, screen by screen, before any handoff to Figma.' },
+          { i: '04', t: 'Exported the code-based prototype to Figma via the HTML-to-Design plugin to scale toward MVP without redrawing screens.' }
+        ],
+        impact: [{ n: '5\u201310 min', l: 'target daily session length' }, { n: '20+', l: 'screens in the clickable prototype' }, { n: '1 task', l: 'forced daily priority from Brain Dump' }, { n: '4 phases', l: 'research \u2192 prototype \u2192 Figma handoff \u2192 UI guideline' }],
+        roleShown: true,
+        role: [
+          'Researched the mental health niche and benchmarked comparable apps to find the gap Mintra fills.',
+          'Designed the Brain Dump mechanic and the information architecture around it — onboarding, Home, Rituals, Sleep, Progress.',
+          'Iteratively built and refined the interactive prototype in Claude, screen by screen, before considering handoff.',
+          'Exported the code-based design to Figma via the HTML-to-Design plugin to prepare for MVP scaling.',
+          'Building the UI guideline in Figma + Claude, with real links and button states in the interactive prototype.'
+        ],
+        note: 'Built iteratively in Claude across four phases: research and benchmarking, prototype iteration, exporting to Figma via the HTML-to-Design plugin for MVP scaling, and now a UI guideline built in Figma + Claude with real links and button states.',
+        tools: ['Claude Artifacts', 'Figma', 'HTML to Design', 'HTML/CSS/JS']
+      },
+      {
+        category: 'apps', kind: 'iOS · Humanitarian Tech', cover: 'images/poshuk-cover-3x.png', focus: '50% 50%', order: 7, seamlessShots: true,
+        title: 'Poshuk — Fast, Remote Search Support for Missing Persons in Ukraine',
+        badges: ['Humanitarian Tech', 'iOS'],
+        meta: [{ k: 'Role', v: 'Product & UX Design' }, { k: 'Year', v: '2026' }, { k: 'Scope', v: '15+ screen prototype' }, { k: 'Platform', v: 'iOS' }, { k: 'Status', v: 'Concept — seeking collaborators' }],
+        challenge: 'Searching for a missing person in Ukraine means retyping the same facts across Telegram, Facebook, registries, police and the Red Cross, with no shared record.',
+        overview: 'One guided 3-step intake that generates ready-to-send requests and a shareable QR search card anyone can scan and respond to.',
+        solutionShown: true,
+        solution: [
+          { h: '3-step onboarding', t: 'Photo, location and date, status. Unknowns can stay blank.' },
+          { h: 'Auto-generated requests', t: 'Ready-to-send text for each organisation, tracked in one place.' },
+          { h: 'QR search card', t: 'Shareable to messengers or shown full-screen in person.' }
+        ],
+        wideShots: true,
+        shots: [
+          { img: 'images/01-hero@3x.png', label: 'Poshuk — case study, part 2', long: true },
+          { img: 'images/03-overview@3x.png', label: 'Poshuk — case study, part 3', long: true },
+          { img: 'images/04-challenge@3x.png', label: 'Poshuk — case study, part 4', long: true },
+          { img: 'images/05-splash@3x.png', label: 'Poshuk — case study, part 5', long: true },
+          { img: 'images/06-what-i-designed@3x.png', label: 'Poshuk — case study, part 6', long: true },
+          { img: 'images/07-user-flow@3x.png', label: 'Poshuk — case study, part 7', long: true },
+          { img: 'images/08-onboarding@3x.png', label: 'Poshuk — case study, part 8', long: true },
+          { img: 'images/09-home@3x.png', label: 'Poshuk — case study, part 9', long: true },
+          { img: 'images/10-design-thinking@3x.png', label: 'Poshuk — case study, part 10', long: true },
+          { img: 'images/11-search-card@3x.png', label: 'Poshuk — case study, part 11', long: true },
+          { img: 'images/12-impact@3x.png', label: 'Poshuk — case study, part 12', long: true },
+          { img: 'images/13-physical-display@3x.png', label: 'Poshuk — case study, part 13', long: true },
+          { img: 'images/14-role@3x.png', label: 'Poshuk — case study, part 14', long: true },
+          { img: 'images/15-lists@3x.png', label: 'Poshuk — case study, part 15', long: true },
+          { img: 'images/16-workflow@3x.png', label: 'Poshuk — case study, part 16', long: true },
+          { img: 'images/17-support@3x.png', label: 'Poshuk — case study, part 17', long: true },
+          { img: 'images/18-premium@3x.png', label: 'Poshuk — case study, part 18', long: true },
+          { img: 'images/19-style@3x.png', label: 'Poshuk — case study, part 19', long: true },
+          { img: 'images/20-thanks@3x.png', label: 'Poshuk — case study, part 20', long: true }
+        ],
+        thinking: [
+          { i: '01', t: 'One guided flow instead of another form.' },
+          { i: '02', t: '"I don\u2019t know" is a valid answer.' },
+          { i: '03', t: 'The QR card connects every channel.' }
+        ],
+        impact: [{ n: '15+', l: 'clickable screens' }, { n: '3 steps', l: 'to a shareable search card' }, { n: 'EN + UA', l: 'full localization' }],
+        note: '',
+        tools: ['Claude Artifacts', 'Figma', 'HTML/CSS/JS', 'QR Generation']
+      },
+      {
+        category: 'apps', kind: 'iOS · AI Onboarding', cover: 'images/gym-cover2.png', focus: '50% 50%', order: 8, seamlessShots: true,
+        title: 'Gym App — AI Fitness Coach & Personalised Training Platform',
+        badges: ['AI Onboarding', 'iOS'],
+        meta: [{ k: 'Role', v: 'UX/UI Design' }, { k: 'Year', v: '2025' }, { k: 'Scope', v: '22-screen system' }, { k: 'Platform', v: 'iOS' }, { k: 'Client', v: 'Fitness startup' }],
+        challenge: 'Intermediate gym-goers were frustrated with generic apps — one-size-fits-all programs, no real-time feedback during sets, and no sense of progression. The startup needed a product that felt premium, motivating and genuinely personalised, not another calorie counter.',
+        overview: 'Gym App is a dark-aesthetic iOS fitness platform built from scratch. It uses AI to generate personalised 14-day workout plans, adapts sessions to the user\u2019s goal and fitness level, and delivers a premium coaching experience through a coach feedback loop, rest timers and progress analytics — 22 screens across onboarding, dashboard, workout execution and progress, built on a bold black system.',
+        solutionShown: true,
+        solution: [
+          { h: 'AI-powered onboarding', t: 'A 6-step questionnaire — goal, gender, body metrics, weekly schedule — feeding an AI generator that shows a real-time build animation before revealing the personalised 14-day programme.' },
+          { h: 'Coach marketplace', t: 'Browse programmes by coach and specialty (strength, mobility, cardio, cut); a paywall that communicates value before asking for payment.' },
+          { h: 'Workout execution', t: 'Set-by-set logging with weight/reps adjusters, coach video demo, form upload for AI review and an auto-advancing “Set Done” CTA.' },
+          { h: 'Progress module', t: 'A private personal archive — photo timeline by week and per-exercise trend charts (Bench, Squat, Deadlift, OHP); measurements always private.' }
+        ],
+        wideShots: true,
+        shots: Array.from({ length: 16 }, (_, i) => ({ img: 'images/gym-lr-' + String(i + 1).padStart(2, '0') + '.png', label: 'Gym App — case study, part ' + (i + 1), long: true })),
+        thinking: [
+          { i: '01', t: 'Front-loaded the value: a short, visual 6-step flow that asks only what the AI needs — goal, body metrics, weekly schedule.' },
+          { i: '02', t: 'Turned the wait into delight — a real-time build animation that makes the AI feel like it\u2019s working for you before the reveal.' },
+          { i: '03', t: 'Designed the reveal as a moment, not a screen — the personalised programme lands as a payoff, not a settings page.' },
+          { i: '04', t: 'Grounded everything in research — 8-app competitive audit, 5 interviews (ages 24–38) and two personas: “Consistent Alex” and “Result-Driven Max”.' }
+        ],
+        impact: [{ n: '22', l: 'screens delivered, ready for developer handoff' }, { n: '>80%', l: 'modelled onboarding completion in usability tests' }, { n: '6 steps', l: 'from cold start to a personalised plan' }, { n: '“real trainer”', l: 'how testers described the premium feel' }, { n: '×3', l: 'testers re-watched the AI build animation' }],
+        note: 'The first hi-fi interactive prototype was built entirely in Claude Artifacts as a single HTML file — 3 iterations, 17→22 screens. It became the source of truth for interaction specs before any Figma work began. Workflow: design in Figma → prototype in Claude → test in Figma Make → finalize in Claude.',
+        tools: ['Claude Artifacts', 'Figma', 'HTML/CSS/JS', 'Midjourney']
+      },
+      {
+        category: 'ecom', kind: 'E-commerce · Apple Retail', cover: 'images/ifranko-cover2.png', order: 1.5,
+        title: 'iFranko — Apple Store E-commerce Redesign',
+        badges: ['E-commerce', 'Apple Products', 'Redesign'],
+        meta: [{ k: 'Role', v: 'Product & UX/UI Design' }, { k: 'Year', v: '2026' }, { k: 'Scope', v: 'Full store redesign' }, { k: 'Client', v: 'iFranko' }, { k: 'Status', v: 'Shipped' }],
+        challenge: 'Apple resellers compete on a product range they do not control — the differentiator is the buying experience. iFranko\u2019s store made that harder than it needed to be: a dense navigation covering iPhone, iPad, Mac, Watch, gadgets, accessories and refurbished stock, product pages that buried the specs buyers actually compare, and repair and trade-in services hidden behind the catalogue rather than sold alongside it.',
+        overview: 'A full redesign of the iFranko storefront around a dark, product-forward system. Category navigation is persistent and scannable, product pages lead with imagery and the specs that drive a decision, and the catalogue grid supports the rating and price comparison people actually shop by. Repair and trade-in sit in the primary navigation as services, not afterthoughts.',
+        solutionShown: true,
+        wideShots: true,
+        solution: [
+          { h: 'Persistent category bar', t: 'iPhone, iPad, Mac, Watch, gadgets, accessories and refurbished Apple always one click away, under the main nav.' },
+          { h: 'Product-forward pages', t: 'Large product imagery with a colour and configuration strip, so the decision happens above the fold.' },
+          { h: 'Comparable catalogue grid', t: 'Sort by rating and price with consistent cards, built for the side-by-side comparison Apple buyers do.' },
+          { h: 'Services in the nav', t: 'Repair and Trade-In promoted to primary navigation instead of being buried under the catalogue.' },
+          { h: 'Dark product-first system', t: 'A deep teal-to-black palette that lets Apple product photography carry the page.' }
+        ],
+        shots: [
+          { img: 'images/ifranko-case2.png', label: 'Home, catalogue, product & checkout flows', long: true }
+        ],
+        thinking: [
+          { i: '01', t: 'Started from the reseller\u2019s real problem: the product range is fixed, so the experience is the only lever.' },
+          { i: '02', t: 'Made the category bar persistent — an Apple store is browsed by device type, not by search.' },
+          { i: '03', t: 'Let product photography lead and kept chrome dark and quiet so nothing competes with it.' },
+          { i: '04', t: 'Pulled repair and trade-in up into the nav, turning services into a reason to choose iFranko over a bigger reseller.' }
+        ],
+        impact: [{ n: '7', l: 'device categories navigable from any page' }, { n: 'Services', l: 'repair & trade-in promoted to primary nav' }, { n: 'One system', l: 'consistent cards across catalogue, category and product pages' }],
+        roleShown: true,
+        role: [
+          'Led product and UX/UI design for the full storefront redesign.',
+          'Ran UX research on how Apple buyers compare configurations and prices before purchase.',
+          'Restructured the information architecture so device categories and services are always reachable.',
+          'Designed the dark, product-forward visual system and the component set behind it.',
+          'Built the design system covering navigation, product, catalogue and checkout.'
+        ],
+        note: '',
+        tools: ['Figma', 'Design System', 'UX Research', 'Prototyping']
+      },
+      {
+        category: 'apps', kind: 'FinTech · Enterprise', cover: 'images/swissmed-cover.png', order: -1,
+        title: 'Swiss Insurance',
+        badges: ['FinTech', 'Enterprise', 'AI Architecture'],
+        meta: [{ k: 'Client', v: 'Swiss B2B Insurance Ecosystem' }, { k: 'Role', v: 'UX/UI Design' }, { k: 'Year', v: '2025' }, { k: 'Focus', v: 'Enterprise onboarding + activation' }, { k: 'Platform', v: 'iOS' }],
+        challenge: 'Complex legacy insurance logic, slow multi-step onboarding, and low conversion in enterprise sales were costing real revenue — every extra form field meant another dropped applicant.',
+        overview: 'Engineered a high-velocity, intuitive AI-driven interface that collapsed complex legacy logic and multi-step forms into a flawless, guided 2-minute workflow — without losing compliance coverage or account depth.',
+        solutionShown: true,
+        solution: [
+          { h: 'Guided enterprise onboarding', t: 'Legacy multi-step forms compressed into a single guided flow — one decision per screen, plan selection to family coverage.' },
+          { h: 'Unified policy dashboard', t: 'Linked policies, emergency assistance and documents surfaced in one view instead of scattered legacy portals.' },
+          { h: 'Instant appointment & care access', t: 'Booking, provider messaging and appointment history consolidated for faster time-to-value after signup.' },
+          { h: 'Built for enterprise scale', t: 'A component system designed to extend across new insurance products without re-engineering the core flow.' }
+        ],
+        wideShots: true,
+        shots: [
+          { img: 'images/swissmed-long1.png', label: 'Swissmed — case study, part 1', long: true },
+          { img: 'images/swissmed-long2.png', label: 'Swissmed — case study, part 2', long: true }
+        ],
+        thinking: [
+          { i: '01', t: 'Reframed onboarding as one guided decision at a time, not a legacy form dump — cutting time-to-activation.' },
+          { i: '02', t: 'Unified fragmented legacy account, policy and support data into a single coherent dashboard.' },
+          { i: '03', t: 'Designed the system to scale — new products and plans slot into the same guided pattern.' }
+        ],
+        impact: [{ n: '2 min', l: 'average enterprise onboarding time, down from multi-step legacy forms' }, { n: '↑', l: 'boosted enterprise sales velocity and activation rate' }, { n: '1 flow', l: 'onboarding, policy, claims & support unified end-to-end' }],
+        note: '',
+        tools: ['Figma', 'Component Library', 'Prototyping']
+      },
+      {
+        category: 'apps', kind: 'Web3 · SocialTech', cover: 'images/00-cover-f21855b5.png', focus: '50% 50%', order: 9, seamlessShots: true,
+        title: 'Interactive Social Game Up',
+        badges: ['Web3', 'SocialTech', 'Gamification Ecosystem'],
+        meta: [{ k: 'Client', v: 'Interactive Social Game Platform / Web3 Gamified App' }, { k: 'Role', v: 'UX/UI Design' }, { k: 'Year', v: '2025' }, { k: 'Deliverable', v: 'Design system + handoff' }, { k: 'Platform', v: 'iOS' }],
+        challenge: 'Complex mechanics confused new users before their first game, causing low engagement and high churn.',
+        overview: 'A fast onboarding flow and clear social loops that get players into a live game in seconds.',
+        solutionShown: true,
+        solution: [
+          { h: 'Instant-start onboarding', t: 'A live game in seconds, not screens of rules.' },
+          { h: 'Social loop', t: 'Invite, match and play flows that bring groups back.' },
+          { h: 'Scalable game library', t: 'New game modes without redesigning the core loop.' }
+        ],
+        shots: ['01-cover-39e30cb3', '02-overview-cebcc4ae', '03-challenge', '04-onboarding', '05-designed', '06-live-game', '07-screens', '08-thinking', '09-full-system', '10-impact', '11-closing'].map((f, i) => ({ img: 'images/' + f + '.png', label: 'Self X — case study, part ' + (i + 2), long: true })),
+        thinking: [
+          { i: '01', t: 'Cut time-to-first-play to seconds.' },
+          { i: '02', t: 'Social loop as the retention engine.' }
+        ],
+        impact: [{ n: 'DAU ↑', l: 'faster activation' }, { n: 'Retention', l: 'longer-term engagement' }],
+        note: '',
+        tools: ['Figma', 'Design Tokens', 'Charts', 'Handoff Specs']
+      },
+      {
+        category: 'apps', kind: 'iOS · Community', cover: 'images/repat-cover4.png', order: 1, stores: [{ label: 'Visit live site', url: 'https://www.repat.africa/fr/' }, { label: 'Open app on Google Play', url: 'https://play.google.com/store/apps/details?id=africa.repat.app' }],
+        title: 'Community App & Site for African Repatriates',
+        badges: ['iOS', 'AI Integration', 'Startup MVP'],
+        meta: [{ k: 'Role', v: 'Product & UX/UI Design' }, { k: 'Year', v: '2026' }, { k: 'Scope', v: 'App + web platform' }, { k: 'Platform', v: 'iOS' }, { k: 'Status', v: 'Shipped' }],
+        challenge: 'Returning African repatriates often face social and professional isolation, making it difficult to reconnect with peers, find like-minded friends, or access career opportunities in a new or home environment.',
+        overview: 'I led the UX strategy and product design to create a community-driven platform that combines dating, friendship, and business networking in one cohesive ecosystem — designed so a single profile serves all three intents without fragmenting the experience.',
+        solutionShown: true,
+        solution: [
+          { h: 'User-friendly connections', t: 'Helping users find and engage with like-minded individuals across dating, friendship and professional intent.' },
+          { h: 'Trust-based relationship building', t: 'Profile validation, recommendations and verified interactions that make first contact feel safe.' },
+          { h: 'One profile, three intents', t: 'A single identity that adapts context — social, romantic or professional — without forcing users to maintain separate accounts.' },
+          { h: 'Design system for scale', t: 'A shared component library covering both the app and the web platform, built to extend as the community grows.' }
+        ],
+        wideShots: true,
+        shots: [
+          { img: 'images/repat-longread.png', label: 'Repat Africa — case study', long: true }
+        ],
+        thinking: [
+          { i: '01', t: 'Started from the isolation problem itself — the product had to solve reconnection, not just matching.' },
+          { i: '02', t: 'Merged dating, friendship and business networking into one ecosystem instead of three disconnected apps.' },
+          { i: '03', t: 'Made trust the design constraint — validation and recommendations built into the connection flow, not bolted on.' },
+          { i: '04', t: 'Built a shared design system so app and web stay consistent as the community scales.' }
+        ],
+        impact: [{ n: '3-in-1', l: 'dating, friendship & business networking in one platform' }, { n: 'Trust-first', l: 'profile validation & verified interactions' }, { n: 'App + web', l: 'cohesive ecosystem across both surfaces' }],
+        roleShown: true,
+        role: [
+          'Led the UX strategy and product design for the full platform, app and web.',
+          'Ran UX research with the repatriate community to understand the real barriers to reconnection.',
+          'Designed the trust layer — profile validation, recommendations and verified interactions.',
+          'Integrated AI to surface relevant connections across social and professional intent.',
+          'Built the design system covering both app and web for consistent scaling.'
+        ],
+        note: '',
+        tools: ['Figma', 'Design System', 'AI Integration', 'Prototyping']
+      },
+      {
+        category: 'apps', kind: 'iOS · Music Community', cover: 'images/sefer-cover4.png', order: 10,
+        title: 'Sefer — Music Community for Finding & Collaborating with Talent',
+        badges: ['iOS', 'AI Integration', 'Startup MVP'],
+        meta: [{ k: 'Role', v: 'Product & UX/UI Design' }, { k: 'Year', v: '2026' }, { k: 'Scope', v: 'MVP + design system' }, { k: 'Platform', v: 'iOS' }, { k: 'Status', v: 'Shipped' }],
+        challenge: 'Independent musicians, producers and songwriters have no single place to be found. Talent is scattered across Instagram grids, SoundCloud links and DM threads — none of which show what an artist actually does, who they work well with, or what they are available for. Labels, scouts and bookers looking for the right voice or the right beat have to hunt across the same broken channels.',
+        overview: 'Sefer is a music community built around one thing: a public artist profile that works as a real portfolio. Tracks, credits, style and availability live in one place, so an artist is discoverable by collaborators, scouts and bookers alike — and can sell beats and samples or take paid session work from the same profile.',
+        solutionShown: true,
+        solution: [
+          { h: 'Artist profile as portfolio', t: 'Tracks, credits, genre and availability in one public profile — the core object the whole product is built around.' },
+          { h: 'AI collaborator matching', t: 'Suggests collaborators by style and genre, so a songwriter finds the right producer without cold-DMing dozens of accounts.' },
+          { h: 'Automatic track tagging', t: 'Uploaded tracks are analysed to tag genre and mood, making artists discoverable without manual metadata work.' },
+          { h: 'Scout recommendations', t: 'Surfaces relevant talent to labels and A&R scouts based on style fit rather than follower count.' },
+          { h: 'Sell beats & book sessions', t: 'Beats and samples sold directly from the profile, alongside paid collaboration and session fees.' },
+          { h: 'Design system for scale', t: 'A component library covering profile, discovery, upload and commerce flows, built to extend as the catalogue grows.' }
+        ],
+        wideShots: true,
+        shots: [
+          { img: 'images/sefer-long1.png', label: 'Séfer — case study, part 1', long: true },
+          { img: 'images/sefer-long2.png', label: 'Séfer — case study, part 2', long: true }
+        ],
+        thinking: [
+          { i: '01', t: 'Made the profile the product — everything else (matching, commerce, scouting) hangs off one well-built object.' },
+          { i: '02', t: 'Used AI to remove metadata busywork: tracks get tagged on upload so artists stay discoverable without extra effort.' },
+          { i: '03', t: 'Designed discovery around style fit, not follower count, so smaller artists surface to the right scouts.' },
+          { i: '04', t: 'Kept commerce native to the profile — selling beats and booking sessions are not a separate destination.' }
+        ],
+        impact: [{ n: '1 profile', l: 'serves collaborators, scouts and bookers alike' }, { n: 'Auto-tagged', l: 'genre and mood detected on upload' }, { n: 'Beats + sessions', l: 'both revenue paths native to the profile' }],
+        roleShown: true,
+        role: [
+          'Led product and UX/UI design for the full MVP, from profile architecture to commerce flows.',
+          'Ran UX research with musicians, producers and songwriters to understand how talent actually gets found today.',
+          'Designed the AI layer — collaborator matching, track tagging and scout recommendations — into the core flows rather than as a separate feature.',
+          'Built the design system covering profile, discovery, upload and commerce.',
+          'Scoped and shipped the MVP with the artist profile as the anchor.'
+        ],
+        note: '',
+        tools: ['Figma', 'Design System', 'AI Integration', 'Prototyping']
+      },
+      {
+        category: 'ecom', kind: 'iOS · AR Commerce', cover: 'images/nxtshop-cover.png', order: 2.5,
+        title: 'NxtShop — Beauty App with AR Try-On',
+        badges: ['iOS', 'E-commerce', 'AR Try-On'],
+        meta: [{ k: 'Role', v: 'Lead UX/UI Design' }, { k: 'Type', v: 'Mobile app + AR' }, { k: 'Platform', v: 'iOS' }],
+        overview: 'NxtShop is a beauty shopping app with AR try-on: users test makeup on their own face in real time before they buy.',
+        challenge: 'Choosing makeup online is difficult because users cannot see how products will look on them. In the app, shoppers try on lips, blush, eyeliner and mascara, save looks as personal filters and buy the products in one flow.',
+        solutionShown: true,
+        wideShots: true,
+        solution: [
+          { h: 'From wireframe to UI', t: 'The home screen started as a low-fidelity wireframe and became a branded layout with category shortcuts and featured products.' },
+          { h: 'AR try-on', t: 'The camera view switches between makeup and filters, with lighting modes, shade swatches, finish options and an intensity slider.' },
+          { h: 'Home, promo and cart', t: 'Promo banners, new arrivals and product lists lead into a cart with quantity controls.' },
+          { h: 'Profile and filters', t: 'Users keep favourites, saved filters and orders in their profile.' }
+        ],
+        shots: [
+          { img: 'images/nxtshop-longread.png', label: 'NxtShop — case study', long: true }
+        ],
+        thinking: [
+          { i: '01', t: 'Treated the try-on as the storefront — discovery happens inside the video feed, not in a separate catalogue.' },
+          { i: '02', t: 'Allowed cross-brand mixing so users can build a full look rather than evaluate one product at a time.' },
+          { i: '03', t: 'Kept AR interactions intuitive and visually light, so the effect stays the focus and the UI recedes.' }
+        ],
+        impact: [{ n: 'Real-time', l: 'virtual try-on with realistic AR effects' }, { n: 'Cross-brand', l: 'custom looks mixing products from multiple brands' }, { n: 'In-video', l: 'store filters for interactive product discovery' }],
+        roleShown: true,
+        role: [
+          'Served as Lead UX/UI Designer for the AR makeup app, owning the full interface and interaction design.',
+          'Led the web architecture alongside the app design.',
+          'Designed the real-time try-on flow — ready-made masks, custom looks and cross-brand product mixing.',
+          'Integrated the cosmetic store with in-video filters so discovery and try-on stay a single experience.',
+          'Shaped the AR interaction patterns to stay intuitive, visually appealing and immersive.'
+        ],
+        note: '',
+        tools: ['Figma', 'AR Prototyping', 'Design System', 'HTML/CSS/JS']
+      },
+      {
+        category: 'apps', kind: 'iOS · Connected Device', cover: 'images/petfeeder-cover.png', focus: '35% 50%', order: 4, hidden: true,
+        title: 'Smart Pet Feeder App — Remote Control & Interaction',
+        badges: ['iOS', 'AI Integration', 'Startup MVP'],
+        meta: [{ k: 'Role', v: 'Lead UX/UI Design & Web Architecture' }, { k: 'Year', v: '2026' }, { k: 'Scope', v: 'App + web architecture' }, { k: 'Platform', v: 'iOS' }, { k: 'Status', v: 'Shipped' }],
+        challenge: 'Pet owners often worry about feeding and caring for their pets when they are away. Traditional solutions offer limited interaction and control, leaving owners anxious and pets less engaged.',
+        overview: 'The Smart Pet Feeder App lets pet owners feed, monitor, and interact with their pets remotely. Connected to a feeder with a camera and microphone, users can dispense food or water manually or automatically, watch their pets in real time, and talk to them through the app. The solution delivers a fun, intuitive, and reliable experience, keeping pets fed, entertained, and cared for from anywhere.',
+        solutionShown: true,
+        wideShots: true,
+        solution: [
+          { h: 'Remote feeding', t: 'Dispense food or water manually or on a schedule, from anywhere.' },
+          { h: 'Real-time monitoring', t: 'Watch pets live through the feeder\u2019s built-in camera.' },
+          { h: 'Two-way interaction', t: 'Talk to pets through the app\u2019s microphone, turning a feeder into a way to stay connected.' },
+          { h: 'Fun and intuitive controls', t: 'Easy navigation designed for all pet owners, not just technical users.' }
+        ],
+        shots: [
+          { img: 'images/petfeeder-1.png', label: 'Feeding, monitoring & interaction flows' }
+        ],
+        thinking: [
+          { i: '01', t: 'Designed around owner anxiety — the product\u2019s job is reassurance, not just scheduling.' },
+          { i: '02', t: 'Made live video and voice first-class alongside feeding, so the app is a connection, not a control panel.' },
+          { i: '03', t: 'Balanced reliability with playfulness — controls stay dependable while the experience stays fun.' }
+        ],
+        impact: [{ n: 'Remote', l: 'manual and scheduled feeding from anywhere' }, { n: 'Live', l: 'real-time camera monitoring' }, { n: 'Two-way', l: 'voice interaction with pets through the app' }],
+        roleShown: true,
+        role: [
+          'Served as Lead UX/UI Designer & Web Architect for the product.',
+          'Designed the intuitive interface and remote controls.',
+          'Prototyped real-time feeding, monitoring, and interaction flows.',
+          'Ensured seamless usability across mobile devices.',
+          'Balanced reliability, fun, and engagement in the user experience.'
+        ],
+        note: '',
+        tools: ['Figma', 'App Store Design', 'Design System', 'Prototyping']
+      },
+      {
+        category: 'apps', kind: 'iOS · Fitness & Health', cover: 'images/itfit-cover2.jpg', focus: '18% 50%', order: 2, hidden: true,
+        title: 'ItFit — Personalized Training, Nutrition & Safety Monitoring',
+        badges: ['iOS', 'Health & Fitness', 'AI Integration'],
+        meta: [{ k: 'Role', v: 'UI/UX Designer' }, { k: 'Year', v: '2026' }, { k: 'Scope', v: 'App design' }, { k: 'Platform', v: 'iOS' }, { k: 'Status', v: 'Shipped' }],
+        challenge: 'Traditional fitness apps often provide generic workout and nutrition plans with limited safety guidance, making training less effective and sometimes unsafe for users.',
+        overview: 'ItFit is a comprehensive fitness app that helps users track workouts, nutrition, and personalized training plans. It generates custom daily workout and meal plans, monitors heart rate to ensure safe exercise, and allows progress tracking and consultations, giving every user an efficient, tailored, and engaging fitness experience.',
+        solutionShown: true,
+        wideShots: true,
+        solution: [
+          { h: 'Personalized plans', t: 'Daily training and meal plans tailored to individual goals.' },
+          { h: 'Progress tracking', t: 'Tracks workouts, nutrition, and overall performance over time.' },
+          { h: 'Heart rate monitoring', t: 'Automatically pauses exercises if safe limits are exceeded.' },
+          { h: 'Consultation & guidance', t: 'Built-in features for safe, efficient, and tailored fitness support.' }
+        ],
+        shots: [
+          { img: 'images/itfit-1.jpg', label: 'Registration, onboarding & training flows' }
+        ],
+        thinking: [
+          { i: '01', t: 'Made safety a first-class feature — heart rate monitoring gates the workout, not an afterthought stat.' },
+          { i: '02', t: 'Personalized plans from the first session, so users never face a generic, one-size-fits-all program.' },
+          { i: '03', t: 'Kept onboarding and daily flows simple, so tracking and consultation stay effortless to use.' }
+        ],
+        impact: [{ n: 'Personalized', l: 'daily workout and meal plans' }, { n: 'Safe', l: 'heart rate–guided workouts' }, { n: 'All-in-one', l: 'training, nutrition & consultation' }],
+        roleShown: true,
+        role: [
+          'Served as UI/UX Designer for the ItFit app.',
+          'Designed intuitive interfaces for workouts, meal tracking, and consultations.',
+          'Created personalized training and nutrition flows.',
+          'Integrated heart rate monitoring and safety features into the core experience.',
+          'Prototyped and mapped user journeys for a seamless fitness experience.'
+        ],
+        note: '',
+        tools: ['Prototyping', 'Interaction Design', 'Mobile App UI/UX', 'UX Writing', 'Journey Mapping']
+      },
+      {
+        category: 'web', kind: 'Web · Corporate Site', cover: 'images/dplab-cover5.png',
+        title: 'DPlab — Digital Agency Website Redesign, Vilnius',
+        badges: ['Web', 'Corporate', 'Redesign'],
+        meta: [{ k: 'Client', v: 'DPlab' }, { k: 'Role', v: 'Lead UX/UI Designer' }, { k: 'Year', v: '2026' }, { k: 'Type', v: 'Website redesign' }, { k: 'Platform', v: 'Web' }],
+        overview: 'Redesign of the website of a digital agency in Vilnius: design, web development, marketing and SEO.',
+        challenge: 'DPlab is a digital agency based in Vilnius. It builds digital strategies that help businesses become more visible and reach more customers. Its services cover design, website development, digital marketing, social media, eCommerce and SEO, from a first consultation to a finished project.',
+        solutionShown: true,
+        wideShots: true,
+        solution: [
+          { h: 'Before and after', t: 'A text-heavy template with plain service cards becomes a soft periwinkle layout with glass 3D forms, project previews and a clear path to contact.' },
+          { h: 'Service cards', t: 'Services sit as cards over live project previews, each with an arrow link.' },
+          { h: 'Portfolio showcase', t: 'A mobile app is presented in angled phone mockups.' }
+        ],
+        shots: [
+          { img: 'images/dplab-longread.png', label: 'DPlab — case study', long: true }
+        ],
+        thinking: [
+          { i: '01', t: 'Treated typography as the main visual driver, letting bold type carry brand personality without heavy imagery.' },
+          { i: '02', t: 'Used micro-interactions sparingly, placed where they reinforce structure rather than decorate it.' },
+          { i: '03', t: 'Kept every section conversion-oriented, so creativity never comes at the cost of clarity.' }
+        ],
+        impact: [{ n: 'Stronger', l: 'digital brand presence' }, { n: 'Higher', l: 'user engagement through interaction' }, { n: 'Responsive', l: 'structure optimized for all devices' }],
+        roleShown: true,
+        role: [
+          'Served as Lead UX/UI Designer for the corporate website.',
+          'Created the interactive visual concept.',
+          'Designed structured user flows and layouts.',
+          'Prototyped dynamic transitions and interactions.',
+          'Ensured responsive and conversion-oriented design.'
+        ],
+        note: '',
+        tools: ['Interactive Design', 'UX & UI', 'Landing Page Design', 'Responsive Web Design']
+      },
+      {
+        category: 'ecom', kind: 'Web · Ecommerce', cover: 'images/dc-cover5.png', order: 2, visit: { url: 'https://www.defendandcarry.com', label: 'Visit site ↗' }, stores: [{ label: 'Visit live site', url: 'https://www.defendandcarry.com' }],
+        title: 'Defend & Carry — Tactical & Optics Gear E-commerce',
+        badges: ['Web', 'E-commerce', 'Tactical Gear'],
+        meta: [{ k: 'Client', v: 'Defend & Carry' }, { k: 'Parent company', v: 'Apache Industries' }, { k: 'Role', v: 'UX/UI Designer' }, { k: 'Type', v: 'E-commerce website' }, { k: 'Platform', v: 'Web' }],
+        overview: 'An online store for sport optics, tactical and military gear, hunting gear and eyewear.',
+        challenge: 'Defend & Carry is an online retailer of sport optics, tactical and military gear, scientific products, hunting gear, professional-grade products and eyewear. It is a subsidiary of Apache Industries. Next to the shop, the site runs a blog with gear reviews, the Gun of the Week series and articles on concealed carry.',
+        solutionShown: true,
+        wideShots: true,
+        solution: [
+          { h: 'Catalog and filters', t: 'Category tabs, a filter sidebar with price range, manufacturer, lens diameter and magnification, and product cards with discount badges.' },
+          { h: 'Two homepage versions', t: 'One with a \u201cFor your first hunt\u201d selection and accessory banners, one with promo banners, a special offer and an Apache Industries block.' }
+        ],
+        shots: [
+          { img: 'images/dc-longread.png', label: 'Defend & Carry — case study', long: true }
+        ],
+        thinking: [
+          { i: '01', t: 'Prioritized technical hierarchy on product pages, so specs read clearly instead of overwhelming the buyer.' },
+          { i: '02', t: 'Built filtering and comparison to match how tactical buyers actually shop — by generation, manufacturer, and spec.' },
+          { i: '03', t: 'Kept the visual identity tactical and professional, reinforcing trust in a high-stakes purchase category.' }
+        ],
+        impact: [{ n: 'Clearer', l: 'product specifications and features' }, { n: 'Streamlined', l: 'navigation and product discovery' }, { n: 'Responsive', l: 'user-focused ecommerce experience' }],
+        roleShown: true,
+        role: [
+          'Served as UX/UI Designer for the ecommerce platform.',
+          'Designed product page layouts and technical hierarchy.',
+          'Built navigation systems and information architecture.',
+          'Developed conversion optimization strategies.',
+          'Ensured usability and clarity in a highly technical ecommerce environment.'
+        ],
+        note: '',
+        tools: ['UX & UI Design', 'Ecommerce Optimization', 'Responsive Design', 'Information Architecture']
+      },
+      {
+        category: 'ecom', kind: 'Web · Ecommerce', cover: 'images/agm-cover4.png', order: 3, stores: [{ label: 'Visit live site', url: 'https://www.agmglobalvision.com' }],
+        title: 'AGM Global Vision — E-commerce Platform for Defense Equipment',
+        badges: ['E-commerce', 'Optics', 'Live website'],
+        meta: [{ k: 'Client', v: 'AGM Global Vision' }, { k: 'Role', v: 'UX/UI Design' }, { k: 'Year', v: '2025' }, { k: 'Platform', v: 'Web' }, { k: 'Status', v: 'Live' }],
+        overview: 'An e-commerce platform for a US supplier of thermal imaging, night vision and defense equipment.',
+        challenge: 'AGM Global Vision supplies customers in the United States and around the world with thermal imaging and digital night vision devices, from handheld units to vehicle-mounted systems. Buyers need to compare technical specifications and purchase with confidence.',
+        solutionShown: true,
+        wideShots: true,
+        solution: [
+          { h: 'Homepage and promo', t: 'A homepage built around product categories, news and seasonal promo banners such as Black Friday and Cyber Monday.' },
+          { h: 'Product and catalog', t: 'Product pages with gallery and specs, a catalog grouped by category, and a list view for quick ordering.' },
+          { h: 'Mobile and compare', t: 'A compare tray that holds up to four devices and a side-by-side comparison table on mobile.' }
+        ],
+        shots: [
+          { img: 'images/agm-longread.png', label: 'AGM Global Vision — case study', long: true }
+        ],
+        tools: ['Figma', 'UX & UI Design', 'Ecommerce']
+      },
+      {
+        category: 'ecom', kind: 'Web · B2B Wholesale', cover: 'images/unifood-cover3.png', order: 4, seamlessShots: true, visit: { url: 'https://claude.ai/artifact/BDgonfSoSmkDCVLWVQLoEd', label: 'View prototype ↗' }, stores: [{ label: 'Open interactive prototype', url: 'https://claude.ai/artifact/BDgonfSoSmkDCVLWVQLoEd' }], order: 1,
+        title: 'Unifood — Website Redesign for unifood.dk',
+        badges: ['E-commerce', 'B2B', 'Wholesale', 'Responsive'],
+        meta: [{ k: 'Role', v: 'UX/UI Designer' }, { k: 'Year', v: '2026' }, { k: 'Scope', v: 'Responsive website prototype' }, { k: 'Platform', v: 'Desktop, tablet, mobile' }, { k: 'Status', v: 'Design concept' }],
+        challenge: 'The current site lists products in one long, dense grid. Search, categories, contacts and pickup information compete for attention. Quantities are hard to enter for wholesale orders, and it is not clear how an order reaches the warehouse.',
+        overview: 'A catalog-first redesign of the website for Unifood Import A/S, a Danish wholesale food importer with over 1,400 products. Customers open the site, find a product in two clicks, set the quantity in units, cases or pallets, and send a pickup order to the warehouse. No online payment.',
+        solutionShown: true,
+        wideShots: true,
+        solution: [
+          { h: 'Catalog first', t: 'A low banner slider (three slides) with a headline and two actions, followed directly by the catalog. The banner scales with the screen so the first row of products stays visible on laptop and tablet.' },
+          { h: 'Category sidebar', t: 'All categories in one column next to compact product cards of equal size. Each card shows brand, item number, quantity and case size, with the add button on one baseline. Pagination below.' },
+          { h: 'Bulk-ready pop-up', t: 'Product details in one table, a unit selector (stk / kolli / palle), a typed quantity field and quick-add chips (+10, +50, +100). On mobile the "Læg i kurv" button stays fixed at the bottom.' },
+          { h: 'Cart without payment', t: 'The customer edits quantities, chooses the pickup warehouse, adds a note and sends the order. A confirmation shows the order lines and the pickup address.' },
+          { h: 'Structured menu', t: 'Opening hours, pickup information and contacts are one click away in the header, with all three locations in one dropdown. Only the current page is highlighted.' },
+          { h: 'Same flow on mobile', t: 'The whole flow works at 390 px: home, menu with search, catalog, product and cart, with touch targets sized for one hand.' }
+        ],
+        shots: [
+          { img: 'images/unifood-longread-v3.png', label: 'Unifood — case study', long: true }
+        ],
+        tools: ['Figma', 'UX & UI Design', 'Responsive design']
+      },
+      {
+        category: 'web', kind: 'Web · Corporate Site', cover: 'images/kortical-cover.png',
+        title: 'Kortical — Website Redesign',
+        badges: ['Web', 'Corporate Site', 'Redesign', 'Design system'],
+        meta: [{ k: 'Role', v: 'UI/UX design, website redesign, design system, responsive design, prototyping' }, { k: 'Platform', v: 'Desktop, mobile' }],
+        challenge: 'Kortical is a UK enterprise AI company that builds AI agents to automate complex business workflows end to end, securely and reliably. Its clients include the NHS, Deloitte, Santander and Reed.',
+        overview: 'I redesigned the AI Agents homepage for desktop and mobile, along with the mobile menu, the 404 page and a shared design system: colour palette, Work Sans typography, buttons and their states, cards and forms. The layout keeps a strict light structure, with a cyan-to-aqua gradient for key sections and yellow kept for the main actions.',
+        wideShots: true,
+        shots: [
+          { img: 'images/kortical-1.png', label: 'Desktop, mobile, navigation, details & style guide', long: true }
+        ],
+        tools: ['UI/UX design', 'Design system', 'Responsive design', 'Prototyping']
+      },
+      {
+        category: 'web', kind: 'Web · Promo Site', cover: 'images/laurie-cover.png',
+        title: 'Laurie Handlers — Website Redesign for an Intimacy Speaker & Author',
+        badges: ['Web', 'Promo Site', 'Redesign'],
+        meta: [{ k: 'Client', v: 'Laurie Handlers' }, { k: 'Role', v: 'UI/UX Design' }, { k: 'Pages', v: 'Homepage, Retreats' }, { k: 'Platform', v: 'Web' }],
+        overview: 'A dark, cinematic redesign of the website of an international speaker and bestselling author on intimacy and relationships.',
+        challenge: 'Laurie Handlers, MA, is an international speaker, bestselling author and a four-decade pioneer in sacred sexuality. She has guided people in more than 50 countries. She is the author of two Amazon international bestsellers, Sex & Happiness: The Tantric Laws of Intimacy and Sex & Happiness: It Gets Better with Age, and runs retreats and trainings on intimacy and relationships. The website presents her work, books, retreats and newsletter.',
+        solutionShown: true,
+        wideShots: true,
+        solution: [
+          { h: 'Homepage', t: 'The homepage moves from bright red and white blocks to a dark photographic layout with one red accent and a script typeface for emphasis.' },
+          { h: 'Retreats page', t: 'Each retreat is a card with a landscape photo, dates, location and a single outlined button. Shown in two background tones.' }
+        ],
+        shots: [
+          { img: 'images/laurie-longread.png', label: 'Laurie Handlers — case study' }
+        ],
+        tools: ['Figma', 'Illustrator', 'UI/UX Design']
+      },
+      {
+        category: 'web', kind: 'Web · Branding & Platform', cover: 'images/wizards-cover.png', hidden: true,
+        title: 'Online Course Wizards — Branding and Website',
+        badges: ['Web', 'Branding', 'E-learning', 'Responsive'],
+        meta: [{ k: 'Role', v: 'UI/UX Design' }, { k: 'Year', v: '2022' }, { k: 'Process', v: 'Logo, branding, wireframes, UI design, interaction, social media templates' }],
+        overview: 'Online Course Wizards is a service for fast-growing small and medium-sized businesses that need to train their employees online. The platform creates courses in many areas for employers who want to raise their team\u2019s skills and qualifications.',
+        challenge: 'The client had no branding and an old long-read website with awkward navigation, no quick application forms and little information on cases and products.',
+        solutionShown: true,
+        wideShots: true,
+        solution: [
+          { h: 'Branding', t: 'I developed the brand with several logo compositions and a guideline for fonts and colours.' },
+          { h: 'Platform', t: 'I then built a prototype and designed the final platform around visitors\u2019 needs, with quick request forms, a full component library and tablet and mobile versions.' }
+        ],
+        shots: [
+          { img: 'images/wizards-longread.png', label: 'Online Course Wizards — case study', long: true }
+        ]
+      },
+      {
+        category: 'apps', kind: 'iOS · Creator Subscriptions', cover: 'images/subflow-cover.png', order: 0,
+        title: 'Subflow — Creator Subscription App',
+        badges: ['iOS', 'Subscriptions', 'Community'],
+        meta: [{ k: 'Platform', v: 'iOS mobile app' }, { k: 'Process', v: 'UX flows, UI design, design system' }],
+        overview: 'Subflow is a mobile platform where creators sell subscriptions to their content, courses and communities. Members join through an invitation link, browse the marketplace by topic, and subscribe monthly to get access to collections, pages, courses and podcasts.',
+        solutionShown: true,
+        wideShots: true,
+        solution: [
+          { h: 'Full mobile flow', t: 'I designed the full mobile flow: sign-in from an invite, the marketplace with filters and product landing pages, a subscribe form, the content library with a podcast player, community chat with channels and direct messages, and a profile for managing active, paused and cancelled subscriptions.' },
+          { h: 'Interface and components', t: 'The UI uses a dark interface with a blue accent and a component library of buttons, inputs, dropdowns and chips.' }
+        ],
+        shots: [
+          { img: 'images/subflow-longread.png', label: 'Subflow — case study', long: true }
+        ]
+      },
+      {
+        category: 'ecom', kind: 'Mobile · Fine Jewellery', cover: 'images/gj-cover-v2.png', order: -1, seamlessShots: true,
+        title: 'Georg Jensen — Concept Mobile Store',
+        badges: ['Mobile', 'E-commerce', 'Concept'],
+        meta: [{ k: 'Role', v: 'UI/UX design' }, { k: 'Platform', v: 'Mobile' }, { k: 'Note', v: 'Personal concept, not an official Georg Jensen project' }],
+        overview: 'This is a personal concept for a Georg Jensen mobile store, built around the brand\u2019s handcrafted 18k gold and certified sustainable diamonds. The aim was to make shopping for fine jewellery on a phone feel as calm and considered as visiting the maison in Copenhagen.',
+        solutionShown: true,
+        wideShots: true,
+        solution: [
+          { h: 'Type and palette', t: 'The interface pairs the Cormorant Garamond serif with a light sans-serif. It uses a quiet palette of deep cyan, warm gold and cream, and arch-shaped frames inspired by Scandinavian silverwork.' },
+          { h: 'Discovery to purchase', t: 'Each screen leaves the jewellery and photography plenty of space. Short editorial pages and a reservation flow guide the visitor from discovery to purchase.' }
+        ],
+        shots: [
+          { img: 'images/gj-v2-1.png', label: 'Georg Jensen — case study, part 1', long: true },
+          { img: 'images/gj-v2-2.png', label: 'Georg Jensen — case study, part 2', long: true },
+          { img: 'images/gj-v2-3.png', label: 'Georg Jensen — case study, part 3', long: true },
+          { img: 'images/gj-v2-4.png', label: 'Georg Jensen — case study, part 4', long: true },
+          { img: 'images/gj-v2-5.png', label: 'Georg Jensen — case study, part 5', long: true }
+        ]
+      },
+      {
+        category: 'ecom', kind: 'Web · Automotive', cover: 'images/ayvens-cover.png', order: 0, seamlessShots: true,
+        visit: { url: 'https://claude.ai/artifact/4gGpNpj1heE36eCi3ZoGhh', label: 'View prototype ↗' },
+        stores: [{ label: 'View prototype', url: 'https://claude.ai/artifact/4gGpNpj1heE36eCi3ZoGhh' }],
+        title: 'Ayvens — Used-Car Product Page Concept',
+        badges: ['Web', 'Mobile', 'Automotive', 'Concept'],
+        meta: [{ k: 'Client', v: 'Ayvens (concept)' }, { k: 'Type', v: 'Product page · UI / UX' }, { k: 'Platforms', v: 'Desktop & mobile' }],
+        overview: 'A concept product page for Ayvens used cars, shown on a 2023 Tesla Model Y Long Range Dual Motor from Fredericia. The page brings the whole purchase into one calm scroll: the car on a studio stage with three views, the cash price and monthly leasing, equipment, specifications, service history, financing options, other cars and a contact form.',
+        solutionShown: true,
+        wideShots: true,
+        solution: [
+          { h: 'Visual language', t: 'The visual language borrows from premium automotive sites: a light grey studio, thin Jost type, black pill buttons and a single black specification panel.' },
+          { h: 'Desktop & mobile', t: 'Each section opens with a centred title and a short line, then one glass card or grid. On mobile the same sections stack into one column, with the price card pinned under the car.' }
+        ],
+        shots: [1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => ({ img: 'images/ayv-0' + n + '.png', label: 'Ayvens — case study, part ' + n, long: true }))
+      }
+    ];
+
+  slugOf(p) { return p.title.split(' — ')[0].toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+
+  readHash = () => {
+    const m = (location.hash || '').match(/^#\/case\/([\w-]+)/);
+    if (m) {
+      const i = this.cases.findIndex((p) => this.slugOf(p) === m[1]);
+      if (i >= 0) { this.setState({ view: i }, () => window.scrollTo({ top: 0, behavior: 'instant' })); return; }
+    }
+    if (this.state.view !== -1) {
+      this.setState({ view: -1 }, () => {
+        const el = document.getElementById((location.hash || '#work').slice(1)) || document.getElementById('work');
+        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY, behavior: 'instant' });
+      });
+    }
+  };
+  openCase = (i) => { location.hash = '#/case/' + this.slugOf(this.cases[i]); };
+  goHome = () => { location.hash = '#work'; };
+  setLang = (code) => { this.setState({ lang: code }); try { localStorage.setItem('olha-portfolio-lang', code); } catch (e) {} };
+
+  onImgLoad = (src, e) => {
+    const im = e.currentTarget;
+    const o = im.naturalHeight > im.naturalWidth ? 'v' : 'h';
+    if (this.state.orient[src] !== o) this.setState((s) => ({ orient: { ...s.orient, [src]: o } }));
+  };
+
+  splitLines(el) {
+    const txt = el.getAttribute('data-lines') || '';
+    el.textContent = '';
+    const spans = txt.split(/\s+/).filter(Boolean).map((w) => { const sp = document.createElement('span'); sp.style.whiteSpace = 'nowrap'; sp.textContent = w + ' '; el.appendChild(sp); return sp; });
+    const lines = [];
+    let top = null;
+    spans.forEach((sp) => { const t = sp.offsetTop; if (top === null || Math.abs(t - top) > 2) { lines.push([]); top = t; } lines[lines.length - 1].push(sp.textContent); });
+    el.textContent = '';
+    lines.forEach((ws, i) => {
+      const outer = document.createElement('span'); outer.style.display = 'block';
+      const inner = document.createElement('span'); inner.className = 'q-li'; inner.style.transitionDelay = (i * 60) + 'ms';
+      inner.textContent = ws.join('').trimEnd();
+      outer.appendChild(inner); el.appendChild(outer);
+    });
+    el.setAttribute('aria-label', txt);
+    el.dataset.split = txt + '|' + el.clientWidth;
+  }
+  processLines() {
+    document.querySelectorAll('[data-lines]').forEach((el) => {
+      const key = (el.getAttribute('data-lines') || '') + '|' + el.clientWidth;
+      if (el.dataset.split !== key) this.splitLines(el);
+    });
+  }
+  onKey = (e) => { if (e.key === 'Escape' && (this.state.contactOpen || this.state.menuOpen)) this.setState({ contactOpen: false, menuOpen: false }); };
+  onScroll = () => {
+    if (this._sraf) return;
+    this._sraf = requestAnimationFrame(() => {
+      this._sraf = null;
+      if (this._reduce) return;
+      const h = this.heroRef.current;
+      if (h) { const y = Math.min(window.scrollY || 0, window.innerHeight * 1.5); h.style.transform = 'translate3d(' + (-y * 0.45) + 'px,0,0)'; }
+      const vh = window.innerHeight, vw = window.innerWidth;
+      document.querySelectorAll('[data-recede]').forEach((el) => {
+        const top = el.parentElement.getBoundingClientRect().top;
+        const p = Math.max(0, Math.min(1, (vh - top) / (vh * 0.75)));
+        const e = 1 - Math.pow(1 - p, 3);
+        el.style.transform = 'translate3d(' + ((1 - e) * vw * 0.18) + 'px,0,0) scale(' + (1.6 - 0.6 * e) + ')';
+        el.style.opacity = String(0.25 + 0.75 * e);
+      });
+    });
+  };
+  onResize = () => { clearTimeout(this._rt); this._rt = setTimeout(() => this.processLines(), 150); };
+
+  observeReveal() {
+    if (!this.io) return;
+    this.processLines();
+    document.querySelectorAll('.q-rev:not([data-obs]),.q-slide:not([data-obs]),.q-slide-s:not([data-obs]),.q-xl:not([data-obs]),.q-lines:not([data-obs])').forEach((el) => { el.setAttribute('data-obs', ''); this.io.observe(el); });
+  }
+
+  initCursor() {
+    if (!window.matchMedia || !window.matchMedia('(pointer:fine)').matches) return;
+    const el = this.curRef.current, dot = this.dotRef.current, label = this.labelRef.current;
+    if (!el) return;
+    document.documentElement.classList.add('q-fine');
+    el.style.display = 'block';
+    const t = { x: -100, y: -100 }, p = { x: -100, y: -100 };
+    let mode = '';
+    const setMode = (m) => {
+      if (m === mode) return; mode = m;
+      const s = m === 'case' ? 72 : m === 'link' ? 26 : 10;
+      dot.style.width = s + 'px'; dot.style.height = s + 'px';
+      label.style.opacity = m === 'case' ? '1' : '0';
+    };
+    this._move = (e) => { t.x = e.clientX; t.y = e.clientY; };
+    this._over = (e) => {
+      const g = e.target.closest ? e.target : null;
+      setMode(g && g.closest('[data-case]') ? 'case' : g && g.closest('a,button') ? 'link' : '');
+    };
+    this._leave = () => { t.x = -100; t.y = -100; };
+    window.addEventListener('mousemove', this._move, { passive: true });
+    document.addEventListener('mouseover', this._over);
+    document.addEventListener('mouseleave', this._leave);
+    const loop = () => {
+      p.x += (t.x - p.x) * 0.22; p.y += (t.y - p.y) * 0.22;
+      el.style.transform = 'translate3d(' + p.x + 'px,' + p.y + 'px,0)';
+      this._raf = requestAnimationFrame(loop);
+    };
+    loop();
+  }
+
+  componentDidMount() {
+    try { const l = localStorage.getItem('olha-portfolio-lang'); if (l && this.translations[l]) this.setState({ lang: l }); } catch (e) {}
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('q-in'); this.io.unobserve(en.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    this.observeReveal();
+    window.addEventListener('hashchange', this.readHash);
+    this.readHash();
+    this._reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.addEventListener('keydown', this.onKey);
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { document.querySelectorAll('[data-lines]').forEach((el) => { el.dataset.split = ''; }); this.processLines(); });
+    this.initCursor();
+    this.onScroll();
+  }
+  componentDidUpdate() { this.observeReveal(); this.onScroll(); }
+  componentWillUnmount() {
+    window.removeEventListener('hashchange', this.readHash);
+    window.removeEventListener('keydown', this.onKey);
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize);
+    if (this.io) this.io.disconnect();
+    if (this._raf) cancelAnimationFrame(this._raf);
+    window.removeEventListener('mousemove', this._move);
+    document.removeEventListener('mouseover', this._over);
+    document.removeEventListener('mouseleave', this._leave);
+    document.documentElement.classList.remove('q-fine');
+  }
+
+  renderVals() {
+    const T = this.translations[this.state.lang] || this.translations.en;
+    const catLabel = { apps: T.catApps, web: T.catWeb, ecom: T.catEcom };
+    const projects = this.cases.map((p, i) => {
+      const filled = (v) => v != null && String(v).trim() !== '' && String(v).trim().toUpperCase() !== 'TODO';
+      const meta = (p.meta || []).filter((m) => filled(m.v));
+      const y = meta.find((m) => m.k === 'Year');
+      const cl = catLabel[p.category] || p.kind;
+      const parts = p.title.split(' — ');
+      return {
+        ...p, meta, num: String(i + 1).padStart(2, '0'), year: y ? y.v : '',
+        catLabel: cl, metaLine: [cl, y ? y.v : ''].filter(filled).join(' — '), head: parts[0], sub: parts.slice(1).join(' — '),
+        desc: p.desc || p.overview || '', focus: p.focus || '50% 50%', heroImg: '', badgeList: p.badges || [p.kind], hasStores: !!(p.stores && p.stores.length), open: () => this.openCase(i)
+      };
+    });
+
+    const onCta = () => this.setState({ contactOpen: true });
+    const rhythm = (list, layout) => {
+      const rows = []; let i = 0;
+      if (true) {
+        for (; i < list.length; i += 2) rows.push(list.slice(i, i + 2));
+        return rows.map((keys) => ({ cells: keys.map((p) => ({ p, noImg: !p.cover, span: 1, sz: 's', isS: true, isL: false, ar: '4 / 3', link: p.visit || null })) }));
+      }
+      while (i < list.length) {
+        rows.push([list[i++]]);
+        if (i < list.length) { if (list.length - i >= 2) { rows.push([list[i], list[i + 1]]); i += 2; } else rows.push([list[i++]]); }
+      }
+      return rows.map((keys) => ({ cells: keys.map((p) => {
+        const big = keys.length === 1;
+        return { p, noImg: !p.cover, span: big ? 2 : 1, sz: big ? 'l' : 's', isL: big, isS: !big, ar: big ? '16 / 9' : '4 / 3', link: p.visit || null };
+      }) }));
+    };
+    const groups = this.categories.map((cat) => {
+      const list = projects.map((p, i) => ({ p, i })).filter((x) => x.p.category === cat.id && !x.p.hidden)
+        .sort((a, b) => ((a.p.order ?? 999) - (b.p.order ?? 999)) || (a.i - b.i)).map((x) => x.p);
+      const open = cat.id in this.state.openCats ? this.state.openCats[cat.id] : !!cat.open;
+      return {
+        id: cat.id, title: T[cat.tKey] || cat.title || cat.id, count: list.length,
+        countLabel: list.length + ' ' + (list.length === 1 ? T.projWord1 : T.projWord),
+        btnId: 'cat-btn-' + cat.id, panelId: 'cat-panel-' + cat.id,
+        expanded: open, hidden: !open, gridRows: open ? '1fr' : '0fr', vis: open ? 'visible' : 'hidden',
+        rot: open ? 'rotate(135deg)' : 'rotate(0deg)', toggle: () => this.toggleCat(cat.id), rows: rhythm(list, cat.layout)
+      };
+    }).filter((g) => g.count > 0);
+    const reduce = this._reduce, fl = this.state.flipped;
+    const flip = reduce ? { inner: 'none', back: 'none', backOp: fl ? 1 : 0 } : { inner: fl ? 'rotateY(180deg)' : 'rotateY(0deg)', back: 'rotateY(180deg)', backOp: 1 };
+    const site = 'Visit site ↗', play = 'Open on Google Play ↗';
+    const mk = (title, label, url, img, cta) => ({ title, label, url, img, noImg: !img, cta, aria: title + ' — ' + label + ' (opens in new tab)' });
+    const liveSites = [
+      mk('AGM Global Vision', 'E-commerce · Live website', 'https://www.agmglobalvision.com', '', site),
+      mk('Defend and Carry', 'E-commerce · Live website', 'https://www.defendandcarry.com', 'images/defendcarry-hero.png', site),
+      mk('Repat Africa', 'Website · Live', 'https://www.repat.africa/fr/', 'images/repat-hero.png', site),
+      mk('Kortical', 'Website · Live', 'https://kortical.com', '', site),
+      mk('The Quantum Insider', 'Website · Live', 'https://thequantuminsider.com', '', site),
+      mk('Instalettings', 'Website · Live', 'https://instalettings.co', '', site),
+      mk('Kochi Dubai', 'Website · Live', 'https://kochidubai.com', '', site)
+    ];
+    const liveApps = [
+      mk('Repat Africa', 'Mobile app · Google Play', 'https://play.google.com/store/apps/details?id=africa.repat.app', 'images/repat-1.png', play),
+      mk('Swiss Medical', 'Mobile app · Google Play', 'https://play.google.com/store/apps/details?id=com.swissmedical.clientes', 'images/swiss-app.png', play)
+    ];
+
+    const v = this.state.view;
+    const c = v >= 0 ? projects[v] : null;
+    let blocks = [];
+    if (c) {
+      const texts = [{ isText: true, label: 'The challenge', body: c.challenge }];
+      if (c.solutionShown && c.solution) texts.push({ isSolution: true, label: 'What I designed', items: c.solution });
+      if (c.thinking && c.thinking.length) texts.push({ isThinking: true, label: 'Design thinking', items: c.thinking });
+      if (c.impact && c.impact.length) texts.push({ isImpact: true, label: 'Impact', items: c.impact });
+      if (c.roleShown && c.role) texts.push({ isRole: true, label: 'My role & idea', items: c.role });
+      if (c.note) texts.push({ isText: true, label: 'AI-augmented workflow', body: c.note });
+      const imgs = (c.shots || []).filter((s) => s.img).map((s) => {
+        const o = this.state.orient[s.img] || (c.wideShots ? 'h' : 'v');
+        return { img: s.img, label: s.label, isBleed: !!s.long || o === 'h', isTall: !s.long && o === 'v', onLoad: (e) => this.onImgLoad(s.img, e) };
+      });
+      const n = Math.max(texts.length, imgs.length);
+      if (c.seamlessShots) { blocks = texts.concat(imgs.length ? [{ isStack: true, stack: imgs }] : []); } else
+      for (let i = 0; i < n; i++) { if (texts[i]) blocks.push(texts[i]); if (imgs[i]) blocks.push(imgs[i]); }
+    }
+
+    return {
+      curRef: this.curRef, dotRef: this.dotRef, labelRef: this.labelRef,
+      isHome: v < 0, isCase: v >= 0, c: c || {}, blocks, groups, onCta, projects, total: String(projects.filter((p) => !p.hidden).length).padStart(2, '0'),
+      T, goHome: this.goHome, heroRef: this.heroRef, flip, liveSites, liveApps,
+      flipClick: () => { if (this.state.flipped) this.setState({ contactOpen: true }); else this.setState({ flipped: true }); },
+      flipEnter: (e) => { if (e.pointerType === 'mouse') this.setState({ flipped: true }); },
+      flipLeave: (e) => { if (e.pointerType === 'mouse') this.setState({ flipped: false }); },
+      flipFocus: (e) => { let kb = false; try { kb = e.currentTarget.matches(':focus-visible'); } catch (x) {} if (kb) this.setState({ flipped: true }); }, flipBlur: () => this.setState({ flipped: false }),
+      menuOpen: this.state.menuOpen, contactOpen: this.state.contactOpen,
+      openMenu: () => this.setState({ menuOpen: true }), closeMenu: () => this.setState({ menuOpen: false }),
+      menuContact: () => this.setState({ menuOpen: false, contactOpen: true }),
+      openContact: () => this.setState({ contactOpen: true }), closeContact: () => this.setState({ contactOpen: false }),
+      stop: (e) => e.stopPropagation(),
+      contacts: [
+        { k: 'Phone', v: '+45 91 92 79 80', url: 'tel:+4591927980' },
+        { k: 'LinkedIn', v: 'olga-tsurika', url: 'https://www.linkedin.com/in/olga-tsurika/' },
+        { k: 'WhatsApp', v: '+45 91 92 79 80', url: 'https://wa.me/4591927980' },
+        { k: 'Telegram', v: '+45 91 92 79 80', url: 'https://t.me/+4591927980' },
+        { k: 'Email', v: 'olhatsurika@gmail.com', url: 'mailto:olhatsurika@gmail.com' }
+      ],
+      langs: [['en', 'EN'], ['dk', 'DK'], ['ua', 'UA']].map(([code, label]) => ({ label, color: this.state.lang === code ? '#F2F1EF' : '#6E6D6A', set: () => this.setLang(code) })),
+      webLinks: [
+        { title: 'Kortical', domain: 'kortical.com', url: 'https://kortical.com' },
+        { title: 'The Quantum Insider', domain: 'thequantuminsider.com', url: 'https://thequantuminsider.com' },
+        { title: 'Instalettings', domain: 'instalettings.co', url: 'https://instalettings.co' },
+        { title: 'Kochi Dubai', domain: 'kochidubai.com', url: 'https://kochidubai.com' }
+      ],
+      skills: ['AI Product Development', 'iOS Development', 'MVP Development', 'Claude', 'ChatGPT', 'Cursor', 'GitHub Copilot', 'VS Code', 'Vercel', 'OpenAI APIs', 'Prompt Engineering', 'AI Agents', 'Automation', 'Swift', 'React', 'Next.js', 'API Integration', 'Cloud Deployment', 'Product Strategy', 'UI/UX', 'Agile']
+    };
+  }
+}
+</script>
+</body>
+</html>
