@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Olha Tsurika — AI Architect & Senior Product Designer</title>
+<meta name="description" content="Olha Tsurika designs how AI is built into products and workflows: UX/UI, websites, apps and design systems. 15+ years in design, based in Aarhus, Denmark.">
+<meta name="theme-color" content="#EFEEE9">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Olha Tsurika — AI Architect & Senior Product Designer">
+<meta property="og:description" content="Olha Tsurika designs how AI is built into products and workflows: UX/UI, websites, apps and design systems. 15+ years in design, based in Aarhus, Denmark.">
+<meta property="og:image" content="assets/img/og/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Olha Tsurika — AI Architect & Senior Product Designer">
+<meta name="twitter:description" content="Olha Tsurika designs how AI is built into products and workflows: UX/UI, websites, apps and design systems. 15+ years in design, based in Aarhus, Denmark.">
+<meta name="twitter:image" content="assets/img/og/og-image.jpg">
+<link rel="icon" href="assets/icons/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<script defer src="assets/js/main.js"></script>
+</head>
+<body>
+<x-dc>
+<div id="top" style="background:var(--bg);color:var(--ink);font-family:var(--font-sans);min-height:100vh;overflow-x:hidden">
+
+  <div ref="{{ curRef }}" aria-hidden="true" style="display:none;position:fixed;left:0;top:0;z-index:9999;pointer-events:none;will-change:transform">
+    <span ref="{{ crossRef }}" style="position:absolute;left:0;top:0;width:0;height:0;opacity:0;transform:scale(1.4);transition:opacity .2s ease,transform .35s cubic-bezier(.16,1,.3,1)">
+      <span style="position:absolute;left:-14px;top:-14px;width:7px;height:7px;border-left:1px solid var(--accent);border-top:1px solid var(--accent)"></span>
+      <span style="position:absolute;left:7px;top:-14px;width:7px;height:7px;border-right:1px solid var(--accent);border-top:1px solid var(--accent)"></span>
+      <span style="position:absolute;left:-14px;top:7px;width:7px;height:7px;border-left:1px solid var(--accent);border-bottom:1px solid var(--accent)"></span>
+      <span style="position:absolute;left:7px;top:7px;width:7px;height:7px;border-right:1px solid var(--accent);border-bottom:1px solid var(--accent)"></span>
+    </span>
+    <div ref="{{ dotRef }}" style="position:absolute;left:0;top:0;width:9px;height:9px;transform:translate(-50%,-50%);background:var(--accent);border:1px solid transparent;display:flex;align-items:center;justify-content:center;transition:width .35s cubic-bezier(.16,1,.3,1),height .35s cubic-bezier(.16,1,.3,1),background .25s ease,border-color .25s ease">
+      <span ref="{{ labelRef }}" style="font-family:var(--font-mono);letter-spacing:0.04em;text-transform:uppercase;font-size:10px;font-weight:500;color:var(--ink);white-space:nowrap;opacity:0;transition:opacity .2s ease">[{{ T.cursor_more }}]</span>
+    </div>
+    <span ref="{{ coordRef }}" style="position:absolute;left:14px;top:12px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.04em;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums;transition:transform .35s cubic-bezier(.16,1,.3,1)">X:0000PX / Y:0000PX</span>
+  </div>
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <div>
+      <nav ref="{{ navRef }}" class="q-nav" aria-label="Main" style="position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(var(--bg-rgb),0.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:24px;padding:0 var(--pad);height:64px">
+        <div style="display:flex;align-items:center;gap:16px;min-width:0">
+          <a href="#top" aria-label="{{ T.aria_top }}" style="display:flex;align-items:center;gap:10px;min-height:44px;font-weight:500;font-size:20px;line-height:1;letter-spacing:-0.04em;white-space:nowrap"><img src="assets/img/me/olha-avatar.webp" alt="" width="36" height="39" decoding="async" style="display:block;width:36px;height:auto;flex-shrink:0"><span>Olha Tsurika<span style="color:var(--accent)">.</span></span></a>
+          <span class="q-hide-m" title="{{ T.ukraineBadge }}" style="display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute);white-space:nowrap"><span aria-hidden="true" style="display:flex;flex-direction:column;width:10px;height:10px;flex-shrink:0"><span style="flex:1;background:var(--ua-blue)"></span><span style="flex:1;background:var(--ua-yellow)"></span></span><span class="q-badge-t">{{ T.ukraineBadge }}</span></span>
+        </div>
+        <div class="q-nl" style="display:flex;align-items:center;gap:clamp(16px,2vw,32px)">
+          <a href="#work" data-nav="work" class="q-roll" style="display:flex;align-items:center;gap:6px;min-height:44px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap"><span class="q-nd" aria-hidden="true"></span><span class="q-rl"><span>{{ T.navWork }}</span><span aria-hidden="true">{{ T.navWork }}</span></span></a>
+          <a href="#about" data-nav="about" class="q-roll" style="display:flex;align-items:center;gap:6px;min-height:44px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap"><span class="q-nd" aria-hidden="true"></span><span class="q-rl"><span>{{ T.navAbout }}</span><span aria-hidden="true">{{ T.navAbout }}</span></span></a>
+          <a href="#services" data-nav="services" class="q-roll" style="display:flex;align-items:center;gap:6px;min-height:44px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap"><span class="q-nd" aria-hidden="true"></span><span class="q-rl"><span>{{ T.nav_services }}</span><span aria-hidden="true">{{ T.nav_services }}</span></span></a>
+          <a href="#contact" data-nav="contact" class="q-roll" style="display:flex;align-items:center;gap:6px;min-height:44px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap"><span class="q-nd" aria-hidden="true"></span><span class="q-rl"><span>{{ T.nav_contact2 }}</span><span aria-hidden="true">{{ T.nav_contact2 }}</span></span></a>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:flex-end;gap:12px">
+          <button class="q-nhm" onClick="{{ toggleTheme }}" role="switch" aria-checked="{{ isDark }}" aria-label="{{ T.theme_aria }}" style="position:relative;flex-shrink:0;width:64px;height:40px;display:flex;align-items:center;border:1px solid var(--line2);transition:border-color .25s ease" style-hover="border-color:var(--ink)">
+            <span aria-hidden="true" style="position:absolute;top:3px;left:3px;width:28px;height:32px;background:var(--ink);transform:{{ themeKnob }};transition:transform .45s cubic-bezier(.77,0,.18,1)"></span>
+            <span aria-hidden="true" style="position:relative;width:31px;display:flex;justify-content:center;color:{{ sunC }}"><svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="2.6" style="fill:none;stroke:currentColor;stroke-width:1.2"></circle><path d="M7 .8V2.4M7 11.6V13.2M.8 7H2.4M11.6 7H13.2M2.6 2.6L3.7 3.7M10.3 10.3L11.4 11.4M2.6 11.4L3.7 10.3M10.3 3.7L11.4 2.6" style="fill:none;stroke:currentColor;stroke-width:1.2"></path></svg></span>
+            <span aria-hidden="true" style="position:relative;width:31px;display:flex;justify-content:center;color:{{ moonC }}"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M11.8 8.6A5 5 0 0 1 5.4 2.2a5 5 0 1 0 6.4 6.4z" style="fill:none;stroke:currentColor;stroke-width:1.2"></path></svg></span>
+          </button>
+          <div class="q-nhm" style="position:relative">
+            <button onClick="{{ toggleLang }}" aria-haspopup="listbox" aria-expanded="{{ langOpen }}" aria-label="{{ T.lang_aria }}" style="min-height:40px;display:flex;align-items:center;gap:10px;padding:0 12px;border:1px solid var(--line2);font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;font-weight:500;transition:border-color .25s ease" style-hover="border-color:var(--ink)"><span>{{ curLang }}</span><svg width="9" height="6" viewBox="0 0 9 6" aria-hidden="true" style="transform:{{ langArrow }};transition:transform .3s var(--ease)"><path d="M0.5 0.8L4.5 4.8L8.5 0.8" style="fill:none;stroke:currentColor;stroke-width:1.2"></path></svg></button>
+            <sc-if value="{{ langOpen }}" hint-placeholder-val="{{ false }}">
+              <div role="listbox" aria-label="{{ T.lang_aria }}" class="q-sheet2" style="position:absolute;right:0;top:calc(100% + 6px);min-width:200px;background:var(--bg);border:1px solid var(--line2);padding:4px;display:flex;flex-direction:column;z-index:70">
+                <sc-for list="{{ langOpts }}" as="lg" hint-placeholder-count="3">
+                  <button role="option" aria-selected="{{ lg.on }}" onClick="{{ lg.pick }}" lang="{{ lg.html }}" style="min-height:40px;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:0 10px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:{{ lg.color }};transition:background .2s ease" style-hover="background:var(--hover)"><span>{{ lg.label }}</span><span style="text-transform:none;letter-spacing:0;color:var(--mute)">{{ lg.name }}</span></button>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+          <button class="q-ncta q-roll" onClick="{{ openContact }}" style="display:flex;align-items:center;gap:10px;min-height:40px;padding:0 16px;background:var(--accent);color:var(--on-accent);font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;font-weight:500;white-space:nowrap;transition:background .2s ease" style-hover="background:var(--accent-hover)"><span aria-hidden="true" style="width:5px;height:5px;background:var(--on-accent)"></span><span class="q-rl"><span>{{ T.cta_touch }}</span><span aria-hidden="true">{{ T.cta_touch }}</span></span></button>
+          <button class="q-nm q-roll" onClick="{{ openMenu }}" aria-label="{{ T.menu }}" style="min-height:44px;align-items:center;padding:0 4px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;font-weight:500">[<span class="q-rl"><span>{{ T.menu }}</span><span aria-hidden="true">{{ T.menu }}</span></span>]</button>
+        </div>
+        <span ref="{{ progRef }}" aria-hidden="true" style="position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:0 50%"></span>
+      </nav>
+
+      <main>
+      <header data-screen-label="01 Hero" class="q-hero" style="position:relative;overflow:hidden;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;gap:48px;padding:120px var(--pad) clamp(96px,8vw,128px)">
+        <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden">
+          <div ref="{{ bg1Ref }}" style="position:absolute;inset:0;will-change:transform">
+            <div ref="{{ aiRef }}" class="q-ai" style="position:absolute;right:var(--pad);top:clamp(92px,13vh,150px);width:min(1040px,68vw);aspect-ratio:16 / 10;opacity:0.9"></div>
+          </div>
+          <div style="position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,rgba(var(--bg-rgb),0.75) 26%,rgba(var(--bg-rgb),0) 46%)"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(0deg,var(--bg) 0%,rgba(var(--bg-rgb),0.6) 22%,rgba(var(--bg-rgb),0) 48%)"></div>
+        </div>
+        <div class="q-eb" style="position:relative;z-index:1;display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute)"><span style="color:var(--ink)">{{ T.hero_eb }}</span><span>{{ T.hero_loc }}</span></div>
+        <div class="q-g" style="position:relative;z-index:1;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:48px;align-items:end">
+          <div style="grid-column:1 / 9;min-width:0">
+            <div ref="{{ heroRef }}" style="will-change:transform">
+              <h1 class="q-hl" aria-label="{{ T.hero_h }}" style="margin-left:-0.04em;font-weight:500;font-size:clamp(40px,6.2vw,112px);line-height:0.9;letter-spacing:-0.05em">
+                <span style="display:block;overflow:hidden;padding-bottom:0.2em;margin-bottom:-0.14em"><span class="q-mi" style="transition-delay:0ms">{{ T.hero_l1 }}</span></span>
+                <span style="display:block;overflow:hidden;padding-bottom:0.2em;margin-bottom:-0.14em"><span class="q-mi" style="transition-delay:120ms">{{ T.hero_l2 }}</span></span>
+                <span style="display:block;overflow:hidden;padding-bottom:0.2em;margin-bottom:-0.14em"><span class="q-mi" style="transition-delay:240ms">{{ T.hero_l3 }}</span></span>
+              </h1>
+            </div>
+            <p class="q-lines" data-lines="{{ T.hero_sub }}" style="margin-top:28px;font-size:clamp(17px,1.4vw,21px);line-height:1.45;color:var(--body);max-width:56ch"></p>
+            <div class="q-rev q-hb" style="margin-top:40px;display:flex;flex-wrap:wrap;gap:12px">
+              <a href="#work" data-btn style="display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 28px;white-space:nowrap;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;font-weight:500;transition:background .2s ease,color .2s ease,border-color .2s ease;background:var(--accent);color:var(--on-accent);border:1px solid var(--accent)" style-hover="background:var(--accent-hover);border-color:var(--accent-hover);color:var(--on-accent)">{{ T.cta_work }}</a>
+              <button onClick="{{ openContact }}" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 28px;white-space:nowrap;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;font-weight:500;transition:background .2s ease,color .2s ease,border-color .2s ease;background:transparent;color:var(--ink);border:1px solid var(--ink)" style-hover="background:var(--ink);border-color:var(--ink);color:var(--bg)">{{ T.cta_touch }}</button>
+            </div>
+          </div>
+        </div>
+        <div class="q-eb" style="position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:1;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute);white-space:nowrap">[{{ T.hint_scroll }}]</div>
+      </header>
+
+      <section id="work" data-screen-label="02 Selected work" style="overflow-x:clip;margin-top:clamp(120px,14vw,224px);border-top:1px solid var(--line);padding:clamp(80px,10vw,160px) clamp(16px,2.5vw,40px) 0">
+        <div class="q-g" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:20px;align-items:end">
+          <h2 class="q-ht" style="position:relative;grid-column:1 / 9;font-weight:500;font-size:clamp(40px,6.2vw,112px);line-height:0.92;letter-spacing:-0.04em;text-transform:uppercase"><span class="q-hsrc" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap">{{ T.work_h }}</span><span class="q-hanim" aria-hidden="true"></span></h2>
+          <div class="q-eb" style="grid-column:9 / 13;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute);padding-bottom:10px">{{ T.work_eb }}</div>
+        </div>
+        <div class="q-tabw" style="margin-top:clamp(48px,6vw,96px);position:relative;border-bottom:1px solid var(--line)"><div ref="{{ tabsRef }}" class="q-tabs" role="tablist" aria-label="{{ T.aria_filter }}" style="position:relative;display:flex;flex-wrap:nowrap;gap:clamp(24px,4vw,56px);overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-behavior:smooth">
+          <sc-for list="{{ workTabs }}" as="tb" hint-placeholder-count="4">
+            <button class="q-tab" data-on="{{ tb.on }}" role="tab" aria-selected="{{ tb.on }}" onClick="{{ tb.pick }}" style="flex-shrink:0;min-height:44px;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:0 0 14px;color:{{ tb.color }};transition:color .3s ease">
+              <span class="q-tcnt" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute)">{{ tb.count }}</span>
+              <span class="q-rl" style="font-weight:500;font-size:clamp(18px,1.7vw,26px);letter-spacing:-0.03em;white-space:nowrap;height:1.15em;line-height:1.15em"><span>{{ tb.title }}</span><span aria-hidden="true">{{ tb.title }}</span></span>
+            </button>
+          </sc-for>
+          <span class="q-tind" aria-hidden="true" style="position:absolute;left:0;bottom:0;height:2px;width:1px;background:var(--accent);transform-origin:0 50%;pointer-events:none"></span>
+        </div><span class="q-tfade" aria-hidden="true" style="position:absolute;right:0;top:0;bottom:1px;width:48px;pointer-events:none;background:linear-gradient(90deg,rgba(var(--bg-rgb),0),var(--bg))"></span></div>
+        <div class="q-g3 q-wgrid" data-tab="{{ tabKey }}" key="{{ tabKey }}" style="margin-top:clamp(40px,5vw,72px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px;row-gap:clamp(56px,6vw,96px)">
+          <sc-for list="{{ workList }}" as="p" hint-placeholder-count="6">
+            <article class="q-card" style="min-width:0;display:flex;flex-direction:column">
+              <sc-if value="{{ p.isCase }}" hint-placeholder-val="{{ true }}">
+                <button data-case onClick="{{ p.open }}" aria-label="{{ p.aria }}" style="display:block;width:100%">
+                  <span style="display:block;width:100%;aspect-ratio:4 / 3;overflow:hidden;outline:1px solid var(--line);outline-offset:-1px;background:var(--bg2)">
+                    <img class="q-cimg" src="{{ p.cover }}" alt="{{ p.alt }}" width="1200" height="900" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:{{ p.focus }}">
+                  </span>
+                </button>
+              </sc-if>
+              <div style="margin-top:18px;display:flex;justify-content:space-between;align-items:flex-start;gap:24px">
+                <h3 style="font-weight:500;font-size:clamp(20px,1.7vw,28px);line-height:1.1;letter-spacing:-0.03em">{{ p.head }}</h3>
+                <span style="flex-shrink:0;padding-top:0.4em;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute);text-align:right">{{ p.label }}</span>
+              </div>
+              <p style="margin-top:10px;font-size:15px;line-height:1.45;color:var(--body);max-width:60ch;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{{ p.desc }}</p>
+              <ul aria-label="{{ T.tags_aria }}" style="margin-top:16px;list-style:none;display:flex;flex-wrap:wrap;gap:6px">
+                <sc-for list="{{ p.tags }}" as="tg" hint-placeholder-count="3">
+                  <li style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;font-size:10px;padding:6px 9px;border:1px solid var(--line2);color:var(--ink)">{{ tg }}</li>
+                </sc-for>
+              </ul>
+              <div style="margin-top:auto;padding-top:20px;display:flex;flex-wrap:wrap;gap:10px">
+                <sc-if value="{{ p.isCase }}" hint-placeholder-val="{{ true }}">
+                  <button onClick="{{ p.open }}" style="min-height:44px;display:flex;align-items:center;padding:0 16px;background:var(--ink);color:var(--bg);font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;font-weight:500;transition:background .25s ease,color .25s ease" style-hover="background:var(--accent);color:var(--on-accent)">{{ T.view_case }} →</button>
+                </sc-if>
+                <sc-if value="{{ p.live }}" hint-placeholder-val="{{ false }}">
+                  <a href="{{ p.live.url }}" target="_blank" rel="noopener" aria-label="{{ p.live.aria }}" data-btn style="min-height:44px;display:flex;align-items:center;padding:0 16px;border:1px solid var(--line2);font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;font-weight:500;transition:border-color .25s ease" style-hover="border-color:var(--ink)">{{ p.live.label }}</a>
+                </sc-if>
+              </div>
+            </article>
+          </sc-for>
+        </div>
+      </section>
+
+      <section id="live" data-screen-label="03 Live projects" style="overflow-x:clip;margin-top:clamp(120px,14vw,224px);border-top:1px solid var(--line);padding:clamp(80px,10vw,160px) clamp(16px,2.5vw,40px) 0">
+        <div class="q-g" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:20px;align-items:end">
+          <h2 class="q-ht" style="position:relative;grid-column:1 / 9;font-weight:500;font-size:clamp(40px,6.2vw,112px);line-height:0.92;letter-spacing:-0.04em;text-transform:uppercase"><span class="q-hsrc" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap">{{ T.live_h }}</span><span class="q-hanim" aria-hidden="true"></span></h2>
+          <div class="q-eb" style="grid-column:9 / 13;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute);padding-bottom:10px">{{ T.live_eb }}</div>
+        </div>
+        <div style="margin-top:clamp(48px,6vw,96px);border-top:1px solid var(--line)">
+          <sc-for list="{{ liveList }}" as="l" hint-placeholder-count="9">
+            <a class="q-lrow" href="{{ l.url }}" target="_blank" rel="noopener" aria-label="{{ l.aria }}" style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,0.8fr) auto;align-items:baseline;gap:clamp(16px,3vw,48px);padding:22px 0;min-height:44px;border-bottom:1px solid var(--line)">
+              <span style="font-weight:500;font-size:clamp(24px,3vw,48px);line-height:1;letter-spacing:-0.04em">{{ l.title }}</span>
+              <span class="q-ldom" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute)">{{ l.domain }}</span>
+              <span class="q-ltyp" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute);text-align:right">{{ l.type }}</span>
+              <span class="q-larr" aria-hidden="true" style="font-size:clamp(20px,2vw,32px);line-height:1">↗</span>
+            </a>
+          </sc-for>
+        </div>
+      </section>
+
+      <section id="about" data-screen-label="04 About" style="overflow-x:clip;margin-top:clamp(120px,14vw,224px);border-top:1px solid var(--line);padding:clamp(80px,10vw,160px) clamp(16px,2.5vw,40px) 0">
+        <h2 class="q-ht" style="position:relative;font-weight:500;font-size:clamp(40px,6.2vw,112px);line-height:0.92;letter-spacing:-0.04em;text-transform:uppercase"><span class="q-hsrc" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap">{{ T.navAbout }}</span><span class="q-hanim" aria-hidden="true"></span></h2>
+        <div ref="{{ inkRef }}" class="q-me" style="position:relative;margin-top:clamp(48px,6vw,96px);border-top:1px solid var(--line);padding-top:20px">
+          <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute)"><span class="q-hide-m">[{{ T.hint_hover }}]</span><span>Olha Tsurika · {{ T.hero_loc }}</span></div>
+          <div style="position:relative;margin-top:clamp(24px,3vw,48px)">
+            <div class="q-ink-base" aria-hidden="true"><div style="display:flex;align-items:center;gap:clamp(20px,3vw,56px)">
+              <img src="assets/img/me/olha-about.webp" alt="" aria-hidden="true" width="1200" height="1200" decoding="async" style="flex-shrink:0;width:clamp(120px,22vw,400px);height:auto;display:block">
+              <span style="min-width:0;font-weight:500;font-size:clamp(48px,10.2vw,196px);line-height:0.84;letter-spacing:-0.055em;text-transform:uppercase;white-space:nowrap;color:var(--ink)">Olha<br>Tsurika<span style="color:var(--accent)">.</span></span>
+            </div></div>
+            <div data-ink-top style="position:absolute;left:0;top:0;right:0;bottom:0;clip-path:circle(0px at 50% 50%)"><div style="display:flex;align-items:center;gap:clamp(20px,3vw,56px)">
+              <img src="assets/img/me/olha-about.webp" alt="Portrait of Olha Tsurika" width="1200" height="1200" decoding="async" style="flex-shrink:0;width:clamp(120px,22vw,400px);height:auto;display:block">
+              <span style="min-width:0;font-weight:500;font-size:clamp(48px,10.2vw,196px);line-height:0.84;letter-spacing:-0.055em;text-transform:uppercase;white-space:nowrap;color:var(--ink)">Olha<br>Tsurika<span style="color:var(--accent)">.</span></span>
+            </div></div>
+            <span data-ink-ring aria-hidden="true" style="position:absolute;left:0;top:0;width:0;height:0;border:1px solid var(--accent);border-radius:50%;pointer-events:none;opacity:0"></span>
+          </div>
+        </div>
+        <div class="q-g" style="margin-top:clamp(56px,7vw,112px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:32px">
+          <div class="q-eb" style="grid-column:1 / 4;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute);padding-top:10px">{{ T.hero_eb }}</div>
+          <p class="q-lines" data-lines="{{ T.about_story }}" style="grid-column:4 / 13;font-size:clamp(24px,2.5vw,42px);line-height:1.12;letter-spacing:-0.03em"></p>
+        </div>
+        <div class="q-g" style="margin-top:clamp(64px,8vw,128px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:48px">
+          <div class="q-eb" style="grid-column:1 / 4;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute);padding-top:6px">{{ T.approach }}</div>
+          <div class="q-g2" style="grid-column:4 / 13;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px;row-gap:48px">
+            <div class="q-rev" style="border-top:1px solid var(--line);padding-top:20px">
+              <h3 style="font-weight:500;font-size:clamp(24px,2.2vw,36px);line-height:1;letter-spacing:-0.04em;text-wrap:balance">{{ T.aboutHeading1 }}</h3>
+              <p style="margin-top:18px;font-size:17px;line-height:1.5;color:var(--body);text-wrap:pretty">{{ T.aboutP1 }}</p>
+            </div>
+            <div class="q-rev" style="border-top:1px solid var(--line);padding-top:20px">
+              <h3 style="font-weight:500;font-size:clamp(24px,2.2vw,36px);line-height:1;letter-spacing:-0.04em;text-wrap:balance">{{ T.aboutHeading2 }}</h3>
+              <p style="margin-top:18px;font-size:17px;line-height:1.5;color:var(--body);text-wrap:pretty">{{ T.aboutP2 }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="q-g" style="margin-top:clamp(80px,10vw,160px);border-top:1px solid var(--line);padding-top:24px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:24px">
+          <div style="grid-column:1 / 4;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute)">{{ T.tools_h }}</div>
+          <ul class="q-rev" style="grid-column:4 / 13;list-style:none;display:flex;flex-wrap:wrap;column-gap:14px;row-gap:6px">
+            <sc-for list="{{ toolsList }}" as="s" hint-placeholder-count="7">
+              <li style="font-weight:500;font-size:clamp(28px,3.4vw,60px);line-height:1.05;letter-spacing:-0.04em;white-space:nowrap">{{ s }}<span aria-hidden="true" style="color:var(--accent)"> /</span></li>
+            </sc-for>
+          </ul>
+        </div>
+        <div class="q-g" style="margin-top:56px;border-top:1px solid var(--line);padding-top:24px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:24px">
+          <div style="grid-column:1 / 4;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute)">{{ T.skillsLabel }}</div>
+          <ul class="q-rev" style="grid-column:4 / 13;list-style:none;display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ skills }}" as="s" hint-placeholder-count="12">
+              <li style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;padding:8px 12px;border:1px solid var(--line2)">{{ s }}</li>
+            </sc-for>
+          </ul>
+        </div>
+        <div class="q-g" style="margin-top:56px;border-top:1px solid var(--line);padding-top:24px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:24px">
+          <div style="grid-column:1 / 4;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute)">{{ T.lang_h }}</div>
+          <ul class="q-rev" style="grid-column:4 / 13;list-style:none;display:flex;flex-wrap:wrap;gap:12px clamp(20px,2.4vw,40px)">
+            <sc-for list="{{ T.langs_v }}" as="lv" hint-placeholder-count="4">
+              <li style="font-size:clamp(17px,1.4vw,21px);line-height:1.2;letter-spacing:-0.01em">{{ lv }}</li>
+            </sc-for>
+          </ul>
+        </div>
+        <div style="margin-top:clamp(96px,12vw,176px)">
+          <h3 class="q-slide" style="font-weight:500;font-size:clamp(32px,4vw,72px);line-height:0.92;letter-spacing:-0.04em;text-transform:uppercase;margin-bottom:clamp(32px,4vw,64px)">{{ T.experienceLabel }}</h3>
+          <sc-for list="{{ T.experience }}" as="x" hint-placeholder-count="3">
+            <div class="q-g q-rev" style="border-top:1px solid var(--line);padding:32px 0 40px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:16px">
+              <div style="grid-column:1 / 4;display:flex;flex-direction:column;gap:6px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute)">
+                <span style="color:var(--ink)">{{ x.period }}</span><span>{{ x.dur }}</span><span>{{ x.place }}</span>
+              </div>
+              <div style="grid-column:4 / 9">
+                <h4 style="font-weight:500;font-size:clamp(24px,2.6vw,44px);line-height:0.98;letter-spacing:-0.04em;text-wrap:balance">{{ x.role }}</h4>
+                <div style="margin-top:14px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;font-weight:500;color:var(--accent-ink)">{{ x.company }}</div>
+              </div>
+              <p style="grid-column:9 / 13;font-size:16px;line-height:1.5;color:var(--body);text-wrap:pretty">{{ x.desc }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section id="process" data-screen-label="05 How I work" style="overflow-x:clip;margin-top:clamp(120px,14vw,224px);border-top:1px solid var(--line);padding:clamp(80px,10vw,160px) clamp(16px,2.5vw,40px) 0">
+        <div class="q-g" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:20px;align-items:end">
+          <h2 class="q-ht" style="position:relative;grid-column:1 / 9;font-weight:500;font-size:clamp(40px,6.2vw,112px);line-height:0.92;letter-spacing:-0.04em;text-transform:uppercase"><span class="q-hsrc" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap">{{ T.how_h }}</span><span class="q-hanim" aria-hidden="true"></span></h2>
+          <div class="q-eb" style="grid-column:9 / 13;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute);padding-bottom:10px">{{ T.how_eb }}</div>
+        </div>
+        <ol class="q-g4 q-stg" style="margin-top:clamp(56px,7vw,112px);list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:12px;row-gap:12px">
+          <li class="q-why q-stp" style="position:relative;min-width:0;display:flex;flex-direction:column;gap:20px;padding:clamp(18px,1.6vw,26px);border:1px solid var(--line);background:var(--bg)">
+              <span aria-hidden="true" class="q-why-c" style="position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;border-right:1px solid var(--accent);border-bottom:1px solid var(--accent)"></span>
+              <svg class="q-wi q-i-res" viewBox="0 0 160 96" aria-hidden="true" style="display:block;width:100%;max-width:200px;height:auto;overflow:visible"><path class="q-wl " pathLength="1" d="M28 10H84V86H28Z"></path><path class="q-wl q-wd" pathLength="1" d="M38 24H72M38 34H66M38 44H74M38 54H58M38 64H68"></path><g class="q-mg"><circle class="q-wl" pathLength="1" cx="104" cy="48" r="16"></circle><path class="q-wl " pathLength="1" d="M115.5 59.5L134 78"></path><circle class="q-wf q-mgd" cx="104" cy="48" r="3"></circle></g><text class="q-wt" x="98" y="92">FIND</text></svg>
+              <span style="margin-top:8px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent-ink)">{{ st1.n }}</span>
+              <h3 style="font-weight:500;font-size:clamp(24px,2.2vw,36px);line-height:1;letter-spacing:-0.04em;text-wrap:balance">{{ st1.h }}</h3>
+              <p style="font-size:16px;line-height:1.5;color:var(--body);text-wrap:pretty">{{ st1.t }}</p>
+            </li>
+            <li class="q-why q-stp" style="position:relative;min-width:0;display:flex;flex-direction:column;gap:20px;padding:clamp(18px,1.6vw,26px);border:1px solid var(--line);background:var(--bg)">
+              <span aria-hidden="true" class="q-why-c" style="position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;border-right:1px solid var(--accent);border-bottom:1px solid var(--accent)"></span>
+              <svg class="q-wi q-i-con" viewBox="0 0 160 96" aria-hidden="true" style="display:block;width:100%;max-width:200px;height:auto;overflow:visible"><g transform="translate(30 18)"><g class="q-w2w" style="--i:-1"><rect class="q-wl q-w2f" pathLength="1" x="0" y="0" width="58" height="40"></rect><path class="q-wl " pathLength="1" d="M0 9H58"></path><path class="q-wl q-wd" pathLength="1" d="M7 18H36M7 25H46M7 32H26"></path></g></g><g transform="translate(50 28)"><g class="q-w2w" style="--i:0"><rect class="q-wl q-w2f" pathLength="1" x="0" y="0" width="58" height="40"></rect><path class="q-wl " pathLength="1" d="M0 9H58"></path><path class="q-wl q-wd" pathLength="1" d="M7 18H36M7 25H46M7 32H26"></path></g></g><g transform="translate(70 38)"><g class="q-w2w" style="--i:1"><rect class="q-wl q-w2f" pathLength="1" x="0" y="0" width="58" height="40"></rect><path class="q-wl " pathLength="1" d="M0 9H58"></path><path class="q-wl q-wd" pathLength="1" d="M7 18H36M7 25H46M7 32H26"></path></g></g><path class="q-wl q-wacc q-spk" pathLength="1" d="M136 8V30M125 19H147M129 12L143 26M143 12L129 26"></path><text class="q-wt" x="122" y="44">AI</text></svg>
+              <span style="margin-top:8px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent-ink)">{{ st2.n }}</span>
+              <h3 style="font-weight:500;font-size:clamp(24px,2.2vw,36px);line-height:1;letter-spacing:-0.04em;text-wrap:balance">{{ st2.h }}</h3>
+              <p style="font-size:16px;line-height:1.5;color:var(--body);text-wrap:pretty">{{ st2.t }}</p>
+            </li>
+            <li class="q-why q-stp" style="position:relative;min-width:0;display:flex;flex-direction:column;gap:20px;padding:clamp(18px,1.6vw,26px);border:1px solid var(--line);background:var(--bg)">
+              <span aria-hidden="true" class="q-why-c" style="position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;border-right:1px solid var(--accent);border-bottom:1px solid var(--accent)"></span>
+              <svg class="q-wi q-i-ds" viewBox="0 0 160 96" aria-hidden="true" style="display:block;width:100%;max-width:200px;height:auto;overflow:visible"><rect class="q-w2-n" style="--k:0" x="22" y="14" width="18" height="18"></rect><rect class="q-w2-n" style="--k:1" x="46" y="14" width="18" height="18"></rect><rect class="q-w2-n" style="--k:2" x="70" y="14" width="18" height="18"></rect><circle class="q-w2-n" style="--k:3" cx="31" cy="55" r="9"></circle><rect class="q-w2-n" style="--k:4" x="46" y="46" width="42" height="18"></rect><path class="q-wl q-wd" pathLength="1" d="M22 80H88M22 77V83M88 77V83"></path><text class="q-wt" x="104" y="28">TOKENS</text><path class="q-wl q-wd" pathLength="1" d="M104 40H140M104 50H132M104 60H140M104 70H124"></path><text class="q-wt" x="44" y="94">8PX GRID</text></svg>
+              <span style="margin-top:8px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent-ink)">{{ st3.n }}</span>
+              <h3 style="font-weight:500;font-size:clamp(24px,2.2vw,36px);line-height:1;letter-spacing:-0.04em;text-wrap:balance">{{ st3.h }}</h3>
+              <p style="font-size:16px;line-height:1.5;color:var(--body);text-wrap:pretty">{{ st3.t }}</p>
+            </li>
+            <li class="q-why q-stp" style="position:relative;min-width:0;display:flex;flex-direction:column;gap:20px;padding:clamp(18px,1.6vw,26px);border:1px solid var(--line);background:var(--bg)">
+              <span aria-hidden="true" class="q-why-c" style="position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;border-right:1px solid var(--accent);border-bottom:1px solid var(--accent)"></span>
+              <svg class="q-wi q-i-ship" viewBox="0 0 160 96" aria-hidden="true" style="display:block;width:100%;max-width:200px;height:auto;overflow:visible"><path class="q-wl " pathLength="1" d="M14 62H146"></path><path class="q-wl q-wa q-w2-p" pathLength="1" d="M14 62H146"></path><rect class="q-w2-n" style="--k:0" x="19" y="57" width="10" height="10"></rect><rect class="q-w2-n" style="--k:1" x="59" y="57" width="10" height="10"></rect><rect class="q-w2-n" style="--k:2" x="99" y="57" width="10" height="10"></rect><rect class="q-w2-n" style="--k:3" x="135" y="57" width="10" height="10"></rect><g class="q-arw"><path class="q-wl q-wacc" pathLength="1" d="M140 46V12"></path><path class="q-wl q-wacc" pathLength="1" d="M132 20L140 12L148 20"></path></g><text class="q-wt" x="14" y="84">BUILD</text><text class="q-wt" x="58" y="84">TEST</text><text class="q-wt" x="114" y="84">LIVE ✓</text></svg>
+              <span style="margin-top:8px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent-ink)">{{ st4.n }}</span>
+              <h3 style="font-weight:500;font-size:clamp(24px,2.2vw,36px);line-height:1;letter-spacing:-0.04em;text-wrap:balance">{{ st4.h }}</h3>
+              <p style="font-size:16px;line-height:1.5;color:var(--body);text-wrap:pretty">{{ st4.t }}</p>
+            </li>
+        </ol>
+      </section>
+
+      <section id="services" data-screen-label="06 Services" style="overflow-x:clip;margin-top:clamp(120px,14vw,224px);border-top:1px solid var(--line);padding:clamp(80px,10vw,160px) clamp(16px,2.5vw,40px) 0">
+        <div class="q-g" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:20px;align-items:end">
+          <h2 class="q-ht" style="position:relative;grid-column:1 / 9;font-weight:500;font-size:clamp(40px,6.2vw,112px);line-height:0.92;letter-spacing:-0.04em;text-transform:uppercase"><span class="q-hsrc" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap">{{ T.svc_h }}</span><span class="q-hanim" aria-hidden="true"></span></h2>
+          <div class="q-eb" style="grid-column:9 / 13;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute);padding-bottom:10px">{{ T.svc_eb }}</div>
+        </div>
+        <div class="q-stg" style="margin-top:clamp(56px,7vw,112px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px">
+          <div class="q-svc q-why" style="position:relative;display:flex;flex-direction:column;min-width:0;background:var(--bg2);border:1px solid var(--line);padding:clamp(20px,2.2vw,32px)">
+              <span aria-hidden="true" class="q-why-c" style="position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;border-right:1px solid var(--accent);border-bottom:1px solid var(--accent)"></span>
+              <svg class="q-wi q-i-pd" viewBox="0 0 160 96" aria-hidden="true" style="display:block;width:100%;max-width:200px;height:auto;overflow:visible"><rect class="q-wl q-w2f" pathLength="1" x="60" y="4" width="40" height="88" rx="7"></rect><path class="q-wl " pathLength="1" d="M74 10H86"></path><g class="q-scr"><path class="q-wl q-wd" pathLength="1" d="M66 22H94V44H66Z"></path><path class="q-wl q-wd" pathLength="1" d="M66 52H88M66 58H82"></path><path class="q-wl q-wd" pathLength="1" d="M66 66H94V84H66Z"></path></g><circle class="q-tap" cx="80" cy="34" r="6"></circle><path class="q-wl q-wd" pathLength="1" d="M24 30H48M24 38H42"></path><path class="q-wl q-wd" pathLength="1" d="M112 58H136M112 66H130"></path><text class="q-wt" x="18" y="22">UX</text><text class="q-wt" x="112" y="50">UI</text></svg>
+              <span style="margin-top:24px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent-ink)">{{ sv1.n }}</span>
+              <h3 style="margin-top:16px;font-weight:500;font-size:clamp(26px,2.4vw,40px);line-height:0.96;letter-spacing:-0.04em;text-wrap:balance">{{ sv1.h }}</h3>
+              <p style="margin-top:14px;font-size:16px;line-height:1.5;color:var(--body);text-wrap:pretty">{{ sv1.t }}</p>
+              <ul style="margin-top:20px;list-style:none;display:flex;flex-direction:column;gap:8px">
+                <sc-for list="{{ sv1.b }}" as="b" hint-placeholder-count="3">
+                  <li style="display:grid;grid-template-columns:16px minmax(0,1fr);gap:8px;font-size:14px;line-height:1.35"><span aria-hidden="true" style="color:var(--accent-ink)">✓</span><span>{{ b }}</span></li>
+                </sc-for>
+              </ul>
+              <div style="margin-top:auto;padding-top:28px">
+                <button onClick="{{ openContact }}" style="height:48px;padding:0 24px;display:inline-flex;align-items:center;border:1px solid var(--ink);font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;font-weight:500;transition:background .2s ease,color .2s ease" style-hover="background:var(--ink);color:var(--bg)">{{ T.svc_cta }}</button>
+              </div>
+            </div>
+            <div class="q-svc q-why" style="position:relative;display:flex;flex-direction:column;min-width:0;background:var(--bg2);border:1px solid var(--line);padding:clamp(20px,2.2vw,32px)">
+              <span aria-hidden="true" class="q-why-c" style="position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;border-right:1px solid var(--accent);border-bottom:1px solid var(--accent)"></span>
+              <svg class="q-wi q-i-ai" viewBox="0 0 160 96" aria-hidden="true" style="display:block;width:100%;max-width:200px;height:auto;overflow:visible"><path class="q-wl q-wd" pathLength="1" d="M80 48L28 20"></path><path class="q-wl q-wd" pathLength="1" d="M80 48L132 20"></path><path class="q-wl q-wd" pathLength="1" d="M80 48L28 76"></path><path class="q-wl q-wd" pathLength="1" d="M80 48L132 76"></path><path class="q-wl q-wa q-ai-l" pathLength="1" d="M80 48L28 20"></path><path class="q-wl q-wa q-ai-l" pathLength="1" d="M80 48L132 20"></path><path class="q-wl q-wa q-ai-l" pathLength="1" d="M80 48L28 76"></path><path class="q-wl q-wa q-ai-l" pathLength="1" d="M80 48L132 76"></path><circle class="q-w2-n" style="--k:0" cx="28" cy="20" r="7"></circle><circle class="q-w2-n" style="--k:1" cx="132" cy="20" r="7"></circle><circle class="q-w2-n" style="--k:2" cx="28" cy="76" r="7"></circle><circle class="q-w2-n" style="--k:3" cx="132" cy="76" r="7"></circle><circle class="q-wf q-ai-c" cx="80" cy="48" r="13"></circle><text class="q-wt q-ai-t" x="74" y="51">AI</text></svg>
+              <span style="margin-top:24px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent-ink)">{{ sv2.n }}</span>
+              <h3 style="margin-top:16px;font-weight:500;font-size:clamp(26px,2.4vw,40px);line-height:0.96;letter-spacing:-0.04em;text-wrap:balance">{{ sv2.h }}</h3>
+              <p style="margin-top:14px;font-size:16px;line-height:1.5;color:var(--body);text-wrap:pretty">{{ sv2.t }}</p>
+              <ul style="margin-top:20px;list-style:none;display:flex;flex-direction:column;gap:8px">
+                <sc-for list="{{ sv2.b }}" as="b" hint-placeholder-count="3">
+                  <li style="display:grid;grid-template-columns:16px minmax(0,1fr);gap:8px;font-size:14px;line-height:1.35"><span aria-hidden="true" style="color:var(--accent-ink)">✓</span><span>{{ b }}</span></li>
+                </sc-for>
+              </ul>
+              <div style="margin-top:auto;padding-top:28px">
+                <button onClick="{{ openContact }}" style="height:48px;padding:0 24px;display:inline-flex;align-items:center;border:1px solid var(--ink);font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;font-weight:500;transition:background .2s ease,color .2s ease" style-hover="background:var(--ink);color:var(--bg)">{{ T.svc_cta }}</button>
+              </div>
+            </div>
+            <div class="q-svc q-why" style="position:relative;display:flex;flex-direction:column;min-width:0;background:var(--bg2);border:1px solid var(--line);padding:clamp(20px,2.2vw,32px)">
+              <span aria-hidden="true" class="q-why-c" style="position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;border-right:1px solid var(--accent);border-bottom:1px solid var(--accent)"></span>
+              <svg class="q-wi q-i-rd" viewBox="0 0 160 96" aria-hidden="true" style="display:block;width:100%;max-width:200px;height:auto;overflow:visible"><rect class="q-wl q-w2f" pathLength="1" x="18" y="8" width="124" height="80"></rect><path class="q-wl " pathLength="1" d="M18 18H142"></path><path class="q-wl q-wd" pathLength="1" d="M24 13H27M30 13H33M36 13H39"></path><path class="q-wl q-wd" pathLength="1" d="M26 28H70M26 36H62M26 44H72M26 52H58M26 60H70M26 68H64"></path><rect class="q-w2-n" style="--k:0" x="90" y="26" width="44" height="12"></rect><rect class="q-w2-n" style="--k:1" x="90" y="44" width="44" height="22"></rect><rect class="q-w2-n" style="--k:2" x="90" y="72" width="24" height="9"></rect><g class="q-sld"><path class="q-wl q-wacc" pathLength="1" d="M80 18V88"></path><circle class="q-wf" cx="80" cy="53" r="4"></circle></g><text class="q-wt" x="18" y="2">BEFORE / AFTER</text></svg>
+              <span style="margin-top:24px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent-ink)">{{ sv3.n }}</span>
+              <h3 style="margin-top:16px;font-weight:500;font-size:clamp(26px,2.4vw,40px);line-height:0.96;letter-spacing:-0.04em;text-wrap:balance">{{ sv3.h }}</h3>
+              <p style="margin-top:14px;font-size:16px;line-height:1.5;color:var(--body);text-wrap:pretty">{{ sv3.t }}</p>
+              <ul style="margin-top:20px;list-style:none;display:flex;flex-direction:column;gap:8px">
+                <sc-for list="{{ sv3.b }}" as="b" hint-placeholder-count="3">
+                  <li style="display:grid;grid-template-columns:16px minmax(0,1fr);gap:8px;font-size:14px;line-height:1.35"><span aria-hidden="true" style="color:var(--accent-ink)">✓</span><span>{{ b }}</span></li>
+                </sc-for>
+              </ul>
+              <div style="margin-top:auto;padding-top:28px">
+                <button onClick="{{ openContact }}" style="height:48px;padding:0 24px;display:inline-flex;align-items:center;border:1px solid var(--ink);font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;font-weight:500;transition:background .2s ease,color .2s ease" style-hover="background:var(--ink);color:var(--bg)">{{ T.svc_cta }}</button>
+              </div>
+            </div>
+            <div class="q-svc q-why" style="position:relative;display:flex;flex-direction:column;min-width:0;background:var(--bg2);border:1px solid var(--line);padding:clamp(20px,2.2vw,32px)">
+              <span aria-hidden="true" class="q-why-c" style="position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;border-right:1px solid var(--accent);border-bottom:1px solid var(--accent)"></span>
+              <svg class="q-wi q-i-sys" viewBox="0 0 160 96" aria-hidden="true" style="display:block;width:100%;max-width:200px;height:auto;overflow:visible"><text class="q-wt q-aa" x="16" y="46">Aa</text><rect class="q-w2-n" style="--k:0" x="66" y="18" width="16" height="16"></rect><rect class="q-w2-n" style="--k:1" x="88" y="18" width="16" height="16"></rect><rect class="q-w2-n" style="--k:2" x="110" y="18" width="16" height="16"></rect><rect class="q-wl q-w2f" pathLength="1" x="66" y="48" width="60" height="18"></rect><path class="q-wl q-wd" pathLength="1" d="M78 57H114"></path><rect class="q-wl q-w2f" pathLength="1" x="16" y="60" width="34" height="16" rx="8"></rect><circle class="q-wf q-knob" cx="25" cy="68" r="5"></circle><path class="q-wl q-wd" pathLength="1" d="M16 86H126M16 83V89M126 83V89"></path></svg>
+              <span style="margin-top:24px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent-ink)">{{ sv4.n }}</span>
+              <h3 style="margin-top:16px;font-weight:500;font-size:clamp(26px,2.4vw,40px);line-height:0.96;letter-spacing:-0.04em;text-wrap:balance">{{ sv4.h }}</h3>
+              <p style="margin-top:14px;font-size:16px;line-height:1.5;color:var(--body);text-wrap:pretty">{{ sv4.t }}</p>
+              <ul style="margin-top:20px;list-style:none;display:flex;flex-direction:column;gap:8px">
+                <sc-for list="{{ sv4.b }}" as="b" hint-placeholder-count="3">
+                  <li style="display:grid;grid-template-columns:16px minmax(0,1fr);gap:8px;font-size:14px;line-height:1.35"><span aria-hidden="true" style="color:var(--accent-ink)">✓</span><span>{{ b }}</span></li>
+                </sc-for>
+              </ul>
+              <div style="margin-top:auto;padding-top:28px">
+                <button onClick="{{ openContact }}" style="height:48px;padding:0 24px;display:inline-flex;align-items:center;border:1px solid var(--ink);font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;font-weight:500;transition:background .2s ease,color .2s ease" style-hover="background:var(--ink);color:var(--bg)">{{ T.svc_cta }}</button>
+              </div>
+            </div>
+            <div class="q-svc q-why" style="position:relative;display:flex;flex-direction:column;min-width:0;background:var(--bg2);border:1px solid var(--line);padding:clamp(20px,2.2vw,32px)">
+              <span aria-hidden="true" class="q-why-c" style="position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;border-right:1px solid var(--accent);border-bottom:1px solid var(--accent)"></span>
+              <svg class="q-wi q-i-con2" viewBox="0 0 160 96" aria-hidden="true" style="display:block;width:100%;max-width:200px;height:auto;overflow:visible"><g class="q-b1"><path class="q-wl q-w2f" pathLength="1" d="M16 10H90V46H42L30 58V46H16Z"></path><path class="q-wl q-wd" pathLength="1" d="M26 22H76M26 32H62"></path></g><g class="q-b2"><path class="q-wl q-w2f" pathLength="1" d="M66 38H144V74H130V86L118 74H66Z"></path><circle class="q-w2-n" style="--k:0" cx="92" cy="56" r="3.5"></circle><circle class="q-w2-n" style="--k:1" cx="105" cy="56" r="3.5"></circle><circle class="q-w2-n" style="--k:2" cx="118" cy="56" r="3.5"></circle></g></svg>
+              <span style="margin-top:24px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent-ink)">{{ sv5.n }}</span>
+              <h3 style="margin-top:16px;font-weight:500;font-size:clamp(26px,2.4vw,40px);line-height:0.96;letter-spacing:-0.04em;text-wrap:balance">{{ sv5.h }}</h3>
+              <p style="margin-top:14px;font-size:16px;line-height:1.5;color:var(--body);text-wrap:pretty">{{ sv5.t }}</p>
+              <ul style="margin-top:20px;list-style:none;display:flex;flex-direction:column;gap:8px">
+                <sc-for list="{{ sv5.b }}" as="b" hint-placeholder-count="3">
+                  <li style="display:grid;grid-template-columns:16px minmax(0,1fr);gap:8px;font-size:14px;line-height:1.35"><span aria-hidden="true" style="color:var(--accent-ink)">✓</span><span>{{ b }}</span></li>
+                </sc-for>
+              </ul>
+              <div style="margin-top:auto;padding-top:28px">
+                <button onClick="{{ openContact }}" style="height:48px;padding:0 24px;display:inline-flex;align-items:center;border:1px solid var(--ink);font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;font-weight:500;transition:background .2s ease,color .2s ease" style-hover="background:var(--ink);color:var(--bg)">{{ T.svc_cta }}</button>
+              </div>
+            </div>
+        </div>
+      </section>
+
+      <section id="contact" data-screen-label="07 Contact" style="overflow-x:clip;margin-top:clamp(120px,14vw,224px);border-top:1px solid var(--line);padding:clamp(80px,10vw,160px) clamp(16px,2.5vw,40px) 0">
+        <div class="q-eb" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute)">{{ T.contactTitle }}</div>
+        <div class="q-xl" style="margin-top:24px"><h2 class="q-ht" style="position:relative;margin-left:-0.04em;font-weight:500;font-size:clamp(64px,15vw,300px);line-height:0.9;letter-spacing:-0.05em;text-transform:uppercase"><span class="q-hsrc" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap">{{ T.contactEyebrow }}</span><span class="q-hanim" aria-hidden="true"></span></h2></div>
+        <div class="q-g" style="margin-top:clamp(40px,5vw,80px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:32px;align-items:end">
+          <p class="q-lines" data-lines="{{ T.contactSub }}" style="grid-column:1 / 7;font-size:clamp(17px,1.4vw,21px);line-height:1.45;color:var(--body)"></p>
+          <div class="q-hb" style="grid-column:8 / 13;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:12px">
+            <button onClick="{{ openContact }}" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 28px;white-space:nowrap;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;font-weight:500;transition:background .2s ease,color .2s ease,border-color .2s ease;background:var(--accent);color:var(--on-accent);border:1px solid var(--accent)" style-hover="background:var(--accent-hover);border-color:var(--accent-hover);color:var(--on-accent)">{{ T.cta_touch }}</button>
+            <a href="assets/files/Olha_Tsurika_CV.pdf" target="_blank" rel="noopener" download="Olha_Tsurika_CV.pdf" data-btn style="display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 28px;white-space:nowrap;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;font-weight:500;transition:background .2s ease,color .2s ease,border-color .2s ease;background:transparent;color:var(--ink);border:1px solid var(--ink)" style-hover="background:var(--ink);border-color:var(--ink);color:var(--bg)">{{ T.cv }}</a>
+          </div>
+        </div>
+        <a href="mailto:olhatsurika@gmail.com" class="q-rev" style="margin-top:clamp(48px,6vw,96px);display:block;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 0;font-weight:500;font-size:clamp(28px,6.4vw,124px);line-height:0.92;letter-spacing:-0.04em;overflow-wrap:anywhere">olhatsurika@gmail.com</a>
+        <ul style="margin-top:28px;list-style:none;display:flex;flex-wrap:wrap;gap:4px clamp(20px,3vw,48px);font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase">
+          <li><a href="https://www.linkedin.com/in/olga-tsurika/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:44px">LinkedIn ↗</a></li>
+          <li><span style="display:inline-flex;align-items:center;min-height:44px;color:var(--accent-ink)">Behance [ADD: Behance URL]</span></li>
+          <li><span style="display:inline-flex;align-items:center;min-height:44px;color:var(--accent-ink)">Instagram [ADD: Instagram URL]</span></li>
+          <li><a href="https://wa.me/4591927980" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:44px">WhatsApp ↗</a></li>
+          <li><a href="https://t.me/+4591927980" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:44px">Telegram ↗</a></li>
+          <li><a href="tel:+4591927980" style="display:inline-flex;align-items:center;min-height:44px">+45 91 92 79 80</a></li>
+        </ul>
+        <footer style="margin-top:clamp(96px,12vw,176px);border-top:1px solid var(--line);padding:20px 0 28px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px 32px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute)">
+          <span>© 2026 Olha Tsurika</span>
+          <a href="https://noomo.dk" target="_blank" rel="noopener">Founder of NOOMO studio — noomo.dk</a>
+          <span>{{ T.footerTag }}</span>
+        </footer>
+      </section>
+      </main>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="q-menu" role="dialog" aria-modal="true" aria-label="{{ T.menu }}" style="position:fixed;inset:0;z-index:90;background:var(--bg);display:flex;flex-direction:column;padding:0 var(--pad) 24px;overflow:auto">
+      <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background-image:repeating-linear-gradient(90deg,rgba(var(--ink-rgb),0.07) 0 1px,transparent 1px calc(100% / 4))"></div>
+      <div style="position:relative;display:flex;justify-content:space-between;align-items:center;height:64px;border-bottom:1px solid var(--line)">
+        <a href="#top" onClick="{{ closeMenu }}" aria-label="{{ T.aria_top }}" style="display:flex;align-items:center;gap:10px;font-weight:500;font-size:20px;letter-spacing:-0.04em"><img src="assets/img/me/olha-photo.webp" alt="Olha Tsurika" width="44" height="44" decoding="async" style="display:block;width:44px;height:44px;object-fit:cover;object-position:50% 20%;border-radius:50%;border:1px solid var(--line);flex-shrink:0"><span>Olha Tsurika<span style="color:var(--accent)">.</span></span></a>
+        <button onClick="{{ closeMenu }}" class="q-roll" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;font-weight:500;white-space:nowrap;min-height:44px;display:flex;align-items:center">[<span class="q-rl"><span>{{ T.close }}</span><span aria-hidden="true">{{ T.close }}</span></span>]</button>
+      </div>
+      <dl style="position:relative;margin-top:20px;display:grid;grid-template-columns:auto 10px minmax(0,1fr);gap:6px 4px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute)">
+        <dt style="grid-column:1 / -1;color:var(--ink);margin-bottom:6px">Olha Tsurika</dt>
+        <dt>{{ T.m_role }}</dt><dd>:</dd><dd style="color:var(--ink)">{{ T.hero_eb }}</dd>
+        <dt>{{ T.m_loc }}</dt><dd>:</dd><dd style="color:var(--ink)">{{ T.hero_loc }}</dd>
+      </dl>
+      <div style="position:relative;margin-top:auto;padding-top:32px;display:flex;flex-direction:column">
+        <a href="#work" onClick="{{ closeMenu }}" class="q-roll" style="display:grid;grid-template-columns:44px minmax(0,1fr);align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)"><span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent)">[01]</span><span class="q-mit" style="display:block;overflow:hidden;--d:1"><span class="q-rl" style="font-weight:500;font-size:clamp(34px,9vw,72px);letter-spacing:-0.03em;text-transform:uppercase;height:1.05em;line-height:1.05em"><span>{{ T.navWork }}</span><span aria-hidden="true">{{ T.navWork }}</span></span></span></a>
+        <a href="#about" onClick="{{ closeMenu }}" class="q-roll" style="display:grid;grid-template-columns:44px minmax(0,1fr);align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)"><span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent)">[02]</span><span class="q-mit" style="display:block;overflow:hidden;--d:2"><span class="q-rl" style="font-weight:500;font-size:clamp(34px,9vw,72px);letter-spacing:-0.03em;text-transform:uppercase;height:1.05em;line-height:1.05em"><span>{{ T.navAbout }}</span><span aria-hidden="true">{{ T.navAbout }}</span></span></span></a>
+        <a href="#services" onClick="{{ closeMenu }}" class="q-roll" style="display:grid;grid-template-columns:44px minmax(0,1fr);align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)"><span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent)">[03]</span><span class="q-mit" style="display:block;overflow:hidden;--d:3"><span class="q-rl" style="font-weight:500;font-size:clamp(34px,9vw,72px);letter-spacing:-0.03em;text-transform:uppercase;height:1.05em;line-height:1.05em"><span>{{ T.nav_services }}</span><span aria-hidden="true">{{ T.nav_services }}</span></span></span></a>
+        <a href="#contact" onClick="{{ closeMenu }}" class="q-roll" style="display:grid;grid-template-columns:44px minmax(0,1fr);align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)"><span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent)">[04]</span><span class="q-mit" style="display:block;overflow:hidden;--d:4"><span class="q-rl" style="font-weight:500;font-size:clamp(34px,9vw,72px);letter-spacing:-0.03em;text-transform:uppercase;height:1.05em;line-height:1.05em"><span>{{ T.nav_contact2 }}</span><span aria-hidden="true">{{ T.nav_contact2 }}</span></span></span></a>
+      </div>
+      <div style="position:relative;margin-top:24px;padding-top:0;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+        <div style="display:flex;gap:8px">
+          <sc-for list="{{ langOpts }}" as="lg" hint-placeholder-count="3">
+            <button onClick="{{ lg.pick }}" aria-pressed="{{ lg.on }}" lang="{{ lg.html }}" style="min-width:48px;min-height:44px;padding:0 10px;border:1px solid {{ lg.line }};font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;font-weight:500;color:{{ lg.color }}">{{ lg.label }}</button>
+          </sc-for>
+        </div>
+        <button onClick="{{ toggleTheme }}" role="switch" aria-checked="{{ isDark }}" style="min-height:44px;padding:0 14px;border:1px solid var(--line2);font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;font-weight:500">{{ T.theme_aria }}: {{ themeLabel }}</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ contactOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeContact }}" role="dialog" aria-modal="true" aria-label="{{ T.cta_touch }}" style="position:fixed;inset:0;z-index:95;background:rgba(var(--bg-rgb),0.72)">
+      <div onClick="{{ stop }}" style="position:absolute;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--ink)">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:22px clamp(16px,2.5vw,40px);border-bottom:1px solid var(--line)">
+          <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute)">{{ T.navContact }}</span>
+          <button onClick="{{ closeContact }}" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap;padding:8px 0">{{ T.close }}</button>
+        </div>
+        <sc-for list="{{ contacts }}" as="ct" hint-placeholder-count="5">
+          <a data-row href="{{ ct.url }}" target="_blank" rel="noopener noreferrer" style="display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:clamp(16px,3vw,48px);padding:clamp(20px,2.4vw,32px) clamp(16px,2.5vw,40px);border-bottom:1px solid var(--line);color:var(--ink);transition:background .3s ease,color .3s ease" style-hover="background:var(--ink);color:var(--bg)" style-focus="background:var(--ink);color:var(--bg);outline:none" style-active="background:var(--ink);color:var(--bg)">
+            <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase">{{ ct.k }}</span>
+            <span style="font-weight:500;font-size:clamp(20px,2.6vw,44px);line-height:1;letter-spacing:-0.04em;overflow-wrap:anywhere;text-align:right">{{ ct.v }}</span>
+            <span style="font-size:clamp(20px,2.6vw,44px);line-height:1">↗</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isCase }}" hint-placeholder-val="{{ false }}">
+    <article>
+      <button onClick="{{ goHome }}" aria-label="Back to work" style="position:fixed;top:10px;left:clamp(12px,2vw,32px);z-index:60;mix-blend-mode:difference;color:#F2F1EF;font-weight:300;font-size:clamp(52px,5.4vw,88px);line-height:1;letter-spacing:-0.04em;padding:4px 8px 8px 0;transition:transform .35s cubic-bezier(.16,1,.3,1)" style-hover="transform:translateX(-6px)">←</button>
+      <div style="position:fixed;top:28px;right:clamp(16px,2.5vw,40px);z-index:60;mix-blend-mode:difference;color:#F2F1EF;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase">{{ c.num }} / {{ total }}</div>
+
+      <header style="padding:clamp(140px,16vw,240px) clamp(16px,2.5vw,40px) 0">
+        <div class="q-rev" style="display:flex;flex-wrap:wrap;gap:8px 24px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute)">
+          <span style="color:var(--ink)">{{ c.catLabel }}</span>
+          <sc-if value="{{ c.year }}" hint-placeholder-val="{{ true }}"><span>{{ c.year }}</span></sc-if>
+          <sc-for list="{{ c.badgeList }}" as="bd" hint-placeholder-count="2"><span>{{ bd }}</span></sc-for>
+        </div>
+        <h1 class="q-rev" style="margin-top:28px;margin-left:-0.04em;font-weight:500;font-size:clamp(56px,11vw,212px);line-height:0.92;letter-spacing:-0.04em;text-wrap:balance">{{ c.head }}</h1>
+        <sc-if value="{{ c.sub }}" hint-placeholder-val="{{ false }}">
+          <p class="q-rev" style="margin-top:24px;max-width:22ch;font-weight:400;font-size:clamp(24px,2.8vw,48px);line-height:1;letter-spacing:-0.04em;color:var(--body)">{{ c.sub }}</p>
+        </sc-if>
+        <div class="q-g" style="margin-top:clamp(64px,8vw,128px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:48px">
+          <div class="q-rev" style="grid-column:1 / 5;border-top:1px solid var(--line)">
+            <sc-for list="{{ c.meta }}" as="m" hint-placeholder-count="4">
+              <div style="display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid var(--line)">
+                <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute);flex-shrink:0">{{ m.k }}</span>
+                <span style="font-size:15px;line-height:1.3;text-align:right">{{ m.v }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="grid-column:6 / 13">
+            <p class="q-lines" data-lines="{{ c.overview }}" style="font-size:clamp(22px,2vw,34px);line-height:1.2;letter-spacing:-0.02em"></p>
+            <sc-if value="{{ c.hasStores }}" hint-placeholder-val="{{ false }}">
+              <div class="q-rev" style="margin-top:32px;display:flex;flex-wrap:wrap;gap:12px 32px">
+                <sc-for list="{{ c.stores }}" as="st" hint-placeholder-count="1">
+                  <a href="{{ st.url }}" target="_blank" rel="noopener noreferrer" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap;font-weight:500;border-bottom:1px solid currentColor;padding-bottom:4px">{{ st.label }} ↗</a>
+                </sc-for>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </header>
+
+      <div style="margin-top:clamp(96px,12vw,200px);overflow:hidden;background:var(--bg2)">
+        <sc-if value="{{ c.heroImg }}" hint-placeholder-val="{{ false }}"><img src="{{ c.heroImg }}" alt="{{ c.title }}" loading="lazy" decoding="async" style="width:100%;height:auto;transition:transform 1.4s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.02)"></sc-if>
+      </div>
+
+      <sc-for list="{{ blocks }}" as="b" hint-placeholder-count="0">
+        <div style="margin-top:clamp(112px,14vw,224px)">
+          <sc-if value="{{ b.isStack }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-direction:column;gap:0;line-height:0;background:var(--bg2)">
+              <sc-for list="{{ b.stack }}" as="s" hint-placeholder-count="0">
+                <img src="{{ s.img }}" alt="{{ s.label }}" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;margin:0">
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ b.isBleed }}" hint-placeholder-val="{{ false }}">
+            <figure>
+              <div style="overflow:hidden;background:var(--bg2)">
+                <img src="{{ b.img }}" alt="{{ b.label }}" loading="lazy" decoding="async" onLoad="{{ b.onLoad }}" style="width:100%;height:auto;transition:transform 1.4s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.02)">
+              </div>
+              <figcaption style="margin-top:16px;padding:0 clamp(16px,2.5vw,40px);font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute)">{{ b.label }}</figcaption>
+            </figure>
+          </sc-if>
+          <sc-if value="{{ b.isTall }}" hint-placeholder-val="{{ false }}">
+            <div class="q-g" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;padding:0 clamp(16px,2.5vw,40px)">
+              <figure style="grid-column:1 / 9">
+                <div style="overflow:hidden;background:var(--bg2)">
+                  <img src="{{ b.img }}" alt="{{ b.label }}" loading="lazy" decoding="async" onLoad="{{ b.onLoad }}" style="width:100%;height:auto;transition:transform 1.4s cubic-bezier(.16,1,.3,1)" style-hover="transform:scale(1.02)">
+                </div>
+                <figcaption style="margin-top:16px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute)">{{ b.label }}</figcaption>
+              </figure>
+            </div>
+          </sc-if>
+          <sc-if value="{{ b.isText }}" hint-placeholder-val="{{ false }}">
+            <div class="q-g" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:20px;padding:0 clamp(16px,2.5vw,40px)">
+              <div class="q-rev" style="grid-column:1 / 4;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute);padding-top:10px">{{ b.label }}</div>
+              <p class="q-lines" data-lines="{{ b.body }}" style="grid-column:5 / 13;font-size:clamp(24px,2.5vw,42px);line-height:1.12;letter-spacing:-0.03em"></p>
+            </div>
+          </sc-if>
+          <sc-if value="{{ b.isSolution }}" hint-placeholder-val="{{ false }}">
+            <div class="q-g" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:20px;padding:0 clamp(16px,2.5vw,40px)">
+              <div class="q-rev" style="grid-column:1 / 4;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute);padding-top:20px">{{ b.label }}</div>
+              <div class="q-g2" style="grid-column:5 / 13;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px;row-gap:48px">
+                <sc-for list="{{ b.items }}" as="so" hint-placeholder-count="4">
+                  <div class="q-rev" style="border-top:1px solid var(--line);padding-top:20px">
+                    <h3 style="font-weight:500;font-size:clamp(22px,1.9vw,32px);line-height:1;letter-spacing:-0.03em">{{ so.h }}</h3>
+                    <p style="margin-top:16px;font-size:16px;line-height:1.5;color:var(--body);text-wrap:pretty">{{ so.t }}</p>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ b.isThinking }}" hint-placeholder-val="{{ false }}">
+            <div class="q-g" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:20px;padding:0 clamp(16px,2.5vw,40px)">
+              <div class="q-rev" style="grid-column:1 / 4;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute);padding-top:24px">{{ b.label }}</div>
+              <div style="grid-column:5 / 13">
+                <sc-for list="{{ b.items }}" as="th" hint-placeholder-count="3">
+                  <div class="q-rev" style="display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;border-top:1px solid var(--line);padding:22px 0 30px">
+                    <span style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;color:var(--mute);padding-top:6px">{{ th.i }}</span>
+                    <p style="font-size:clamp(18px,1.5vw,24px);line-height:1.3;letter-spacing:-0.015em;text-wrap:pretty">{{ th.t }}</p>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ b.isImpact }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:0 clamp(16px,2.5vw,40px)">
+              <div class="q-rev" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute)">{{ b.label }}</div>
+              <div style="margin-top:32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));column-gap:20px;row-gap:56px">
+                <sc-for list="{{ b.items }}" as="im" hint-placeholder-count="3">
+                  <div class="q-rev" style="border-top:1px solid var(--ink);padding-top:20px;min-width:0">
+                    <div style="font-weight:500;font-size:clamp(56px,7vw,128px);line-height:0.92;letter-spacing:-0.04em;overflow-wrap:anywhere">{{ im.n }}</div>
+                    <div style="margin-top:20px;max-width:30ch;font-family:var(--font-mono);font-size:11px;line-height:1.5;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute)">{{ im.l }}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ b.isRole }}" hint-placeholder-val="{{ false }}">
+            <div class="q-g" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:20px;padding:0 clamp(16px,2.5vw,40px)">
+              <div class="q-rev" style="grid-column:1 / 4;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute);padding-top:24px">{{ b.label }}</div>
+              <div style="grid-column:5 / 13">
+                <sc-for list="{{ b.items }}" as="rl" hint-placeholder-count="4">
+                  <p class="q-rev" style="border-top:1px solid var(--line);padding:20px 0 26px;font-size:clamp(18px,1.5vw,24px);line-height:1.3;letter-spacing:-0.015em;text-wrap:pretty">{{ rl }}</p>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-for>
+
+      <div class="q-g" style="margin-top:clamp(112px,14vw,224px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:20px;row-gap:16px;padding:24px clamp(16px,2.5vw,40px) 0;border-top:1px solid var(--line)">
+        <div style="grid-column:1 / 13;display:flex;flex-wrap:wrap;gap:10px 28px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--mute)">
+          <sc-for list="{{ c.tools }}" as="tl" hint-placeholder-count="4"><span>{{ tl }}</span></sc-for>
+        </div>
+      </div>
+      <button onClick="{{ goHome }}" style="display:block;width:100%;margin-top:clamp(96px,12vw,176px);padding:0 clamp(16px,2.5vw,40px) clamp(40px,5vw,72px);font-weight:500;font-size:clamp(48px,9vw,176px);line-height:0.92;letter-spacing:-0.04em;transition:color .3s ease" style-hover="color:var(--mute)">{{ T.back_work }}</button>
+    </article>
+  </sc-if>
+</div>
+</x-dc>
+</body>
+</html>
